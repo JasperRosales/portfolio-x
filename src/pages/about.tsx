@@ -4,13 +4,10 @@ import {
   VscDatabase,
   VscServer,
   VscTools,
-  VscFileCode,
   VscCoffee,
   VscTerminal,
-  VscCloud,
   VscCheck,
   VscStarEmpty,
-  VscBook,
   VscOrganization,
 } from 'react-icons/vsc';
 import {
@@ -21,56 +18,23 @@ import {
   AnimatedCard,
 } from '../components/shared';
 
-const skillCategories = [
-  {
-    title: 'Backend & Languages',
-    icon: <VscCode className="text-lg" />,
-    skills: [
-      { name: 'Golang', icon: <VscCode /> },
-      { name: 'Java', icon: <VscCoffee /> },
-      { name: 'Rust', icon: <VscTerminal /> },
-      { name: 'Spring Boot', icon: <VscLeaf /> },
-      { name: 'RESTful APIs', icon: <VscApi /> },
-      { name: 'GraphQL', icon: <VscGraph /> },
-      { name: 'Microservices', icon: <VscServer /> },
-    ],
-  },
-  {
-    title: 'Message Brokers',
-    icon: <VscOrganization className="text-lg" />,
-    skills: [
-      { name: 'RabbitMQ', icon: <VscRabbit /> },
-      { name: 'Kafka', icon: <VscKafka /> },
-    ],
-  },
-  {
-    title: 'Databases',
-    icon: <VscDatabase className="text-lg" />,
-    skills: [
-      { name: 'PostgreSQL', icon: <VscDatabase /> },
-      { name: 'MongoDB', icon: <VscMongodb /> },
-    ],
-  },
-  {
-    title: 'DevOps & Tools',
-    icon: <VscTools className="text-lg" />,
-    skills: [
-      { name: 'Docker', icon: <VscDocker /> },
-      { name: 'GitHub Actions', icon: <VscGithubAction /> },
-      { name: 'Git', icon: <VscGit /> },
-      { name: 'Maven', icon: <VscTools /> },
-      { name: 'Testing', icon: <VscCheck /> },
-    ],
-  },
-  {
-    title: 'Design & Graphics',
-    icon: <VscCloud className="text-lg" />,
-    skills: [
-      { name: 'Adobe Creative Suite', icon: <VscCloud /> },
-      { name: 'Digital Graphics', icon: <VscCloud /> },
-      { name: 'UI/UX Design', icon: <VscCloud /> },
-    ],
-  },
+const allSkills = [
+  { name: 'Golang', icon: <VscCode /> },
+  { name: 'Java', icon: <VscCoffee /> },
+  { name: 'Rust', icon: <VscTerminal /> },
+  { name: 'Spring Boot', icon: <VscLeaf /> },
+  { name: 'RESTful APIs', icon: <VscApi /> },
+  { name: 'GraphQL', icon: <VscGraph /> },
+  { name: 'Microservices', icon: <VscServer /> },
+  { name: 'RabbitMQ', icon: <VscRabbit /> },
+  { name: 'Kafka', icon: <VscKafka /> },
+  { name: 'PostgreSQL', icon: <VscDatabase /> },
+  { name: 'MongoDB', icon: <VscMongodb /> },
+  { name: 'Docker', icon: <VscDocker /> },
+  { name: 'GitHub Actions', icon: <VscGithubAction /> },
+  { name: 'Git', icon: <VscGitCustom /> },
+  { name: 'Maven', icon: <VscTools /> },
+  { name: 'Testing', icon: <VscCheck /> },
 ];
 
 const softSkills = [
@@ -112,7 +76,6 @@ const certifications = [
   },
 ];
 
-// Custom icons for skills
 function VscLeaf() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -148,7 +111,7 @@ function VscRabbit() {
 function VscKafka() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-      <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" fill="none" strokeWidth="2" />
+      <path d="M12 2L2 12l10 10 10-10L12 2zm0 14.5c-2.49 0-4.5-2.01-4.5-4.5S9.51 7.5 12 7.5s4.5 2.01 4.5 4.5-2.01 4.5-4.5 4.5zm0-5.5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z" />
     </svg>
   );
 }
@@ -177,7 +140,7 @@ function VscGithubAction() {
   );
 }
 
-function VscGit() {
+function VscGitCustom() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.41 16.09L12 15.45v-3.72l5.09 2.63c-.85.44-1.77.78-2.68.91zM6.41 6.35L12 9.09v3.75L7.24 12.5c.59-.34 1.27-.55 2-.61.11-.02.22-.03.33-.05v-3.36c-.56 0-1.1.14-1.58.37l-1.58-1.9zm10.23 4.64c-.03-.53-.15-1.04-.34-1.51l-1.43.86c.26.64.4 1.34.4 2.06v.43c0 .55-.45 1-1 1H14v-3.01c.24-.03.48-.06.72-.12.56-.14 1.09-.39 1.58-.61.08-.04.16-.08.24-.12v-.03z" />
@@ -189,7 +152,6 @@ export default function About() {
   return (
     <PageWrapper>
       <div className="min-h-screen">
-        {/* Header */}
         <Section className="pt-24 pb-12">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -211,48 +173,35 @@ export default function About() {
           </div>
         </Section>
 
-        {/* Technical Skills */}
         <Section>
           <div className="max-w-6xl mx-auto">
             <SectionTitle>Technical Skills</SectionTitle>
             
-            <div className="grid md:grid-cols-2 gap-8 mt-12">
-              {skillCategories.map((category, categoryIndex) => (
-                <motion.div
-                  key={category.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: categoryIndex * 0.1 }}
-                >
-                  <AnimatedCard className="h-full">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                        {category.icon}
-                      </div>
-                      <h3 className="text-lg font-semibold">{category.title}</h3>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {category.skills.map((skill, skillIndex) => (
-                        <motion.div
-                          key={skill.name}
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
-                        >
-                          <SkillBadge name={skill.name} icon={skill.icon} />
-                        </motion.div>
-                      ))}
-                    </div>
-                  </AnimatedCard>
-                </motion.div>
-              ))}
-            </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-12"
+            >
+              <AnimatedCard className="h-full">
+                <div className="flex flex-wrap gap-2">
+                  {allSkills.map((skill, skillIndex) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: skillIndex * 0.03 }}
+                    >
+                      <SkillBadge name={skill.name} icon={skill.icon} />
+                    </motion.div>
+                  ))}
+                </div>
+              </AnimatedCard>
+            </motion.div>
           </div>
         </Section>
 
-        {/* Soft Skills */}
         <Section className="bg-[rgb(var(--muted))]/30">
           <div className="max-w-4xl mx-auto">
             <SectionTitle>Soft Skills</SectionTitle>

@@ -25,3 +25,4 @@ export function useSound(soundPath: string) {
 
   return { playSound, cleanup };
 }
+

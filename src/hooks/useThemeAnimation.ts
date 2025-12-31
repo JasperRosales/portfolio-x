@@ -29,7 +29,6 @@ export function useThemeAnimation() {
     starry: { duration: 6000, delay: 0, easing: 'ease-in-out' },
   });
 
-  // Load saved preferences from localStorage
   useEffect(() => {
     try {
       const saved = localStorage.getItem(ANIMATION_STORAGE_KEY);
@@ -42,7 +41,6 @@ export function useThemeAnimation() {
     }
   }, []);
 
-  // Save preferences to localStorage
   const savePreferences = useCallback((newPreferences: Record<ThemeName, ThemeAnimationOptions>) => {
     try {
       localStorage.setItem(ANIMATION_STORAGE_KEY, JSON.stringify(newPreferences));
@@ -51,7 +49,6 @@ export function useThemeAnimation() {
     }
   }, []);
 
-  // Start animation for a specific theme
   const startAnimation = useCallback((theme: ThemeName) => {
     const now = Date.now();
     const animationKey = `${theme}-${now}`;
@@ -62,7 +59,6 @@ export function useThemeAnimation() {
       startTime: now,
     });
 
-    // Auto-complete animation after duration
     const duration = preferences[theme]?.duration || 1000;
     setTimeout(() => {
       setAnimationState(prev => ({
@@ -72,14 +68,11 @@ export function useThemeAnimation() {
     }, duration);
   }, [preferences]);
 
-  // Check if animation should run
   const shouldAnimate = useCallback((theme: ThemeName) => {
-    // Don't animate if user prefers reduced motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       return false;
     }
 
-    // Don't animate if already animating
     if (animationState.isAnimating) {
       return false;
     }
@@ -87,7 +80,6 @@ export function useThemeAnimation() {
     return true;
   }, [animationState.isAnimating]);
 
-  // Get animation class names for theme
   const getAnimationClasses = useCallback((theme: ThemeName): string => {
     const classes = ['theme-animation'];
     
@@ -109,7 +101,6 @@ export function useThemeAnimation() {
     return classes.join(' ');
   }, []);
 
-  // Get theme-specific animation configuration
   const getAnimationConfig = useCallback((themeName: ThemeName) => {
     if (!shouldAnimate(themeName)) return null;
 
@@ -148,14 +139,12 @@ export function useThemeAnimation() {
     }
   }, [shouldAnimate, animationState.animationKey, getAnimationClasses]);
 
-  // Update animation preferences
   const updatePreferences = useCallback((theme: ThemeName, options: ThemeAnimationOptions) => {
     const newPreferences = { ...preferences, [theme]: options };
     setPreferences(newPreferences);
     savePreferences(newPreferences);
   }, [preferences, savePreferences]);
 
-  // Reset animation state
   const resetAnimation = useCallback(() => {
     setAnimationState({
       isAnimating: false,
@@ -164,7 +153,6 @@ export function useThemeAnimation() {
     });
   }, []);
 
-  // Get animation timing CSS
   const getAnimationTiming = useCallback((theme: ThemeName): string => {
     const options = preferences[theme];
     if (!options) return '0.6s ease-out';
@@ -174,11 +162,9 @@ export function useThemeAnimation() {
   }, [preferences]);
 
   return {
-    // State
     animationState,
     preferences,
     
-    // Actions
     startAnimation,
     shouldAnimate,
     getAnimationClasses,
@@ -187,13 +173,11 @@ export function useThemeAnimation() {
     updatePreferences,
     resetAnimation,
     
-    // Utilities
     isAnimating: animationState.isAnimating,
     animationKey: animationState.animationKey,
   };
 }
 
-// Hook for page-level theme animations
 export function usePageThemeAnimation(theme: ThemeName) {
   const { startAnimation, shouldAnimate, getAnimationConfig } = useThemeAnimation();
   
@@ -208,7 +192,6 @@ export function usePageThemeAnimation(theme: ThemeName) {
   };
 }
 
-// Hook for component-level theme animations  
 export function useComponentThemeAnimation(theme: ThemeName, componentId: string) {
   const { startAnimation, shouldAnimate, getAnimationClasses } = useThemeAnimation();
   
@@ -222,3 +205,4 @@ export function useComponentThemeAnimation(theme: ThemeName, componentId: string
     animationClasses: getAnimationClasses(theme),
   };
 }
+

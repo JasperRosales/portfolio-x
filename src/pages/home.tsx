@@ -45,7 +45,6 @@ export default function Home() {
   return (
     <PageWrapper>
       <div className="min-h-screen flex flex-col">
-        {/* Hero Section */}
         <Section className="flex-1 flex items-center justify-center min-h-screen">
           <div className="max-w-6xl mx-auto w-full">
             <motion.div
@@ -54,7 +53,6 @@ export default function Home() {
               animate="visible"
               className="flex flex-col lg:flex-row items-center justify-between gap-12"
             >
-              {/* Text Content */}
               <motion.div variants={itemVariants} className="flex-1 text-center lg:text-left">
                 <motion.p
                   variants={itemVariants}
@@ -107,7 +105,6 @@ export default function Home() {
                 </motion.div>
               </motion.div>
 
-              {/* Hero Image/Visual */}
               <motion.div
                 variants={itemVariants}
                 className="flex-1 flex justify-center lg:justify-end"
@@ -125,7 +122,6 @@ export default function Home() {
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  {/* Decorative elements */}
                   <motion.div
                     animate={{
                       rotate: 360,

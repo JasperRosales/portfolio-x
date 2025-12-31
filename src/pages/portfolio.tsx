@@ -1,18 +1,10 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import {
   VscFolderOpened,
   VscGithubInverted,
   VscLink,
   VscCode,
-  VscDatabase,
-  VscServer,
-  VscTools,
-  VscRocket,
-  VscOrganization,
-  VscCloud,
   VscCheck,
-  VscEye,
 } from 'react-icons/vsc';
 import {
   PageWrapper,
@@ -95,15 +87,7 @@ const projects: Project[] = [
   },
 ];
 
-const categories = ['All', 'Community Platform', 'Health & Fitness', 'E-Commerce', 'Backend'];
-
 export default function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState('All');
-
-  const filteredProjects = activeCategory === 'All'
-    ? projects
-    : projects.filter(p => p.category === activeCategory);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -122,7 +106,6 @@ export default function Portfolio() {
   return (
     <PageWrapper>
       <div className="min-h-screen">
-        {/* Header */}
         <Section className="pt-24 pb-12">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -139,35 +122,6 @@ export default function Portfolio() {
           </div>
         </Section>
 
-        {/* Category Filter */}
-        <Section className="pb-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex flex-wrap justify-center gap-2"
-            >
-              {categories.map((category) => (
-                <motion.button
-                  key={category}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setActiveCategory(category)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-                    activeCategory === category
-                      ? 'bg-primary text-primary-foreground'
-                      : 'bg-[rgb(var(--card))] border border-[rgb(var(--border))] hover:bg-accent'
-                  }`}
-                >
-                  {category}
-                </motion.button>
-              ))}
-            </motion.div>
-          </div>
-        </Section>
-
-        {/* Projects Grid */}
         <Section>
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -176,14 +130,13 @@ export default function Portfolio() {
               animate="visible"
               className="grid md:grid-cols-2 gap-8"
             >
-              {filteredProjects.map((project, index) => (
+              {projects.map((project, index) => (
                 <motion.div
                   key={project.title}
                   variants={itemVariants}
                   transition={{ delay: index * 0.1 }}
                 >
                   <AnimatedCard className="h-full flex flex-col group">
-                    {/* Project Header */}
                     <div className="flex items-start justify-between mb-4">
                       <div className="p-3 rounded-lg bg-primary/10 text-primary">
                         <VscFolderOpened className="text-2xl" />
@@ -216,7 +169,6 @@ export default function Portfolio() {
                       </div>
                     </div>
 
-                    {/* Project Content */}
                     <div className="flex-1">
                       <span className="text-xs font-medium text-primary uppercase tracking-wide">
                         {project.category}
@@ -226,7 +178,6 @@ export default function Portfolio() {
                         {project.fullDescription}
                       </p>
 
-                      {/* Features */}
                       <ul className="space-y-1 mb-4">
                         {project.features.slice(0, 3).map((feature, featureIndex) => (
                           <li
@@ -244,7 +195,6 @@ export default function Portfolio() {
                         )}
                       </ul>
 
-                      {/* Tech Stack */}
                       <div className="flex flex-wrap gap-1.5 pt-2">
                         {project.techStack.slice(0, 4).map((tech) => (
                           <SkillBadge key={tech} name={tech} className="text-xs px-2 py-1" />
@@ -260,17 +210,9 @@ export default function Portfolio() {
                 </motion.div>
               ))}
             </motion.div>
-
-            {filteredProjects.length === 0 && (
-              <div className="text-center py-12">
-                <VscCode className="text-6xl text-muted-foreground mx-auto mb-4" />
-                <p className="text-muted-foreground">No projects found in this category.</p>
-              </div>
-            )}
           </div>
         </Section>
 
-        {/* Call to Action */}
         <Section className="pb-24">
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -280,7 +222,7 @@ export default function Portfolio() {
               className="text-center"
             >
               <AnimatedCard className="bg-primary/5 border-primary/20">
-                <VscRocket className="text-5xl text-primary mx-auto mb-4" />
+                <VscCode className="text-5xl text-primary mx-auto mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Interested in working together?</h3>
                 <p className="text-muted-foreground mb-6">
                   I'm always open to discussing new projects and opportunities.
@@ -289,10 +231,10 @@ export default function Portfolio() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/80 transition-colors"
                 >
                   Get In Touch
-                    <VscLink />
+                  <VscLink />
                 </motion.a>
               </AnimatedCard>
             </motion.div>

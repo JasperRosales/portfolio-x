@@ -79,7 +79,6 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    // Simulate form submission
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     setIsSubmitting(false);
@@ -91,7 +90,6 @@ export default function Contact() {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
     
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors(prev => ({ ...prev, [name]: undefined }));
     }
@@ -145,7 +143,6 @@ export default function Contact() {
   return (
     <PageWrapper>
       <div className="min-h-screen">
-        {/* Header */}
         <Section className="pt-24 pb-12">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -162,18 +159,15 @@ export default function Contact() {
           </div>
         </Section>
 
-        {/* Contact Content */}
         <Section>
           <div className="max-w-6xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-8">
-              {/* Contact Info */}
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
               >
                 <div className="space-y-6">
-                  {/* Contact Information Cards */}
                   {contactInfo.map((info, index) => (
                     <motion.div
                       key={info.title}
@@ -200,7 +194,6 @@ export default function Contact() {
                     </motion.div>
                   ))}
 
-                  {/* Social Links */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -227,7 +220,6 @@ export default function Contact() {
                 </div>
               </motion.div>
 
-              {/* Contact Form */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -349,7 +341,7 @@ export default function Contact() {
                         whileTap={{ scale: 0.98 }}
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                       >
                         {isSubmitting ? (
                           <>
@@ -377,7 +369,6 @@ export default function Contact() {
           </div>
         </Section>
 
-        {/* Availability Status */}
         <Section className="pb-24">
           <div className="max-w-4xl mx-auto">
             <motion.div

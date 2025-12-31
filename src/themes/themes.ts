@@ -23,7 +23,7 @@ export const themes: Record<ThemeName, Theme> = {
       '--secondary-foreground': 'oklch(0.985 0 0)',
       '--muted': 'oklch(0.274 0.006 286.033)',
       '--muted-foreground': 'oklch(0.705 0.015 286.067)',
-      '--accent': 'oklch(0.705 0.213 47.604)',
+      '--accent': 'oklch(0.1 0.005 285.823)',
       '--accent-foreground': 'oklch(0.98 0.016 73.684)',
       '--destructive': 'oklch(0.704 0.191 22.216)',
       '--border': 'oklch(1 0 0 / 10%)',
@@ -52,7 +52,7 @@ export const themes: Record<ThemeName, Theme> = {
       '--secondary-foreground': 'oklch(0.98 0.02 280)',
       '--muted': 'oklch(0.2 0.08 280)',
       '--muted-foreground': 'oklch(0.7 0.05 280)',
-      '--accent': 'oklch(0.75 0.2 120)',
+      '--accent': 'oklch(0.08 0.015 280)',
       '--accent-foreground': 'oklch(0.1 0.02 280)',
       '--destructive': 'oklch(0.7 0.15 20)',
       '--border': 'oklch(0.3 0.1 280 / 30%)',
@@ -81,7 +81,7 @@ export const themes: Record<ThemeName, Theme> = {
       '--secondary-foreground': 'oklch(0.95 0.02 240)',
       '--muted': 'oklch(0.12 0.018 240)',
       '--muted-foreground': 'oklch(0.6 0.03 240)',
-      '--accent': 'oklch(0.55 0.12 180)',
+      '--accent': 'oklch(0.04 0.008 240)',
       '--accent-foreground': 'oklch(0.05 0.01 240)',
       '--destructive': 'oklch(0.65 0.12 20)',
       '--border': 'oklch(0.2 0.03 240 / 20%)',
@@ -110,7 +110,7 @@ export const themes: Record<ThemeName, Theme> = {
       '--secondary-foreground': 'oklch(0.95 0.05 160)',
       '--muted': 'oklch(0.12 0.04 160)',
       '--muted-foreground': 'oklch(0.7 0.08 160)',
-      '--accent': 'oklch(0.85 0.25 300)',
+      '--accent': 'oklch(0.03 0.01 160)',
       '--accent-foreground': 'oklch(0.05 0.02 160)',
       '--destructive': 'oklch(0.8 0.2 20)',
       '--border': 'oklch(0.3 0.08 160 / 40%)',
@@ -137,3 +137,4 @@ export function getRandomTheme(currentTheme?: ThemeName): ThemeName {
   const randomIndex = Math.floor(Math.random() * themeNames.length);
   return themeNames[randomIndex];
 }
+

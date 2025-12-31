@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import {
-  VscCalendar,
   VscLocation,
   VscOrganization,
   VscTarget,
@@ -145,7 +144,7 @@ export default function Resume() {
             >
               <h1 className="text-4xl sm:text-5xl font-bold mb-4">Resume</h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                Professional experience and educational background
+                A showcase of my experience and educational background in my journey as an aspiring software engineer and as a person.
               </p>
             </motion.div>
           </div>
@@ -153,7 +152,7 @@ export default function Resume() {
 
         <Section>
           <div className="max-w-4xl mx-auto">
-            <SectionTitle>Work Experience</SectionTitle>
+            <SectionTitle>Experience</SectionTitle>
             
             <div className="mt-8">
               {workExperience.map((job, index) => (
@@ -290,7 +289,7 @@ export default function Resume() {
                 transition={{ delay: 0.2 }}
               >
                 <AnimatedCard className="h-full">
-                  <VscCalendar className="text-4xl text-primary mx-auto mb-3" />
+                  <VscOrganization className="text-4xl text-primary mx-auto mb-3" />
                   <div className="text-xl font-bold text-primary mb-2 text-center">31st Founding Anniversary Organizer</div>
                   <p className="text-sm text-muted-foreground text-justify">Served as Technical Head for the 31st Founding Anniversary event, overseeing all technical aspects and event coordination</p>
                 </AnimatedCard>
