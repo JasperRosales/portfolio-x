@@ -8,11 +8,13 @@ import Home from "./pages/home";
 import About from "./pages/about";
 import Portfolio from "./pages/portfolio";
 import Contact from "./pages/contact";
+import Resume from "./pages/resume";
 import {
   VscHome,
   VscArchive,
   VscAccount,
   VscCallIncoming,
+  VscFilePdf,
 } from "react-icons/vsc";
 import Dock from "./components/dock";
 import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
@@ -28,6 +30,14 @@ function AppContent() {
       onClick: () => {
         cycleTheme();
         navigate("/");
+      },
+    },
+    {
+      icon: <VscFilePdf size={18} />,
+      label: "Resume",
+      onClick: () => {
+        cycleTheme();
+        navigate("/resume");
       },
     },
     {
@@ -61,6 +71,7 @@ function AppContent() {
       <main className="grow">
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/resume" element={<Resume />} />
           <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
