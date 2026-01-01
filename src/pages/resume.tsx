@@ -1,12 +1,5 @@
 import { motion } from 'framer-motion';
-import {
-  VscLocation,
-  VscOrganization,
-  VscTarget,
-  VscCode,
-  VscLightbulb,
-  VscHeart,
-} from 'react-icons/vsc';
+import { VscLocation, VscOrganization, VscTarget } from 'react-icons/vsc';
 import {
   PageWrapper,
   Section,
@@ -15,120 +8,9 @@ import {
   AnimatedCard,
   SkillBadge,
 } from '../components/shared';
-
-const workExperience = [
-  {
-    date: 'May 2025 - Present',
-    title: 'Vice President',
-    subtitle: 'College of Informatics and Computing Sciences - SC Balayan',
-    location: 'Batangas State University, Balayan, Batangas',
-    achievements: [
-      'Manage the organization to be functional and efficient during events and outside activities',
-      'Maintain efficiency and morale of the CICS organization',
-      'Lead cross-functional collaboration and public communication in hybrid environments',
-      'Oversee high-impact activities and foster organizational efficiency',
-    ],
-    techStack: ['Leadership', 'Event Management', 'Team Management'],
-  },
-  {
-    date: 'April 2024 - Present',
-    title: 'Freelance Developer',
-    subtitle: 'Self-Employed',
-    location: 'Balayan, Batangas, Philippines',
-    achievements: [
-      'Delivered scalable, client-focused software solutions by combining strong problem-solving and analytical skills',
-      'Improved system performance and project outcomes for multiple clients',
-      'Communicated technical concepts clearly with non-technical stakeholders, enabling faster decision-making',
-      'Reduced revisions and delivery timelines through effective communication',
-      'Managed projects independently with strong time management and adaptability',
-      'Consistently meeting deadlines while maintaining high-quality standards',
-    ],
-    techStack: ['Golang', 'Spring Boot', 'PostgreSQL', 'MongoDB', 'Docker', 'Java', 'Rust'],
-  },
-  {
-    date: 'Sep 2024 - Present',
-    title: 'Committee Chairperson on Digital Graphics',
-    subtitle: 'Supreme Student Council Alangilan - Balayan',
-    location: 'Balayan, Batangas',
-    achievements: [
-      'Designed various publication/posting materials of the Supreme Student Council',
-      'Designed the highlight of the school event during the 31st foundation day 2025',
-      'Made announcements for the school with suitable and informative designs',
-      'Managed time effectively to meet design deadlines',
-    ],
-    techStack: ['Digital Graphics', 'Adobe Creative Suite', 'Design', 'Time Management'],
-  },
-  {
-    date: 'Aug 2024 - May 2025',
-    title: 'Second Class Officer',
-    subtitle: 'BatStateU TNEU - Balayan ROTC Unit',
-    location: 'Balayan, Batangas',
-    achievements: [
-      'Finished the ROTC Course and became an officer',
-      'First to be promoted to a position fitted for technical skills',
-      'Managed events regarding the ROTC and the Page of the Unit itself',
-      'Volunteered in donations and crisis activities to help people in need',
-    ],
-    techStack: ['Team Leadership', 'Event Management', 'Volunteer Management'],
-  },
-  {
-    date: 'Aug 2024 - May 2025',
-    title: 'Business Manager',
-    subtitle: 'College of Informatics and Computing Sciences - SC Balayan',
-    location: 'Batangas State University, Balayan, Batangas',
-    achievements: [
-      'Audited excel spreadsheets and reports for the financial status and activities',
-      'Managed the receipt of each activity',
-      'Maintained accurate financial reporting for the organization',
-    ],
-    techStack: ['Microsoft Excel', 'Financial Reporting', 'Accounting'],
-  },
-];
-
-const education = [
-  {
-    institution: 'Batangas State University',
-    degree: 'Bachelor of Science in Business Analytics',
-    period: 'August 2023 - Present',
-    location: 'Batangas, Philippines',
-    coursework: [
-      'Business Analytics',
-      'Web Development',
-      'Mobile Development',
-      'AI Integration',
-      'Data Structures and Algorithms',
-      'System Design and Architecture',
-    ],
-  },
-];
-
-const resumeCertifications = [
-  {
-    name: 'C Essentials I',
-    issuer: 'Cisco',
-    date: '2024',
-  },
-  {
-    name: 'C++ Essentials II',
-    issuer: 'Cisco',
-    date: '2024',
-  },
-  {
-    name: 'CS50 Introduction to Computer Science',
-    issuer: 'Harvard',
-    date: '2024',
-  },
-  {
-    name: 'AWS S3 Basics',
-    issuer: 'Amazon',
-    date: '2024',
-  },
-  {
-    name: 'Oracle Java Foundations',
-    issuer: 'Oracle',
-    date: '2024',
-  },
-];
+import { workExperience, education } from '../data/experience';
+import { resumeCertifications } from '../data/certifications';
+import { keyAchievements } from '../data/achievements';
 
 export default function Resume() {
   return (
@@ -269,70 +151,27 @@ export default function Resume() {
             <SectionTitle>Key Achievements</SectionTitle>
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.1 }}
-              >
-                <AnimatedCard className="h-full">
-                  <VscCode className="text-4xl text-primary mx-auto mb-3" />
-                  <div className="text-xl font-bold text-primary mb-2 text-center">HackerRank Achiever</div>
-                  <p className="text-sm text-muted-foreground text-justify">Earned Java and Go certifications and badges through HackerRank's competitive programming platform</p>
-                </AnimatedCard>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <AnimatedCard className="h-full">
-                  <VscOrganization className="text-4xl text-primary mx-auto mb-3" />
-                  <div className="text-xl font-bold text-primary mb-2 text-center">31st Founding Anniversary Organizer</div>
-                  <p className="text-sm text-muted-foreground text-justify">Served as Technical Head for the 31st Founding Anniversary event, overseeing all technical aspects and event coordination</p>
-                </AnimatedCard>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
-              >
-                <AnimatedCard className="h-full">
-                  <VscLightbulb className="text-4xl text-primary mx-auto mb-3" />
-                  <div className="text-xl font-bold text-primary mb-2 text-center">Maze Mastery Coding Champion</div>
-                  <p className="text-sm text-muted-foreground text-justify">Won the Maze Mastery coding competition with my team, competing against students from freshman to senior year levels</p>
-                </AnimatedCard>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-              >
-                <AnimatedCard className="h-full">
-                  <VscOrganization className="text-4xl text-primary mx-auto mb-3" />
-                  <div className="text-xl font-bold text-primary mb-2 text-center">CICS Github Community Founder</div>
-                  <p className="text-sm text-muted-foreground text-justify">Founded the College of Informatics and Computing Sciences Balayan Github Community, managing merges and repositories for student collaboration</p>
-                </AnimatedCard>
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.5 }}
-              >
-                <AnimatedCard className="h-full">
-                  <VscHeart className="text-4xl text-primary mx-auto mb-3" />
-                  <div className="text-xl font-bold text-primary mb-2 text-center">SSC Service Awardee</div>
-                  <p className="text-sm text-muted-foreground text-justify">Recognized for completing 1 year of dedicated service to the Supreme Student Council on Balayan campus</p>
-                </AnimatedCard>
-              </motion.div>
+              {keyAchievements.map((achievement, index) => (
+                <motion.div
+                  key={achievement.title}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  <AnimatedCard className="h-full flex flex-col items-center text-center p-6">
+                    <div className="mb-4">
+                      {achievement.icon}
+                    </div>
+                    <div className="text-xl font-bold text-primary mb-2 text-center">
+                      {achievement.title}
+                    </div>
+                    <p className="text-sm text-muted-foreground text-justify">
+                      {achievement.description}
+                    </p>
+                  </AnimatedCard>
+                </motion.div>
+              ))}
             </div>
           </div>
         </Section>

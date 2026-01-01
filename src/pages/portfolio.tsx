@@ -1,11 +1,5 @@
 import { motion } from 'framer-motion';
-import {
-  VscFolderOpened,
-  VscGithubInverted,
-  VscLink,
-  VscCode,
-  VscCheck,
-} from 'react-icons/vsc';
+import { VscFolderOpened, VscGithubInverted, VscLink, VscCode, VscCheck } from 'react-icons/vsc';
 import {
   PageWrapper,
   Section,
@@ -13,79 +7,7 @@ import {
   AnimatedCard,
   SkillBadge,
 } from '../components/shared';
-
-interface Project {
-  title: string;
-  description: string;
-  fullDescription: string;
-  image?: string;
-  techStack: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  features: string[];
-  category: string;
-}
-
-const projects: Project[] = [
-  {
-    title: 'CICS Community',
-    description: 'A GitHub community platform for students and future members.',
-    fullDescription: 'Founded and lead a community GitHub along with co-officers to further enhance and supply knowledge for students and future members of the CICS community. Making it a platform for teaching distributed source management and documentation for students and professors.',
-    category: 'Community Platform',
-    techStack: ['Git', 'GitHub', 'Documentation', 'Source Management'],
-    githubUrl: 'https://github.com/JasperRosales',
-    features: [
-      'Community-driven knowledge sharing',
-      'Source management training platform',
-      'Documentation for students and professors',
-      'Collaborative learning environment',
-    ],
-  },
-  {
-    title: 'Fit-Tech',
-    description: 'A fitness tracking and technology integration application.',
-    fullDescription: 'Developed a comprehensive fitness tracking application that integrates with various health technologies to provide users with a complete view of their fitness journey.',
-    category: 'Health & Fitness',
-    techStack: ['Golang', 'PostgreSQL', 'Docker', 'REST APIs'],
-    githubUrl: 'https://github.com/JasperRosales',
-    features: [
-      'User authentication and profiles',
-      'Fitness progress tracking',
-      'Integration with health devices',
-      'Dashboard analytics',
-    ],
-  },
-  {
-    title: 'E-Commerce Web Application',
-    description: 'Full-featured online store with 500+ active users.',
-    fullDescription: 'Led the development of an e-commerce web application that boosted user engagement by 40% and supports seamless browsing and transactions for 500+ active users.',
-    category: 'E-Commerce',
-    techStack: ['Java', 'Spring Boot', 'PostgreSQL', 'RabbitMQ', 'Docker', 'Microservices'],
-    githubUrl: 'https://github.com/JasperRosales',
-    features: [
-      'User engagement increased by 40%',
-      '500+ active users supported',
-      'Secure payment integration',
-      'Inventory management system',
-      'Scalable and maintainable architecture',
-    ],
-  },
-  {
-    title: 'Microservices Backend',
-    description: 'Distributed microservices architecture with message brokers.',
-    fullDescription: 'Built a scalable microservices backend using Golang, incorporating RabbitMQ and Kafka for event-driven communication between services.',
-    category: 'Backend',
-    techStack: ['Golang', 'RabbitMQ', 'Kafka', 'PostgreSQL', 'MongoDB', 'Docker', 'GitHub Actions'],
-    githubUrl: 'https://github.com/JasperRosales',
-    features: [
-      'Event-driven architecture',
-      'Message queue integration',
-      'CI/CD with GitHub Actions',
-      'Multi-database support',
-      'Containerized deployment',
-    ],
-  },
-];
+import { projects } from '../data/projects';
 
 export default function Portfolio() {
   const containerVariants = {
