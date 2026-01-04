@@ -1,28 +1,33 @@
 import { motion } from 'framer-motion';
-import { VscFolderOpened, VscGithubInverted, VscLink, VscCode, VscCheck } from 'react-icons/vsc';
-import {
-  PageWrapper,
-  Section,
-  SectionTitle,
-  AnimatedCard,
-  SkillBadge,
-} from '../components/shared';
-import { projects } from '../data/projects';
+import { useState, lazy, Suspense } from 'react';
+import { Section, PageWrapper } from '../components/shared';
+import { VscLink, VscCode, VscFilePdf, VscFolderOpened } from 'react-icons/vsc';
+
+const Experience = lazy(() => import('./resume'));
+const Project = lazy(() => import('./projects'));
+
+type TabType = 'experience' | 'projects';
 
 export default function Portfolio() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+  const [activeTab, setActiveTab] = useState<TabType>('experience');
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+  const renderTabContent = () => {
+    return (
+      <Suspense
+        fallback={
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex items-center justify-center py-20"
+          >
+            <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+          </motion.div>
+        }
+      >
+        {activeTab === 'experience' && <Experience />}
+        {activeTab === 'projects' && <Project />}
+      </Suspense>
+    );
   };
 
   return (
@@ -37,103 +42,43 @@ export default function Portfolio() {
               className="text-center"
             >
               <h1 className="text-4xl sm:text-5xl font-bold mb-4">Portfolio</h1>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                A showcase of my projects and technical achievements
+              <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+                Explore my Resume, Projects, and Technical Achievements.
               </p>
-            </motion.div>
-          </div>
-        </Section>
 
-        <Section>
-          <div className="max-w-6xl mx-auto">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="grid md:grid-cols-2 gap-8"
-            >
-              {projects.map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  variants={itemVariants}
-                  transition={{ delay: index * 0.1 }}
+              <div className="flex justify-center gap-2 mb-8">
+                <motion.button
+                  onClick={() => setActiveTab('experience')}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 cursor-pointer ${
+                    activeTab === 'experience'
+                      ? 'bg-primary text-primary-foreground shadow-lg'
+                      : 'bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20'
+                  }`}
                 >
-                  <AnimatedCard className="h-full flex flex-col group">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                        <VscFolderOpened className="text-2xl" />
-                      </div>
-                      <div className="flex gap-2">
-                        {project.githubUrl && (
-                          <motion.a
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 rounded-lg bg-[rgb(var(--muted))] hover:bg-[rgb(var(--muted))]/80 transition-colors"
-                          >
-                            <VscGithubInverted className="text-lg" />
-                          </motion.a>
-                        )}
-                        {project.liveUrl && (
-                          <motion.a
-                            whileHover={{ scale: 1.1 }}
-                            whileTap={{ scale: 0.9 }}
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-2 rounded-lg bg-[rgb(var(--muted))] hover:bg-[rgb(var(--muted))]/80 transition-colors"
-                          >
-                            <VscLink className="text-lg" />
-                          </motion.a>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="flex-1">
-                      <span className="text-xs font-medium text-primary uppercase tracking-wide">
-                        {project.category}
-                      </span>
-                      <h3 className="text-xl font-bold mt-1 mb-2">{project.title}</h3>
-                      <p className="text-muted-foreground text-sm mb-4">
-                        {project.fullDescription}
-                      </p>
-
-                      <ul className="space-y-1 mb-4">
-                        {project.features.slice(0, 3).map((feature, featureIndex) => (
-                          <li
-                            key={featureIndex}
-                            className="flex items-start gap-2 text-sm text-muted-foreground"
-                          >
-                            <VscCheck className="text-primary mt-0.5 flex-shrink-0" />
-                            {feature}
-                          </li>
-                        ))}
-                        {project.features.length > 3 && (
-                          <li className="text-sm text-muted-foreground">
-                            +{project.features.length - 3} more features
-                          </li>
-                        )}
-                      </ul>
-
-                      <div className="flex flex-wrap gap-1.5 pt-2">
-                        {project.techStack.slice(0, 4).map((tech) => (
-                          <SkillBadge key={tech} name={tech} className="text-xs px-2 py-1" />
-                        ))}
-                        {project.techStack.length > 4 && (
-                          <span className="text-xs px-2 py-1 text-muted-foreground">
-                            +{project.techStack.length - 4}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </AnimatedCard>
-                </motion.div>
-              ))}
+                  <VscFilePdf size={20} />
+                  Experience
+                </motion.button>
+                <motion.button
+                  onClick={() => setActiveTab('projects')}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 cursor-pointer ${
+                    activeTab === 'projects'
+                      ? 'bg-primary text-primary-foreground shadow-lg'
+                      : 'bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20'
+                  }`}
+                >
+                  <VscFolderOpened size={20} />
+                  Projects
+                </motion.button>
+              </div>
             </motion.div>
           </div>
         </Section>
+
+        {renderTabContent()}
 
         <Section className="pb-24">
           <div className="max-w-4xl mx-auto">
@@ -143,7 +88,7 @@ export default function Portfolio() {
               viewport={{ once: true }}
               className="text-center"
             >
-              <AnimatedCard className="bg-primary/5 border-primary/20">
+              <div className="bg-primary/5 border-primary/20 p-8 rounded-lg">
                 <VscCode className="text-5xl text-primary mx-auto mb-4" />
                 <h3 className="text-2xl font-bold mb-2">Interested in working together?</h3>
                 <p className="text-muted-foreground mb-6">
@@ -153,12 +98,12 @@ export default function Portfolio() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/80 transition-colors"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/80 transition-colors cursor-pointer"
                 >
                   Get In Touch
                   <VscLink />
                 </motion.a>
-              </AnimatedCard>
+              </div>
             </motion.div>
           </div>
         </Section>
@@ -166,4 +111,3 @@ export default function Portfolio() {
     </PageWrapper>
   );
 }
-

@@ -7,60 +7,47 @@ import {
 import Home from "./pages/home";
 import About from "./pages/about";
 import Portfolio from "./pages/portfolio";
-import Contact from "./pages/contact";
+import Project from "./pages/projects";
 import Resume from "./pages/resume";
+import Contact from "./pages/contact";
 import {
   VscHome,
-  VscArchive,
   VscAccount,
   VscCallIncoming,
-  VscFilePdf,
+  VscFolderOpened,
 } from "react-icons/vsc";
 import Dock from "./components/dock";
-import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 
 function AppContent() {
   const navigate = useNavigate();
-  const { cycleTheme } = useTheme();
 
   const items = [
     {
       icon: <VscHome size={18} />,
       label: "Home",
       onClick: () => {
-        cycleTheme();
         navigate("/");
       },
     },
     {
-      icon: <VscFilePdf size={18} />,
-      label: "Resume",
+      icon: <VscFolderOpened size={18} />,
+      label: "Portfolio",
       onClick: () => {
-        cycleTheme();
-        navigate("/resume");
+        navigate("/portfolio");
       },
     },
     {
       icon: <VscAccount size={18} />,
       label: "About",
       onClick: () => {
-        cycleTheme();
         navigate("/about");
-      },
-    },
-    {
-      icon: <VscArchive size={18} />,
-      label: "Portfolio",
-      onClick: () => {
-        cycleTheme();
-        navigate("/portfolio");
       },
     },
     {
       icon: <VscCallIncoming size={18} />,
       label: "Contact",
       onClick: () => {
-        cycleTheme();
         navigate("/contact");
       },
     },
@@ -71,9 +58,10 @@ function AppContent() {
       <main className="grow">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/about" element={<About />} />
           <Route path="/portfolio" element={<Portfolio />} />
+          <Route path="/resume" element={<Resume />} />
+          <Route path="/projects" element={<Project />} />
+          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </main>
@@ -98,3 +86,4 @@ export function App() {
 }
 
 export default App;
+

@@ -36,7 +36,6 @@ export const softSkills: string[] = [
   'Critical Thinking',
 ];
 
-// Icon components
 export function VscLeaf() {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">

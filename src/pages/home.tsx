@@ -47,7 +47,7 @@ export default function Home() {
               Download my CV
             </a>
             <a
-              href="/portfolio"
+              href="/resume-portfolio"
               target="_blank"
               className="px-3 py-1 border-2 border-yellow-400 text-yellow-400 text-sm sm:text-base font-semibold rounded-lg shadow-lg hover:bg-yellow-400 hover:text-gray-900 transition-all duration-300"
             >
