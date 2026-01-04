@@ -1,123 +1,96 @@
-import { motion } from 'framer-motion';
-import { VscArrowRight, VscFileCode, VscGithubInverted } from 'react-icons/vsc';
-import { PageWrapper, Section } from '../components/shared';
-import { useNavigate } from 'react-router-dom';
-import { containerVariants, itemVariants, floatingVariants } from '../data/animations';
+import { motion } from "framer-motion";
+import LightRays from "../components/LightRays";
 
 export default function Home() {
-  const navigate = useNavigate();
-
   return (
-    <PageWrapper>
-      <div className="min-h-screen flex flex-col">
-        <Section className="flex-1 flex items-center justify-center min-h-screen">
-          <div className="max-w-6xl mx-auto w-full">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col lg:flex-row items-center justify-between gap-12"
+    <div className="relative w-screen h-screen overflow-hidden">
+      <LightRays
+        raysOrigin="top-center"
+        raysColor="#FFCC62"
+        raysSpeed={1.5}
+        lightSpread={0.9}
+        rayLength={2.5}
+        followMouse
+        mouseInfluence={0.1}
+        noiseAmount={0.1}
+        distortion={0.05}
+      />
+
+      <div className="absolute inset-0 flex flex-col items-center justify-center perspective-distant">
+        <div className="absolute left-10 sm:left-16 md:left-20 text-left z-20 flex flex-col gap-2">
+          <span className="text-lg sm:text-sm text-gray-300 tracking-widest uppercase animate-pulse">
+            What's up
+          </span>
+
+          <h1 className="text-2xl sm:text-4xl drop-shadow-lg">
+            <span className="text-white/80 tracking-wide">It's</span>{" "}
+            <span className="bg-clip-text font-extrabold  text-amber-400">
+              Jasper Rosales
+            </span>
+          </h1>
+          <p className="text-2xl sm:text-lg font-semibold text-white/80 tracking-wide">
+            Aspiring Software Engineer
+          </p>
+
+          <p className="text-2xl sm:text-xs font-semibold text-white/80 tracking-wide">
+            Adores learning, cooking, animation, weapon arts, <br/>and  exploring new
+            skills.
+            Open fo collaborations!
+          </p>
+
+          <div className="mt-3 flex flex-wrap gap-3">
+            <a
+              href="/Jasper_Rosales_CV.pdf"
+              target="_blank"
+              className="px-3 py-1 bg-yellow-400 text-gray-900 text-sm sm:text-base font-semibold rounded-lg shadow-lg hover:bg-yellow-500 transition-all duration-300"
             >
-              <motion.div variants={itemVariants} className="flex-1 text-center lg:text-left">
-                <motion.p
-                  variants={itemVariants}
-                  className="text-primary font-medium mb-4 tracking-wide uppercase"
-                >
-                  Hello, I'm
-                </motion.p>
-                <motion.h1
-                  variants={itemVariants}
-                  className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-4 leading-tight"
-                >
-                  Jasper Rosales
-                </motion.h1>
-                <motion.p
-                  variants={itemVariants}
-                  className="text-xl sm:text-2xl text-muted-foreground mb-6"
-                >
-                  Freelance Developer
-                </motion.p>
-                <motion.p
-                  variants={itemVariants}
-                  className="text-muted-foreground mb-8 max-w-lg mx-auto lg:mx-0"
-                >
-                  Building clean, efficient, and scalable solutions for clients worldwide.
-                </motion.p>
-
-                <motion.div
-                  variants={itemVariants}
-                  className="flex flex-wrap gap-4 justify-center lg:justify-start"
-                >
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => navigate('/portfolio')}
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
-                  >
-                    <VscFileCode className="text-lg" />
-                    View My Work
-                    <VscArrowRight className="text-lg" />
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => navigate('/contact')}
-                    className="inline-flex items-center gap-2 px-6 py-3 border border-[rgb(var(--border))] rounded-lg font-medium hover:bg-accent transition-colors"
-                  >
-                    <VscGithubInverted className="text-lg" />
-                    Get In Touch
-                  </motion.button>
-                </motion.div>
-              </motion.div>
-
-              <motion.div
-                variants={itemVariants}
-                className="flex-1 flex justify-center lg:justify-end"
-              >
-                <motion.div
-                  variants={floatingVariants}
-                  initial="initial"
-                  animate="animate"
-                  className="relative"
-                >
-                  <div className="w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 border border-[rgb(var(--border))] flex items-center justify-center overflow-hidden">
-                    <img
-                      src="/Jasper.jpg"
-                      alt="Jasper Rosales"
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <motion.div
-                    animate={{
-                      rotate: 360,
-                    }}
-                    transition={{
-                      duration: 20,
-                      repeat: Infinity,
-                      ease: 'linear',
-                    }}
-                    className="absolute -inset-8 border-2 border-dashed border-primary/30 rounded-full"
-                  />
-                  <motion.div
-                    animate={{
-                      rotate: -360,
-                    }}
-                    transition={{
-                      duration: 15,
-                      repeat: Infinity,
-                      ease: 'linear',
-                    }}
-                    className="absolute -inset-12 border border-primary/20 rounded-full"
-                  />
-                </motion.div>
-              </motion.div>
-            </motion.div>
+              Download my CV
+            </a>
+            <a
+              href="/portfolio"
+              target="_blank"
+              className="px-3 py-1 border-2 border-yellow-400 text-yellow-400 text-sm sm:text-base font-semibold rounded-lg shadow-lg hover:bg-yellow-400 hover:text-gray-900 transition-all duration-300"
+            >
+              View my Portfolio
+            </a>
           </div>
-        </Section>
+        </div>
 
-        
+        <motion.div
+          className="
+      relative
+      w-55 h-82.5
+      sm:w-65 sm:h-97.5
+      md:w-[320px] md:h-120
+      transform-3d
+    "
+          animate={{ rotateY: 360 }}
+          initial={{ rotateZ: -15 }}
+          transition={{
+            duration: 12,
+            ease: "linear",
+            repeat: Infinity,
+          }}
+        >
+          {/* FRONT */}
+          <div className="absolute inset-0 backface-hidden">
+            <img
+              src="/final-card-image.png"
+              alt="Front"
+              className="w-full h-full object-cover rounded-xl shadow-2xl"
+            />
+          </div>
+
+          {/* BACK */}
+          <div className="absolute inset-0 rotate-y-180 backface-hidden">
+            <img
+              src="/final-card-back.png"
+              alt="Back"
+              className="w-full h-full object-cover rounded-xl shadow-2xl"
+            />
+          </div>
+        </motion.div>
       </div>
-    </PageWrapper>
+    </div>
   );
 }
-

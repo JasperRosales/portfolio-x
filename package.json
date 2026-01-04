@@ -12,6 +12,7 @@
   "dependencies": {
     "@base-ui/react": "^1.0.0",
     "@fontsource-variable/figtree": "^5.2.10",
+    "@heroicons/react": "^2.2.0",
     "@radix-ui/react-slot": "^1.2.4",
     "@tabler/icons-react": "^3.36.0",
     "@tailwindcss/vite": "^4.1.17",
@@ -20,6 +21,7 @@
     "framer-motion": "^12.23.26",
     "lucide-react": "^0.562.0",
     "motion": "^12.23.26",
+    "ogl": "^1.0.11",
     "radix-ui": "^1.4.3",
     "react": "^19.2.3",
     "react-dom": "^19.2.0",
