@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { VscFolderOpened, VscGithubInverted, VscLink, VscCheck } from 'react-icons/vsc';
 import { Section, AnimatedCard, SkillBadge } from '../components/shared';
 import { projects } from '../data/projects';
+import LightRays from '../components/LightRays';
 
 export default function Project() {
   const containerVariants = {
@@ -15,7 +16,22 @@ export default function Project() {
   };
 
   return (
-    <div className="min-h-screen">
+    <>
+      <div className="fixed inset-0 z-[3] pointer-events-none">
+        <LightRays
+          raysOrigin="top-right"
+          raysColor="#FFCC62"
+          raysSpeed={1.3}
+          lightSpread={0.9}
+          rayLength={2.2}
+          followMouse
+          mouseInfluence={0.05}
+          noiseAmount={0.06}
+          distortion={0.04}
+        />
+      </div>
+
+      <div className="min-h-screen">
       <Section>
         <div className="max-w-6xl mx-auto">
           <motion.div
@@ -97,6 +113,7 @@ export default function Project() {
           </motion.div>
         </div>
       </Section>
-    </div>
+      </div>
+    </>
   );
 }

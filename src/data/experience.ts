@@ -14,6 +14,7 @@ export interface Education {
   period: string;
   location: string;
   coursework: string[];
+  achievements?: string[];
 }
 
 export const workExperience: WorkExperience[] = [
@@ -98,6 +99,12 @@ export const education: Education[] = [
       'AI Integration',
       'Data Structures and Algorithms',
       'System Design and Architecture',
+    ],
+    achievements: [
+      'Maintained academic excellence while balancing leadership roles in multiple student organizations',
+      'Founded CICS Github Community to foster student collaboration and open-source contribution',
+      'Competed and won in Maze Mastery coding competition against students of all year levels',
+      'Recognized for dedicated service through SSC Service Award',
     ],
   },
 ];

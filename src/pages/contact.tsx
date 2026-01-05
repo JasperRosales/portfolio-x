@@ -9,6 +9,7 @@ import {
 import { Button } from '../components/ui/button';
 import type { FormData, FormErrors } from '../data/contact';
 import { contactInfo, socialLinks } from '../data/contact';
+import LightRays from '../components/LightRays';
 
 export default function Contact() {
   const [formData, setFormData] = useState<FormData>({
@@ -73,8 +74,22 @@ export default function Contact() {
   };
 
   return (
-    <PageWrapper>
-      <div className="min-h-screen">
+    <>
+      <div className="fixed inset-0 z-[3] pointer-events-none">
+        <LightRays
+          raysOrigin="top-right"
+          raysColor="#FFCC62"
+          raysSpeed={0.8}
+          lightSpread={1.0}
+          rayLength={2}
+          followMouse={false}
+          noiseAmount={0.03}
+          distortion={0.02}
+        />
+      </div>
+
+      <PageWrapper>
+        <div className="min-h-screen">
         <Section className="pt-24 pb-12">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -329,7 +344,8 @@ export default function Contact() {
           </div>
         </Section>
       </div>
-    </PageWrapper>
+      </PageWrapper>
+    </>
   );
 }
 

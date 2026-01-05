@@ -25,6 +25,6 @@ export const getQuoteByIndex = (index: number): string => {
   if (index >= 0 && index < inspirationalQuotes.length) {
     return inspirationalQuotes[index];
   }
-  return inspirationalQuotes[0]; // fallback
+  return inspirationalQuotes[0];
 };
 

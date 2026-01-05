@@ -1,13 +1,26 @@
 import { motion } from 'framer-motion';
-import { VscLocation, VscTarget, VscOrganization } from 'react-icons/vsc';
-import { Section, SectionTitle, TimelineItem, AnimatedCard, SkillBadge } from '../components/shared';
+import { VscLocation, VscTarget } from 'react-icons/vsc';
+import { Section, SectionTitle, TimelineItem, SkillBadge } from '../components/shared';
 import { workExperience, education } from '../data/experience';
-import { resumeCertifications } from '../data/certifications';
-import { keyAchievements } from '../data/achievements';
+import LightRays from '../components/LightRays';
 
 export default function Resume() {
   return (
-    <div className="min-h-screen">
+    <>
+      <div className="fixed inset-0 z-[3] pointer-events-none">
+        <LightRays
+          raysOrigin="top-right"
+          raysColor="#FFCC62"
+          raysSpeed={1.1}
+          lightSpread={1.1}
+          rayLength={2.3}
+          followMouse={false}
+          noiseAmount={0.04}
+          distortion={0.02}
+        />
+      </div>
+
+      <div className="min-h-screen">
       <Section>
         <div className="max-w-4xl mx-auto">
           <SectionTitle>Experience</SectionTitle>
@@ -54,7 +67,7 @@ export default function Resume() {
         </div>
       </Section>
 
-      <Section className="bg-[rgb(var(--muted))]/30">
+      <Section className="bg-background -mx-6 px-6">
         <div className="max-w-4xl mx-auto">
           <SectionTitle>Education</SectionTitle>
           <div className="mt-8">
@@ -73,6 +86,23 @@ export default function Resume() {
                       {edu.location}
                     </div>
                   </div>
+                  {edu.achievements && edu.achievements.length > 0 && (
+                    <ul className="space-y-2">
+                      {edu.achievements.map((achievement, achIndex) => (
+                        <motion.li
+                          key={achIndex}
+                          initial={{ opacity: 0, x: -10 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: achIndex * 0.05 }}
+                          className="flex items-start gap-2 text-sm text-muted-foreground"
+                        >
+                          <VscTarget className="text-primary mt-0.5 shrink-0" />
+                          {achievement}
+                        </motion.li>
+                      ))}
+                    </ul>
+                  )}
                   <div>
                     <h4 className="text-sm font-medium mb-2">Relevant Coursework:</h4>
                     <div className="flex flex-wrap gap-2">
@@ -87,61 +117,7 @@ export default function Resume() {
           </div>
         </div>
       </Section>
-
-      <Section>
-        <div className="max-w-4xl mx-auto">
-          <SectionTitle>Certifications</SectionTitle>
-          <div className="grid sm:grid-cols-2 gap-4 mt-8">
-            {resumeCertifications.map((cert, index) => (
-              <motion.div
-                key={cert.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <AnimatedCard className="flex flex-row items-start gap-4">
-                  <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                    <VscOrganization className="text-xl" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold">{cert.name}</h3>
-                    <p className="text-sm text-primary">{cert.issuer}</p>
-                    <p className="text-xs text-muted-foreground mt-1">{cert.date}</p>
-                  </div>
-                </AnimatedCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section className="pb-24">
-        <div className="max-w-4xl mx-auto">
-          <SectionTitle>Key Achievements</SectionTitle>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-            {keyAchievements.map((achievement, index) => (
-              <motion.div
-                key={achievement.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <AnimatedCard className="h-full flex flex-col items-center text-center p-6">
-                  <div className="mb-4">{achievement.icon}</div>
-                  <div className="text-xl font-bold text-primary mb-2 text-center">
-                    {achievement.title}
-                  </div>
-                  <p className="text-sm text-muted-foreground text-justify">
-                    {achievement.description}
-                  </p>
-                </AnimatedCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </Section>
-    </div>
+      </div>
+    </>
   );
 }

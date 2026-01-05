@@ -31,17 +31,17 @@ function AppContent() {
       },
     },
     {
-      icon: <VscFolderOpened size={18} />,
-      label: "Portfolio",
-      onClick: () => {
-        navigate("/portfolio");
-      },
-    },
-    {
       icon: <VscAccount size={18} />,
       label: "About",
       onClick: () => {
         navigate("/about");
+      },
+    },
+    {
+      icon: <VscFolderOpened size={18} />,
+      label: "Portfolio",
+      onClick: () => {
+        navigate("/portfolio");
       },
     },
     {

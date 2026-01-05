@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useState, lazy, Suspense } from 'react';
 import { Section, PageWrapper } from '../components/shared';
 import { VscLink, VscCode, VscFilePdf, VscFolderOpened } from 'react-icons/vsc';
+import LightRays from '../components/LightRays';
 
 const Experience = lazy(() => import('./resume'));
 const Project = lazy(() => import('./projects'));
@@ -31,8 +32,23 @@ export default function Portfolio() {
   };
 
   return (
-    <PageWrapper>
-      <div className="min-h-screen">
+    <>
+      <div className="fixed inset-0 z-[3] pointer-events-none">
+        <LightRays
+          raysOrigin="top-right"
+          raysColor="#FFCC62"
+          raysSpeed={1.2}
+          lightSpread={0.8}
+          rayLength={2}
+          followMouse
+          mouseInfluence={0.08}
+          noiseAmount={0.08}
+          distortion={0.03}
+        />
+      </div>
+
+      <PageWrapper>
+        <div className="min-h-screen">
         <Section className="pt-24 pb-12">
           <div className="max-w-6xl mx-auto">
             <motion.div
@@ -43,7 +59,7 @@ export default function Portfolio() {
             >
               <h1 className="text-4xl sm:text-5xl font-bold mb-4">Portfolio</h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-                Explore my Resume, Projects, and Technical Achievements.
+                Explore my Resume, Projects, and Achievements.
               </p>
 
               <div className="flex justify-center gap-2 mb-8">
@@ -108,6 +124,7 @@ export default function Portfolio() {
           </div>
         </Section>
       </div>
-    </PageWrapper>
+      </PageWrapper>
+    </>
   );
 }
