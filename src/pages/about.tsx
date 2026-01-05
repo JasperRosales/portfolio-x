@@ -111,12 +111,11 @@ export default function About() {
               >
                 <h1 className="text-4xl sm:text-5xl font-bold mb-4">About Me</h1>
                 <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-                  A highly motivated and versatile student leader with experience in organizational leadership, 
+                  A highly motivated and versatile person with experience in organizational leadership, 
                   event management, and digital communication. Demonstrates strong capabilities in team leadership, 
-                  financial reporting, and digital graphics design. Adept at cross-functional collaboration and 
+                  software development, and digital graphics design. Adept at cross-functional collaboration and 
                   public communication in hybrid environments. Has developed technical competencies and a strong 
-                  foundation in software development, particularly in Java for backend development with Spring Boot 
-                  and Rust for systems-level programming.
+                  foundation in software engineering through formal education and practical experience. 
                 </p>
               </motion.div>
             </div>
@@ -179,7 +178,7 @@ export default function About() {
             </div>
           </Section>
 
-          <Section className="pb-24 bg-background -mx-6 px-6">
+          <Section className="bg-background -mx-6 px-6">
             <div className="max-w-6xl mx-auto">
               <SectionTitle>Certificates</SectionTitle>
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">

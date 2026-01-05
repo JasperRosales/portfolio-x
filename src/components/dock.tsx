@@ -1,5 +1,3 @@
-'use client';
-
 import {
   motion,
   MotionValue,
@@ -14,7 +12,7 @@ import React, { Children, cloneElement, useEffect, useMemo, useRef, useState } f
 export type DockItemData = {
   icon: React.ReactNode;
   label: React.ReactNode;
-  onClick: () => void;
+  onClick: (x: number, y: number) => void;
   className?: string;
 };
 
@@ -32,7 +30,7 @@ export type DockProps = {
 type DockItemProps = {
   className?: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (x: number, y: number) => void;
   mouseX: MotionValue<number>;
   spring: SpringOptions;
   distance: number;
@@ -69,13 +67,17 @@ function DockItem({
       ref={ref}
       style={{
         width: size,
-        height: size
+        height: size,
       }}
       onHoverStart={() => isHovered.set(1)}
       onHoverEnd={() => isHovered.set(0)}
       onFocus={() => isHovered.set(1)}
       onBlur={() => isHovered.set(0)}
-      onClick={onClick}
+      onClick={(e: React.MouseEvent) => {
+        if (onClick) {
+          onClick(e.clientX, e.clientY);
+        }
+      }}
       className={`relative inline-flex items-center justify-center rounded-full bg-[rgb(var(--card))] border-[rgb(var(--border))] border-2 shadow-md ${className}`}
       tabIndex={0}
       role="button"
@@ -153,17 +155,41 @@ export default function Dock({
   const heightRow = useTransform(isHovered, [0, 1], [panelHeight, maxHeight]);
   const height = useSpring(heightRow, spring);
 
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  useEffect(() => {
+    const checkTouch = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    checkTouch();
+    window.addEventListener('touchstart', checkTouch);
+    window.addEventListener('touchend', checkTouch);
+    return () => {
+      window.removeEventListener('touchstart', checkTouch);
+      window.removeEventListener('touchend', checkTouch);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isTouchDevice) {
+      isHovered.set(0);
+      mouseX.set(Infinity);
+    }
+  }, [isTouchDevice, isHovered, mouseX]);
+
   return (
     <motion.div
       onMouseMove={({ pageX }) => {
-        isHovered.set(1);
-        mouseX.set(pageX);
+        if (!isTouchDevice) {
+          isHovered.set(1);
+          mouseX.set(pageX);
+        }
       }}
       onMouseLeave={() => {
         isHovered.set(0);
         mouseX.set(Infinity);
       }}
-      className={`${className} fixed bottom-2 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-4 rounded-2xl border-[rgb(var(--border))] border-2 pb-2 px-4 z-50`}
+      className={`${className} fixed bottom-2 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-1 sm:gap-4 rounded-xl sm:rounded-2xl border-[rgb(var(--border))] border-2 pb-1 sm:pb-2 px-2 sm:px-4 z-50 max-w-[98vw] sm:max-w-none touch-none`}
       style={{ height: panelHeight }}
       role="toolbar"
       aria-label="Application dock"
@@ -176,13 +202,14 @@ export default function Dock({
           mouseX={mouseX}
           spring={spring}
           distance={distance}
-          magnification={magnification}
+          magnification={isTouchDevice ? baseItemSize : magnification}
           baseItemSize={baseItemSize}
         >
-          <DockIcon>{item.icon}</DockIcon>
-          <DockLabel>{item.label}</DockLabel>
+          <DockIcon className="sm:scale-110">{item.icon}</DockIcon>
+          <DockLabel className="hidden sm:block">{item.label}</DockLabel>
         </DockItem>
       ))}
     </motion.div>
   );
 }
+
