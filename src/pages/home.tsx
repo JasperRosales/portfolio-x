@@ -40,7 +40,7 @@ export default function Home() {
 
       <div className="relative w-screen min-h-screen overflow-hidden bg-black">
         <div className="absolute inset-0 z-[1] pointer-events-none overflow-hidden">
-          {lines.map((line, i) => {
+          {lines.map((line) => {
             const fromX = line.direction === "ltr" ? "-100vw" : "100vw";
             const toX = line.direction === "ltr" ? "100vw" : "-100vw";
 

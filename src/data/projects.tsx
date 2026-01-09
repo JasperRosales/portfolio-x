@@ -1,5 +1,4 @@
-import { VscFolderOpened, VscGithubInverted, VscLink, VscCheck } from 'react-icons/vsc';
-import type { ReactNode } from 'react';
+
 
 export interface Project {
   title: string;
