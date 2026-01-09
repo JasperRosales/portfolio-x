@@ -44,7 +44,7 @@ export const workExperience: WorkExperience[] = [
       'Managed projects independently with strong time management and adaptability',
       'Consistently meeting deadlines while maintaining high-quality standards',
     ],
-    techStack: ['Golang', 'Java', 'PostgreSQL', 'Docker', 'Java', 'React' ],
+    techStack: ['Golang', 'Java', 'PostgreSQL', 'Docker', 'MongoDB', 'React' ],
   },
   {
     date: 'Sep 2024 - Present',
