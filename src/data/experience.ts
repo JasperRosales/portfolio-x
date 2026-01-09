@@ -22,7 +22,7 @@ export const workExperience: WorkExperience[] = [
     date: 'May 2025 - Present',
     title: 'Vice President',
     subtitle: 'College of Informatics and Computing Sciences - SC Balayan',
-    location: 'Batangas State University, Balayan, Batangas',
+    location: 'BatStateU TNEU Balayan, Batangas',
     achievements: [
       'Manage the organization to be functional and efficient during events and outside activities',
       'Maintain efficiency and morale of the CICS organization',
@@ -44,26 +44,26 @@ export const workExperience: WorkExperience[] = [
       'Managed projects independently with strong time management and adaptability',
       'Consistently meeting deadlines while maintaining high-quality standards',
     ],
-    techStack: ['Golang', 'Spring Boot', 'PostgreSQL', 'MongoDB', 'Docker', 'Java', 'Rust'],
+    techStack: ['Golang', 'Java', 'PostgreSQL', 'Docker', 'Java', 'React' ],
   },
   {
     date: 'Sep 2024 - Present',
     title: 'Committee Chairperson on Digital Graphics',
     subtitle: 'Supreme Student Council Alangilan - Balayan',
-    location: 'Balayan, Batangas',
+    location: 'BatStateU TNEU Balayan, Batangas',
     achievements: [
       'Designed various publication/posting materials of the Supreme Student Council',
       'Designed the highlight of the school event during the 31st foundation day 2025',
       'Made announcements for the school with suitable and informative designs',
       'Managed time effectively to meet design deadlines',
     ],
-    techStack: ['Digital Graphics', 'Adobe Creative Suite', 'Design', 'Time Management'],
+    techStack: ['Digital Graphics', 'Adobe', 'Canva', 'Design', 'Time Management'],
   },
   {
     date: 'Aug 2024 - May 2025',
     title: 'Second Class Officer',
     subtitle: 'BatStateU TNEU - Balayan ROTC Unit',
-    location: 'Balayan, Batangas',
+    location: 'BatStateU TNEU Balayan, Batangas',
     achievements: [
       'Finished the ROTC Course and became an officer',
       'First to be promoted to a position fitted for technical skills',
@@ -76,7 +76,7 @@ export const workExperience: WorkExperience[] = [
     date: 'Aug 2024 - May 2025',
     title: 'Business Manager',
     subtitle: 'College of Informatics and Computing Sciences - SC Balayan',
-    location: 'Batangas State University, Balayan, Batangas',
+    location: 'BatStateU TNEU Balayan, Batangas',
     achievements: [
       'Audited excel spreadsheets and reports for the financial status and activities',
       'Managed the receipt of each activity',
@@ -91,7 +91,7 @@ export const education: Education[] = [
     institution: 'Batangas State University',
     degree: 'Bachelor of Science in Information Technology',
     period: 'August 2023 - Present',
-    location: 'Batangas, Philippines',
+    location: 'Balayan, Batangas, Philippines',
     coursework: [
       'Business Analytics',
       'Web Development',
