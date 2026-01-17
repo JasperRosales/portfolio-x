@@ -107,5 +107,25 @@ export const education: Education[] = [
       'Recognized for dedicated service through SSC Service Award',
     ],
   },
+  {
+    institution: 'Batangas State University',
+    degree: 'Bachelor of Science in Information Technology',
+    period: 'August 2023 - Present',
+    location: 'Balayan, Batangas, Philippines',
+    coursework: [
+      'Business Analytics',
+      'Web Development',
+      'Mobile Development',
+      'AI Integration',
+      'Data Structures and Algorithms',
+      'System Design and Architecture',
+    ],
+    achievements: [
+      'Maintained academic excellence while balancing leadership roles in multiple student organizations',
+      'Founded CICS Github Community to foster student collaboration and open-source contribution',
+      'Competed and won in Maze Mastery coding competition against students of all year levels',
+      'Recognized for dedicated service through SSC Service Award',
+    ],
+  },
 ];
 
