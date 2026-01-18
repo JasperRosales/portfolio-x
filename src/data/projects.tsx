@@ -141,19 +141,27 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'SSC Budget Manager',
-    description: 'A system for managing SSC budgets and finances.',
-    fullDescription:
-      'SSC Budget Manager is a financial management system for tracking budgets, expenses, and reports within the SSC framework.',
-    category: 'Finance Tool',
-    techStack: ['Web', 'TypeScript'],
-    githubUrl: 'https://github.com/JasperRosales/ssc-budget-manager',
-    features: [
-      'Budget overview',
-      'Expense tracking',
-      'Reporting dashboard',
-    ],
-  },
+  title: 'SSC Budget Manager',
+  description: 'A blockchain-enabled system for managing SSC budgets and finances.',
+  fullDescription:
+    'SSC Budget Manager is a financial management system designed for tracking budgets, expenses, and reports within the SSC framework. It integrates blockchain technology to ensure transparency, data integrity, and immutability of financial records, helping prevent tampering and improve auditability.',
+  category: 'Finance Tool / Blockchain',
+  techStack: [
+    'Web',
+    'TypeScript',
+    'Blockchain',
+    'Smart Contracts',
+    'Distributed Ledger',
+  ],
+  githubUrl: 'https://github.com/JasperRosales/ssc-budget-manager',
+  features: [
+    'Budget planning and allocation',
+    'Expense tracking with immutable blockchain records',
+    'Transparent financial history for auditing',
+    'Tamper-resistant budget and expense logs',
+    'Financial reporting and dashboards',
+  ],
+},
   {
     title: 'Workflow',
     description: 'A workflow management and automation application.',
