@@ -104,19 +104,27 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'Quick Pitch.io',
-    description: 'A simple pitch idea platform.',
-    fullDescription:
-      'Quick Pitch.io is a lightweight platform for users to quickly share pitches or ideas and gather initial feedback.',
-    category: 'Web Tool',
-    techStack: ['Next.js', 'TypeScript'],
-    githubUrl: 'https://github.com/JasperRosales/quick-pitch.io',
-    features: [
-      'Idea submission',
-      'Fast feedback loop',
-      'Simple pitch templates',
-    ],
-  },
+  title: 'QuickPitch.io',
+  description: 'A web application for improving pitching and presentation skills using AI-powered speech analysis.',
+  fullDescription:
+    'QuickPitch.io is a web application designed to help users improve their pitching and presentation skills. It generates presentation contexts from PDFs, lessons, or quick topics, allowing users to practice explaining a given subject. The platform uses speech recognition and analysis to evaluate delivery, clarity, and confidence during presentations.',
+  category: 'Web Application / AI',
+  techStack: [
+    'React',
+    'TypeScript',
+    'Golang',
+    'Speech Recognition',
+    'AI / NLP',
+  ],
+  githubUrl: 'https://github.com/JasperRosales/quick-pitch.io',
+  features: [
+    'Context-based pitch generation from PDFs, lessons, or topics',
+    'Real-time speech recognition during presentations',
+    'Speech and delivery analysis for feedback',
+    'Practice mode for pitching and discussions',
+    'Skill improvement through repeated presentation exercises',
+  ],
+},
   {
     title: 'Fit Tech',
     description: 'An AI-powered e-commerce clothing application with virtual dressing and GCash payments.',
