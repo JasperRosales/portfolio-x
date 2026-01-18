@@ -16,7 +16,8 @@ export const projects: Project[] = [
   {
     title: 'CICS Community',
     description: 'A GitHub community platform for students and future members.',
-    fullDescription: 'Founded and lead a community GitHub along with co-officers to further enhance and supply knowledge for students and future members of the CICS community. Making it a platform for teaching distributed source management and documentation for students and professors.',
+    fullDescription:
+      'Founded and lead a community GitHub along with co-officers to further enhance and supply knowledge for students and future members of the CICS community. Making it a platform for teaching distributed source management and documentation for students and professors.',
     category: 'Community Platform',
     techStack: ['Git', 'GitHub', 'Documentation', 'Source Management'],
     githubUrl: 'https://github.com/JasperRosales',
@@ -29,16 +30,17 @@ export const projects: Project[] = [
   },
   {
     title: 'Taskaru',
-    description: 'A task management web application to organize and prioritize your tasks effectively.',
-    fullDescription: 'Taskaru is a task management web application designed to help users organize and prioritize their tasks effectively. Features include task categorization, due dates, priority levels, and progress tracking.',
-    category: 'Web Application',
-    techStack: ['React', 'TypeScript', 'Golang', 'NeonDB', 'Vercel'],
+    description: 'A mobile task management application to organize and prioritize tasks effectively.',
+    fullDescription:
+      'Taskaru is a mobile task management application designed to help users organize and prioritize their tasks effectively. Features include task categorization, due dates, priority levels, progress tracking, and reminders.',
+    category: 'Mobile Application',
+    techStack: ['React Native', 'TypeScript', 'Golang', 'NeonDB', 'Vercel'],
     githubUrl: 'https://github.com/JasperRosales/taskaru',
     liveUrl: 'https://taskaru.app',
     features: [
       'Task organization and categorization',
       'Priority-based task sorting',
-      'Progress tracking and analytics',
+      'Progress tracking',
       'Collaborative task management',
       'Mail notifications and reminders',
     ],
@@ -46,7 +48,8 @@ export const projects: Project[] = [
   {
     title: 'Astrix',
     description: 'A fun reading app for daily fortune, tarot, and astronomy themes.',
-    fullDescription: 'Astrix is a simple project that lets users have fun with daily fortune, tarot, and astronomy reading based on different criteria. Currently in an initial state with plans for expansion.',
+    fullDescription:
+      'Astrix is a simple project that lets users have fun with daily fortune, tarot, and astronomy reading based on different criteria. Currently in an initial state with plans for expansion.',
     category: 'Fun App',
     techStack: ['JavaScript', 'React', 'Vite'],
     githubUrl: 'https://github.com/JasperRosales/Astrix',
@@ -60,7 +63,8 @@ export const projects: Project[] = [
   {
     title: 'Go Blockchain Practice',
     description: 'Practice journey for learning blockchain concepts in Go.',
-    fullDescription: 'This project is a practice implementation that explores core blockchain concepts using Go. Includes block creation, proof-of-work consensus, transactions with ECDSA signatures, and UTXO models. Eventually intended to be part of an upgrade for a financial manager system. ',
+    fullDescription:
+      'This project is a practice implementation that explores core blockchain concepts using Go. Includes block creation, proof-of-work consensus, transactions with ECDSA signatures, and UTXO models.',
     category: 'Learning / Blockchain',
     techStack: ['Go', 'Cryptography', 'CLI'],
     githubUrl: 'https://github.com/JasperRosales/go-blockchain-practice',
@@ -72,22 +76,10 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'Taskaru Client',
-    description: 'Mobile client for Taskaru with API integration.',
-    fullDescription: 'A mobile application built with TypeScript and Golang backend support. Designed to interface with the Taskaru API for task management on mobile devices.',
-    category: 'Mobile App',
-    techStack: ['TypeScript', 'React Native', 'Golang'],
-    githubUrl: 'https://github.com/JasperRosales/taskaru-client',
-    features: [
-      'Task viewing and management',
-      'Sync with backend APIs',
-      'Responsive mobile interface',
-    ],
-  },
-  {
     title: 'CommitThis',
     description: 'A platform for sharing ideas and collaborating with others.',
-    fullDescription: 'CommitThis is designed for people to share their ideas and let others collaborate on them, emphasizing teamwork and communication.',
+    fullDescription:
+      'CommitThis is designed for people to share their ideas and let others collaborate on them, emphasizing teamwork and communication.',
     category: 'Collaboration Platform',
     techStack: ['Web', 'JavaScript'],
     githubUrl: 'https://github.com/JasperRosales/CommitThis',
@@ -100,7 +92,8 @@ export const projects: Project[] = [
   {
     title: 'Barangay Tuyon App',
     description: 'A community service app for Barangay Tuyon.',
-    fullDescription: 'An application intended to support Barangay Tuyon residents with community announcements and local services. (Description placeholder — update when available)',
+    fullDescription:
+      'An application intended to support Barangay Tuyon residents with community announcements and local services.',
     category: 'Community App',
     techStack: ['React', 'Firebase'],
     githubUrl: 'https://github.com/JasperRosales/barangay-tuyon-app',
@@ -113,7 +106,8 @@ export const projects: Project[] = [
   {
     title: 'Quick Pitch.io',
     description: 'A simple pitch idea platform.',
-    fullDescription: 'Quick Pitch.io is a lightweight platform for users to quickly share pitches or ideas and gather initial feedback. (Placeholder description — update with real details.)',
+    fullDescription:
+      'Quick Pitch.io is a lightweight platform for users to quickly share pitches or ideas and gather initial feedback.',
     category: 'Web Tool',
     techStack: ['Next.js', 'TypeScript'],
     githubUrl: 'https://github.com/JasperRosales/quick-pitch.io',
@@ -124,32 +118,33 @@ export const projects: Project[] = [
     ],
   },
   {
-  title: 'Fit Tech',
-  description: 'An AI-powered e-commerce clothing application with virtual dressing and GCash payments.',
-  fullDescription:
-    'Fit Tech is an e-commerce clothing platform enhanced with AI features that allow users to virtually try on outfits before purchasing. The application focuses on improving online shopping confidence through virtual fitting technology while supporting seamless local payments via GCash.',
-  category: 'E-commerce / AI',
-  techStack: [
-    'React',
-    'TypeScript',
-    'AI / LLM',
-    'E-commerce',
-    'Payment Integration',
-    'GCash',
-  ],
-  githubUrl: 'https://github.com/JasperRosales/fit-tech-client',
-  features: [
-    'AI-powered virtual clothing try-on',
-    'Online clothing catalog and checkout',
-    'GCash payment integration',
-    'User accounts and order tracking',
-    'Enhanced shopping experience with fit visualization',
-  ],
-},
+    title: 'Fit Tech',
+    description: 'An AI-powered e-commerce clothing application with virtual dressing and GCash payments.',
+    fullDescription:
+      'Fit Tech is an e-commerce clothing platform enhanced with AI features that allow users to virtually try on outfits before purchasing. The application supports seamless local payments via GCash.',
+    category: 'E-commerce / AI',
+    techStack: [
+      'React',
+      'TypeScript',
+      'AI / LLM',
+      'E-commerce',
+      'Payment Integration',
+      'GCash',
+    ],
+    githubUrl: 'https://github.com/JasperRosales/fit-tech-client',
+    features: [
+      'AI-powered virtual clothing try-on',
+      'Online clothing catalog and checkout',
+      'GCash payment integration',
+      'User accounts and order tracking',
+      'Enhanced shopping experience with fit visualization',
+    ],
+  },
   {
     title: 'SSC Budget Manager',
     description: 'A system for managing SSC budgets and finances.',
-    fullDescription: 'SSC Budget Manager is a financial management system for tracking budgets, expenses, and reports within the SSC framework. (Placeholder — update with actual project details.)',
+    fullDescription:
+      'SSC Budget Manager is a financial management system for tracking budgets, expenses, and reports within the SSC framework.',
     category: 'Finance Tool',
     techStack: ['Web', 'TypeScript'],
     githubUrl: 'https://github.com/JasperRosales/ssc-budget-manager',
@@ -160,9 +155,10 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: 'Workflow Client',
-    description: 'Frontend client for workflow automation.',
-    fullDescription: 'Workflow Client offers an interface for managing workflow processes and automating tasks within a project environment. (Placeholder — refine with specifics.)',
+    title: 'Workflow',
+    description: 'A workflow management and automation application.',
+    fullDescription:
+      'Workflow offers an interface for managing workflow processes and automating tasks within a project environment.',
     category: 'Productivity Tool',
     techStack: ['React', 'JavaScript'],
     githubUrl: 'https://github.com/JasperRosales/workflow-client',
@@ -175,7 +171,8 @@ export const projects: Project[] = [
   {
     title: 'SSC Tools',
     description: 'Utility tools for SSC operations.',
-    fullDescription: 'SSC Tools combines multiple utilities to assist with SSC tasks like reporting, data manipulation, and admin tasks. (Placeholder — update with actual details.)',
+    fullDescription:
+      'SSC Tools combines multiple utilities to assist with SSC tasks like reporting, data manipulation, and admin workflows.',
     category: 'Utilities',
     techStack: ['JavaScript', 'Golang', 'React'],
     githubUrl: 'https://github.com/JasperRosales/ssc-tools',
@@ -186,3 +183,4 @@ export const projects: Project[] = [
     ],
   },
 ];
+
