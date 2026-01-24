@@ -86,7 +86,7 @@ export const certificates: Certificate[] = [
     name: "FreeCodeCamp Certifications",
     issuer: "FreeCodeCamp",
     description:
-      "Completed 8 FreeCodeCamp certifications covering responsive web design, JavaScript algorithms and data structures, front-end libraries, data visualization, relational databases, back-end development, quality assurance, and information security.",
+      "Completed 3 FreeCodeCamp certifications covering responsive web design, JavaScript algorithms and data structures, and data visualization",
     icon: <VscCode />,
   },
 ];
