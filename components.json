@@ -27,6 +27,7 @@
       "headers": {
         "X-API-Key": "${KOKO_PRO_TOKEN}"
       }
-    }
+    },
+    "@animate-ui": "https://animate-ui.com/r/{name}.json"
   }
 }

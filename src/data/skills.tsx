@@ -43,14 +43,12 @@ export const allSkills: Skill[] = [
   { name: "Testing", icon: <FaCheckCircle /> },
 ];
 
+export const pins: Skill[] = [
+  { name: "Golang", icon: <SiGo /> },
+  { name: "Kafka", icon: <SiApachekafka /> },
+  { name: "PostgreSQL", icon: <SiPostgresql /> },
+  { name: "Docker", icon: <SiDocker /> },
+  { name: "GitHub Actions", icon: <SiGithubactions /> },
+  { name: "GRPC APIs", icon: <FaServer /> },
 
-export const softSkills: string[] = [
-  "Problem-solving",
-  "Analytical Thinking",
-  "Attention to Detail",
-  "Effective Communication",
-  "Team Collaboration",
-  "Time Management",
-  "Adaptability",
-  "Critical Thinking",
 ];
