@@ -96,7 +96,7 @@
 
 @layer base {
   html {
-    @apply font-sans;
+    @apply font-mono;
   }
 }
 
@@ -108,6 +108,36 @@
   
   .glass-dark {
     @apply bg-black/20 backdrop-blur-md border border-white/10 shadow-lg;
+  }
+
+  /* GPU acceleration for animations */
+  .will-change-transform {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .shine-effect {
+    background: linear-gradient(
+      120deg,
+      transparent 0%,
+      transparent 40%,
+      rgba(255, 255, 255, 0.15) 45%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0.15) 55%,
+      transparent 60%,
+      transparent 100%
+    );
+    animation: shine 8s ease-in-out infinite;
+  }
+
+  @keyframes shine {
+    0%, 100% {
+      transform: translateX(-100%);
+    }
+    20%, 80% {
+      transform: translateX(100%);
+    }
   }
 }
 

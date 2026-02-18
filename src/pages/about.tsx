@@ -1,7 +1,25 @@
-import { motion } from "framer-motion";
 import { allSkills } from "../data/skills";
+import { motion } from "framer-motion";
+import { PinList } from "@/components/animate-ui/components/community/pin-list";
+import { pins } from "@/data/skills";
+
 
 export default function About() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
+
   return (
     <div className="min-h-screen py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -42,24 +60,71 @@ export default function About() {
             </div>
           </div>
 
-          {/* Technical Skills */}
-          <section className="mb-16">
-            <h2 className="text-2xl font-semibold mb-6">Technical Skills</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-              {allSkills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="bg-card border border-[#e5e5e5] rounded-lg p-4 flex items-center gap-3 hover:border-primary/50 transition-colors"
-                >
-                  <span className="text-primary text-xl">{skill.icon}</span>
-                  <span className="font-medium">{skill.name}</span>
-                </motion.div>
-              ))}
-            </div>
-          </section>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+        {/* 3x3 Bento Grid Layout */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-3 gap-2 max-w-2xl mx-auto"
+        >
+          {/* Row 1 */}
+          <motion.div
+            variants={itemVariants}
+            className="glass dark:glass-dark rounded-xl shadow-lg row-span-2"
+          >
+            <img
+              src="/Jasper.jpg"
+              alt="Jasper"
+              className="w-full h-full object-cover rounded-lg"
+            />
+          </motion.div>
+          <motion.div
+            variants={itemVariants}
+            className="glass dark:glass-dark rounded-xl p-3 shadow-lg aspect-square"
+          />
+
+          {/* PinList - occupies positions 3 and 6 with row-span-2 */}
+          <motion.div
+            variants={itemVariants}
+            className="glass dark:glass-dark rounded-xl shadow-lg row-span-2"
+          >
+            <PinList
+              className="h-full p-2"
+              items={pins.map((skill, index) => ({
+                id: index,
+                name: skill.name,
+                info: "Technology",
+                icon: () => skill.icon,
+                pinned: index < 2,
+              }))}
+              labels={{ pinned: "Pinned Skills", unpinned: "All Skills" }}
+            />
+          </motion.div>
+
+          {/* Row 2 */}
+          <motion.div
+            variants={itemVariants}
+            className="glass dark:glass-dark rounded-xl p-3 shadow-lg aspect-square"
+          />
+          <motion.div
+            variants={itemVariants}
+            className="glass dark:glass-dark rounded-xl p-3 shadow-lg aspect-square"
+          />
+
+          {/* Row 3 */}
+          <motion.div
+            variants={itemVariants}
+            className="glass dark:glass-dark rounded-xl p-3 shadow-lg aspect-square"
+          />
+    
+
+          <motion.div
+            variants={itemVariants}
+            className="glass dark:glass-dark rounded-xl p-3 shadow-lg aspect-square"
+          />
+        </motion.div>
+      </div>
 
           <section>
             <h2 className="text-2xl font-semibold mb-6">What I Do</h2>

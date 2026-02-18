@@ -1,4 +1,5 @@
 import { VscMail, VscLocation, VscGithubInverted, VscAccount, VscDeviceMobile, VscGlobe } from 'react-icons/vsc';
+import { FaFacebook } from 'react-icons/fa';
 import type { ReactNode } from 'react';
 
 export interface FormData {
@@ -65,6 +66,11 @@ export const socialLinks: SocialLink[] = [
     icon: <VscAccount className="text-xl" />,
     label: 'LinkedIn',
     href: 'https://linkedin.com/in/jasperrosales',
+  },
+  {
+    icon: <FaFacebook className="text-xl" />,
+    label: 'Facebook',
+    href: 'https://facebook.com/jasperrosales',
   },
   {
     icon: <VscGlobe className="text-xl" />,

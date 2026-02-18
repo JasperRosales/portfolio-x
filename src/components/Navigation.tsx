@@ -39,7 +39,7 @@ export function Navigation() {
             to="/"
             className="text-xl font-bold text-foreground/70 text-shadow-2xs hover:text-primary transition-colors"
           >
-            Jasper Rosales
+            Portfolio
           </Link>
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item) => (
@@ -104,7 +104,7 @@ function MobileMenu() {
         </svg>
       </button>
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-background border border-[#e5e5e5] rounded-md shadow-lg py-1">
+        <div className="absolute right-0 mt-2 w-48 bg-white/80 backdrop-blur-md border border-[#e5e5e5] rounded-md shadow-lg py-1">
           {navItems.map((item) => (
             <Link
               key={item.path}

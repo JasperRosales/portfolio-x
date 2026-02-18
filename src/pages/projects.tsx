@@ -6,14 +6,6 @@ import { projects } from "../data/projects";
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   
-  // Get unique categories
-  const categories = ["All", ...new Set(projects.map((p) => p.category))];
-  const [activeCategory, setActiveCategory] = useState("All");
-
-  const filteredProjects = activeCategory === "All" 
-    ? projects 
-    : projects.filter((p) => p.category === activeCategory);
-
   return (
     <div className="min-h-screen py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,26 +21,11 @@ export default function Projects() {
             A comprehensive collection of all my projects and side ventures.
           </p>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 mb-12">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                  activeCategory === category
-                    ? "bg-primary text-primary-foreground"
-                    : "bg-muted text-muted-foreground hover:bg-muted/80"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
+
 
           {/* Projects Grid */}
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project, index) => (
+            {projects.map((project, index) => (
               <motion.div
                 key={project.title}
                 initial={{ opacity: 0, y: 20 }}
@@ -93,14 +70,7 @@ export default function Projects() {
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-1.5">
-                  {project.techStack.slice(0, 3).map((tech) => (
-                    <span
-                      key={tech}
-                      className="px-2 py-0.5 bg-secondary/20 text-secondary-foreground rounded text-xs"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+                 
                   {project.techStack.length > 3 && (
                     <span className="px-2 py-0.5 text-muted-foreground text-xs">
                       +{project.techStack.length - 3}
