@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { Pin, X, Plus, Minus } from 'lucide-react';
+import { Pin, Plus, Minus } from 'lucide-react';
 import {
   motion,
   LayoutGroup,
