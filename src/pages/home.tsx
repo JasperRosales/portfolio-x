@@ -94,7 +94,7 @@ export default function Home() {
               transition={{ ...animationProps.stats }}
               className="flex items-center justify-center lg:justify-start gap-3 sm:gap-4 mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-border/30 will-change-transform"
             >
-              {socialLinks.slice(0, 3).map((link, index) => (
+              {socialLinks.slice(0, 3).map((link) => (
                 <HoverCard key={link.label} openDelay={200} closeDelay={200}>
                   <HoverCardTrigger 
                     href={link.href}
