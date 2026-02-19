@@ -69,7 +69,7 @@ export default function GridToImageHero({
 
   // Variants for staggered animation - boxes fly from outside to form image
   const itemVariants = useMemo(() => {
-    return gridItems.map((item, index) => {
+    return gridItems.map((_, index) => {
       const { startX, startY, startZ, startRotateX, startRotateY } = gridItemStartPositions[index];
       
       return {
