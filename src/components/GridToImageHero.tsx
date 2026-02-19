@@ -47,9 +47,10 @@ export default function GridToImageHero({
 
   // Generate random start positions for grid items (memoized to prevent regeneration on re-renders)
   const gridItemStartPositions = useMemo(() => {
-    return gridItems.map((item) => {
-      const row = Math.floor(item.id / gridSize);
-      const col = item.id % gridSize;
+  return gridItems.map((item) => {
+    const row = item.row;
+    const col = item.col;
+
       
       // Calculate direction based on position (from corners/edges)
       const xDirection = col === 0 ? -1 : col === gridSize - 1 ? 1 : 0;
