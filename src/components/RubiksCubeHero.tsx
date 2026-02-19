@@ -21,8 +21,7 @@ export default function RubiksCubeHero({
   const sceneRef = useRef<THREE.Scene | null>(null);
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
   const cubeGroupRef = useRef<THREE.Group | null>(null);
-  const animationRef = useRef<number>(0);
-
+  
   useEffect(() => {
     if (!canvasRef.current || isTransformed) return;
 
