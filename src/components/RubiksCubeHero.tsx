@@ -75,7 +75,6 @@ export default function RubiksCubeHero({
     cubeGroupRef.current = cubeGroup;
 
     const cubieSize = 0.9;
-    const gap = 0.05;
     const offset = 1;
 
     for (let x = -1; x <= 1; x++) {
