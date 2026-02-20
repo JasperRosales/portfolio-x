@@ -43,18 +43,18 @@ export const certificates: Certificate[] = [
   },
   {
     id: "c-essentials-cisco",
-    name: "C Essentials I",
+    name: "C & C++ Advance",
     issuer: "Cisco",
     description:
-      "Certified in C programming fundamentals covering syntax, operators, control flow, functions, arrays, pointers, memory management, and problem-solving techniques.",
+      "Certified in advanced C & C++ programming fundamentals covering syntax, libraries, exception handling, pointers, memory management, oop and problem-solving techniques.",
     icon: <VscCode />,
   },
   {
-    id: "cpp-essentials-cisco",
-    name: "C++ Essentials II",
+    id: "js-essentials-cisco",
+    name: "Javascript Essentials II",
     issuer: "Cisco",
     description:
-      "Certified in advanced C++ programming covering classes, inheritance, polymorphism, templates, standard library usage, exception handling, and object-oriented design patterns.",
+      "Certified in advanced JavaScript programming covering classes, DOM manipulation, framework usage, exception handling, and object-oriented design patterns.",
     icon: <VscCode />,
   },
   {
@@ -67,7 +67,7 @@ export const certificates: Certificate[] = [
   },
   {
     id: "aws-s3-amazon",
-    name: "AWS S3 Basics",
+    name: "AWS S3 Certifications",
     issuer: "Amazon",
     description:
       "Completed certification covering Amazon S3 cloud storage fundamentals including buckets, objects, access policies, versioning, encryption, data lifecycle management, and secure file storage practices.",

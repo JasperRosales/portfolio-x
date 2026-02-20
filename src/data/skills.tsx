@@ -1,19 +1,23 @@
 import type { ReactNode } from "react";
 import {
   SiGo,
-  SiRust,
-  SiSpringboot,
   SiPostgresql,
-  SiMongodb,
   SiDocker,
   SiApachekafka,
-  SiRabbitmq,
-  SiGraphql,
   SiGithubactions,
   SiGit,
-  SiApachemaven,
+  SiGin,
+  SiPrometheus,
+  SiGrafana,
+  SiTypescript,
+  SiJavascript,
+  SiReact,
+  SiElectron,
+  SiTauri,
+  SiGoogle,
+  SiServerless,
+  SiJson,
 } from "react-icons/si";
-import { FaServer, FaCheckCircle } from "react-icons/fa";
 
 interface Skill {
   name: string;
@@ -22,25 +26,32 @@ interface Skill {
 
 export const allSkills: Skill[] = [
   { name: "Golang", icon: <SiGo /> },
-  { name: "Rust", icon: <SiRust /> },
+  {name: "Javascript", icon: <SiJavascript /> },
+  { name: "Typescript", icon: <SiTypescript /> },
 
-  { name: "Spring Boot", icon: <SiSpringboot /> },
-  { name: "RESTful APIs", icon: <FaServer /> },
-  { name: "GraphQL", icon: <SiGraphql /> },
+  { name: "Gin", icon: <SiGin /> },
+  { name: "React", icon: <SiReact /> },
+  {name: "React Native", icon: <SiReact /> },
+  {name: "Electron", icon: <SiElectron /> },
+  {name: "Tauri", icon: <SiTauri /> },
 
-  { name: "Microservices", icon: <FaServer /> },
-  { name: "RabbitMQ", icon: <SiRabbitmq /> },
+
+  { name: "RESTful APIs", icon: <SiJson /> },
+  { name: "GRPC APIs", icon: <SiGoogle /> },
+
+  { name: "Microservices", icon: <SiServerless /> },
   { name: "Kafka", icon: <SiApachekafka /> },
 
   { name: "PostgreSQL", icon: <SiPostgresql /> },
-  { name: "MongoDB", icon: <SiMongodb /> },
 
   { name: "Docker", icon: <SiDocker /> },
+  { name: "Prometheus", icon: <SiPrometheus/> },
+  { name: "Grafana", icon: <SiGrafana /> },
+
+
   { name: "GitHub Actions", icon: <SiGithubactions /> },
   { name: "Git", icon: <SiGit /> },
-  { name: "Maven", icon: <SiApachemaven /> },
 
-  { name: "Testing", icon: <FaCheckCircle /> },
 ];
 
 export const pins: Skill[] = [
@@ -49,6 +60,4 @@ export const pins: Skill[] = [
   { name: "PostgreSQL", icon: <SiPostgresql /> },
   { name: "Docker", icon: <SiDocker /> },
   { name: "GitHub Actions", icon: <SiGithubactions /> },
-  { name: "GRPC APIs", icon: <FaServer /> },
-
 ];

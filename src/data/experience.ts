@@ -1,5 +1,5 @@
 
-export interface WorkExperience {
+export interface Experience {
   date: string;
   title: string;
   subtitle: string;
@@ -17,19 +17,19 @@ export interface Education {
   achievements?: string[];
 }
 
-export const workExperience: WorkExperience[] = [
+export const workExperience: Experience[] = [
   {
-    date: 'May 2025 - Present',
-    title: 'Vice President',
-    subtitle: 'College of Informatics and Computing Sciences - SC Balayan',
-    location: 'BatStateU TNEU Balayan, Batangas',
+    date: 'February 2026 - Present',
+    title: 'Software Developer',
+    subtitle: 'CJJG Town Gaz - Main Branch (Balayan)',
+    location: 'Brgy. Caloocan, Balayan, Batangas',
     achievements: [
-      'Manage the organization to be functional and efficient during events and outside activities',
-      'Maintain efficiency and morale of the CICS organization',
-      'Lead cross-functional collaboration and public communication in hybrid environments',
-      'Oversee high-impact activities and foster organizational efficiency',
+      'Developed a comprehensive software solution for streamlining operations and improving efficiency',
+      'Enhanced the business operations that allowed the company to monitor their cost and sales more effectively',
+      'Made an impact on the business decision making through the use of data-driven insights and analytics',
+      'Became the main point of contact for all technical aspects of the business, providing support and guidance to non-technical stakeholders',
     ],
-    techStack: ['Leadership', 'Event Management', 'Team Management'],
+    techStack: ['Software Development', 'Data Analysis', 'Business Intelligence', 'Technical Support', 'System Integration', 'Multi-Platform Development'],
   },
   {
     date: 'April 2024 - Present',
@@ -44,7 +44,23 @@ export const workExperience: WorkExperience[] = [
       'Managed projects independently with strong time management and adaptability',
       'Consistently meeting deadlines while maintaining high-quality standards',
     ],
-    techStack: ['Golang', 'Java', 'PostgreSQL', 'Docker', 'MongoDB', 'React' ],
+    techStack: ['Golang', 'Java', 'PostgreSQL', 'Docker', 'React', 'Typescript' ],
+  },
+];
+
+export const otherExperience: Experience[] = [
+  {
+    date: 'May 2025 - Present',
+    title: 'Vice President',
+    subtitle: 'College of Informatics and Computing Sciences - SC Balayan',
+    location: 'BatStateU TNEU Balayan, Batangas',
+    achievements: [
+      'Manage the organization to be functional and efficient during events and outside activities',
+      'Maintain efficiency and morale of the CICS organization',
+      'Lead cross-functional collaboration and public communication in hybrid environments',
+      'Oversee high-impact activities and foster organizational efficiency',
+    ],
+    techStack: ['Leadership', 'Event Management', 'Team Management'],
   },
   {
     date: 'Sep 2024 - Present',
@@ -60,7 +76,7 @@ export const workExperience: WorkExperience[] = [
     techStack: ['Digital Graphics', 'Adobe', 'Canva', 'Design', 'Time Management'],
   },
   {
-    date: 'Aug 2024 - May 2025',
+    date: 'Aug 2024 - Present',
     title: 'Second Class Officer',
     subtitle: 'BatStateU TNEU - Balayan ROTC Unit',
     location: 'BatStateU TNEU Balayan, Batangas',
@@ -85,6 +101,7 @@ export const workExperience: WorkExperience[] = [
     techStack: ['Microsoft Excel', 'Financial Reporting', 'Accounting'],
   },
 ];
+
 
 export const education: Education[] = [
   {

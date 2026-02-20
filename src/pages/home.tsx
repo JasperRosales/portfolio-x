@@ -64,7 +64,7 @@ export default function Home() {
               transition={{ ...animationProps.description }}
               className="text-sm sm:text-base md:text-md text-muted-foreground mb-5 sm:mb-6"
             >
-              A creative developer crafting beautiful digital experiences with modern technologies.
+             Designing, developing, and occasionally debugging my way through the digital world.
             </motion.p>
 
             <motion.div 

@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaTimes, FaCode } from "react-icons/fa";
+import { FaTimes, FaCode, FaCertificate, FaTrophy } from "react-icons/fa";
 import { allSkills, pins } from "../data/skills";
+import { services } from "../data/services";
+import { certificates } from "../data/certificates";
+import { keyAchievements } from "../data/achievements";
 import { PinList } from "@/components/animate-ui/components/community/pin-list";
 
 export default function About() {
@@ -54,57 +57,87 @@ export default function About() {
             >
               {/* Who I Am Section */}
               <motion.div variants={itemVariants} className="mb-8">
-                <h2 className="text-2xl font-semibold mb-4">Who I Am</h2>
-                <p className="text-muted-foreground text-lg leading-relaxed mb-4">
-                  I'm a passionate Full Stack Developer and Software Engineer based in the Philippines. 
+                <h2 className="text-2xl font-semibold underline underline-offset-4 mb-4">Who I Am</h2>
+                <p className="text-muted-foreground text-sm text-justify leading-relaxed mb-4">
+                  I'm an aspiring Software Engineer based in the Philippines. 
                   With a strong foundation in both frontend and backend development, I specialize in 
                   building scalable applications using modern technologies.
                 </p>
-                <p className="text-muted-foreground text-lg leading-relaxed">
+                <p className="text-muted-foreground text-sm text-justify leading-relaxed">
                   My journey in software development started with a curiosity for building things that 
                   solve real-world problems. Since then, I've worked on various projects ranging from 
-                  web applications to mobile apps, always focusing on writing clean, maintainable code.
+                  web applications to mobile apps, striving to become better than what I am now.
                 </p>
               </motion.div>
 
               {/* What I Do Section */}
               <motion.div variants={itemVariants}>
-                <h2 className="text-2xl font-semibold mb-6">What I Do</h2>
+                <h2 className="text-2xl font-semibold mb-6 underline underline-offset-4">What I Do</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
-                  {[
-                    {
-                      title: "Web Development",
-                      description: "Build responsive, performant web applications using modern frameworks like React and Next.js",
-                    },
-                    {
-                      title: "Backend Development",
-                      description: "Create robust APIs and microservices using Go, Java, and Node.js",
-                    },
-                    {
-                      title: "Database Design",
-                      description: "Design and optimize databases with PostgreSQL, MongoDB, and other database technologies",
-                    },
-                    {
-                      title: "DevOps",
-                      description: "Set up CI/CD pipelines, containerize applications with Docker, and manage cloud infrastructure",
-                    },
-                    {
-                      title: "Mobile Development",
-                      description: "Develop cross-platform mobile applications using React Native",
-                    },
-                    {
-                      title: "Technical Writing",
-                      description: "Create clear documentation and technical specifications for projects",
-                    },
-                  ].map((item) => (
+                  {services.map((item) => (
                     <motion.div
                       key={item.title}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
-                      className="bg-muted/30 border border-[#e5e5e5] dark:border-white/10 rounded-xl p-4 hover:border-primary/50 transition-colors"
+                      className="bg-muted/30 border border-[#e5e5e5] rounded-xl p-4 hover:border-primary/50 transition-colors"
                     >
                       <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
                       <p className="text-muted-foreground text-sm">{item.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Certifications Section */}
+              <motion.div variants={itemVariants} className="mt-8">
+                <h2 className="text-2xl font-semibold mb-6 underline underline-offset-4 flex items-center gap-3">
+                  Certifications
+                </h2>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {certificates.map((cert) => (
+                    <motion.div
+                      key={cert.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="bg-muted/30 border border-[#e5e5e5] rounded-xl p-4 hover:border-primary/50 transition-colors"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="text-primary text-xl shrink-0 mt-1">
+                          {cert.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold">{cert.name}</h3>
+                          <p className="text-primary text-sm font-medium">{cert.issuer}</p>
+                          <p className="text-muted-foreground text-sm mt-1">{cert.description}</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Achievements Section */}
+              <motion.div variants={itemVariants} className="mt-8">
+                <h2 className="text-2xl font-semibold mb-6 underline underline-offset-4 flex items-center gap-3">
+                  Achievements
+                </h2>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {keyAchievements.map((achievement, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="bg-muted/30 border border-[#e5e5e5] rounded-xl p-4 hover:border-primary/50 transition-colors"
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className="text-primary text-xl shrink-0 mt-1">
+                          {achievement.icon}
+                        </div>
+                        <div>
+                          <h3 className="text-lg font-semibold">{achievement.title}</h3>
+                          <p className="text-muted-foreground text-sm mt-1">{achievement.description}</p>
+                        </div>
+                      </div>
                     </motion.div>
                   ))}
                 </div>
@@ -197,7 +230,7 @@ export default function About() {
                       transition={{ delay: index * 0.03 }}
                       className="flex items-center gap-3 p-3 bg-muted/30 rounded-xl"
                     >
-                      <div className="text-primary text-xl flex-shrink-0">
+                      <div className="text-primary text-xl shrink-0">
                         {skill.icon}
                       </div>
                       <span className="font-medium text-sm truncate">{skill.name}</span>

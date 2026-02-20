@@ -96,7 +96,7 @@
 
 @layer base {
   html {
-    @apply font-mono;
+    @apply font-mono text-[#635959];
   }
 }
 
