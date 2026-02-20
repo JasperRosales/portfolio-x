@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaTimes, FaCode, FaCertificate, FaTrophy } from "react-icons/fa";
+import { FaTimes, FaCode } from "react-icons/fa";
 import { allSkills, pins } from "../data/skills";
 import { services } from "../data/services";
 import { certificates } from "../data/certificates";
