@@ -25,7 +25,7 @@ function AppContent() {
       <div className="fixed inset-0 z-0 bg-[linear-gradient(to_right,#00000008_1px,transparent_1px),linear-gradient(to_bottom,#00000008_1px,transparent_1px)] bg-size-[20px_20px] pointer-events-none"></div>
 
       <Navigation />
-      <main className="pt-16">
+      <main className="pt-16 md:pt-0">
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Home />} />
