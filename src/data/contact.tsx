@@ -70,7 +70,7 @@ export const socialLinks: SocialLink[] = [
   {
     icon: <FaFacebook className="text-xl" />,
     label: 'Facebook',
-    href: 'https://facebook.com/jasperrosales',
+    href: 'https://www.facebook.com/share/1HmHF6LwVJ/',
   },
   {
     icon: <VscGlobe className="text-xl" />,
