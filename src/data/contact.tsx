@@ -72,10 +72,5 @@ export const socialLinks: SocialLink[] = [
     label: 'Facebook',
     href: 'https://www.facebook.com/share/1HmHF6LwVJ/',
   },
-  {
-    icon: <VscGlobe className="text-xl" />,
-    label: 'Website',
-    href: '/',
-  },
 ];
 

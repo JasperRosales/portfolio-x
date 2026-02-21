@@ -17,6 +17,7 @@ import {
   SiGoogle,
   SiServerless,
   SiJson,
+  SiFlutter,
 } from "react-icons/si";
 
 interface Skill {
@@ -32,6 +33,7 @@ export const allSkills: Skill[] = [
   { name: "Gin", icon: <SiGin /> },
   { name: "React", icon: <SiReact /> },
   {name: "React Native", icon: <SiReact /> },
+  {name: "Flutter", icon: <SiFlutter /> },
   {name: "Electron", icon: <SiElectron /> },
   {name: "Tauri", icon: <SiTauri /> },
 

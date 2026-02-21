@@ -13,7 +13,7 @@ export default function Resume() {
         >
           <div className="flex items-center justify-between mb-12">
             <div>
-              <h1 className="text-4xl sm:text-5xl font-bold mb-2">
+              <h1 className="text-4xl sm:text-3xl font-bold mb-2">
                 My <span className="text-primary">Resume</span>
               </h1>
               <p className="text-muted-foreground">

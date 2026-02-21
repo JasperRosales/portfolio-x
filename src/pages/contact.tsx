@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { FaTwitter, FaPaperPlane, FaCheck } from "react-icons/fa";
+import { FaPaperPlane, FaCheck } from "react-icons/fa";
 import { contactInfo, socialLinks, type FormData, type FormErrors } from "../data/contact";
 
 export default function Contact() {
@@ -73,10 +73,10 @@ export default function Contact() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+          <h1 className="text-4xl sm:text-3xl font-bold mb-4">
             Get In <span className="text-primary">Touch</span>
           </h1>
-          <p className="text-muted-foreground text-lg mb-12 max-w-2xl">
+          <p className="text-muted-foreground text-md mb-12 max-w-2xl">
             Have a project in mind or just want to chat? Feel free to reach out!
             I'm always open to discussing new opportunities and ideas.
           </p>
@@ -124,17 +124,6 @@ export default function Contact() {
                     {link.icon}
                   </motion.a>
                 ))}
-                <motion.a
-                  href="https://twitter.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="p-3 bg-card border border-[#e5e5e5] rounded-full hover:border-primary/50 hover:bg-muted transition-all"
-                >
-                  <FaTwitter />
-                </motion.a>
               </div>
             </div>
 

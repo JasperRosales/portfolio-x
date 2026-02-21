@@ -14,7 +14,7 @@ export default function Projects() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+          <h1 className="text-4xl sm:text-3xl font-bold mb-4">
             My <span className="text-primary">Projects</span>
           </h1>
           <p className="text-muted-foreground text-lg mb-8">
@@ -113,7 +113,7 @@ export default function Projects() {
                 </button>
               </div>
               <div className="p-6">
-                <p className="text-muted-foreground mb-6">
+                <p className="text-muted-foreground text-justify mb-6">
                   {selectedProject.fullDescription}
                 </p>
                 
@@ -122,7 +122,8 @@ export default function Projects() {
                   <ul className="space-y-2">
                     {selectedProject.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2 text-muted-foreground">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0" />
+                        <span className="text-2xl">*</span>
                         {feature}
                       </li>
                     ))}
@@ -135,7 +136,7 @@ export default function Projects() {
                     {selectedProject.techStack.map((tech) => (
                       <span
                         key={tech}
-                        className="px-3 py-1 bg-secondary/20 text-secondary-foreground rounded-full text-sm"
+                        className="px-3 py-1 bg-secondary/20 text-secondary-foreground underline underline-offset-4 rounded-full text-sm"
                       >
                         {tech}
                       </span>
