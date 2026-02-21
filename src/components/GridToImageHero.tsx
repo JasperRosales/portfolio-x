@@ -101,7 +101,7 @@ export default function GridToImageHero({
   return (
     <div 
       ref={containerRef}
-      className="relative w-[320px] h-[320px] md:w-[380px] md:h-[380px] lg:w-[420px] lg:h-[420px] perspective-1000"
+      className="relative w-[320px] h-80 md:w-95 md:h-95 lg:w-105 lg:h-105 perspective-1000"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -144,7 +144,7 @@ export default function GridToImageHero({
                 />
                 
                 {/* Overlay effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-br from-white/10 to-transparent pointer-events-none" />
                 
                 {/* Border glow on hover */}
                 <div className="absolute inset-0 rounded-lg border-2 border-white/0 hover:border-white/30 transition-colors duration-300" />
@@ -170,7 +170,7 @@ export default function GridToImageHero({
             className="absolute inset-0"
           >
             {/* Glow effect behind image */}
-            <div className="absolute -inset-4 bg-gradient-to-br from-primary/30 via-secondary/30 to-primary/30 rounded-3xl blur-2xl" />
+            <div className="absolute -inset-4 bg-linear-to-br from-primary/30 via-secondary/30 to-primary/30 rounded-3xl blur-2xl" />
             
             {/* Main image container */}
             <motion.div
@@ -196,11 +196,11 @@ export default function GridToImageHero({
               />
               
               {/* Subtle overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent" />
               
               {/* Shine effect */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent"
                 animate={{
                   x: ['-100%', '100%'],
                 }}
