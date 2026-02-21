@@ -1,4 +1,4 @@
-import { VscMail, VscLocation, VscGithubInverted, VscAccount, VscDeviceMobile, VscGlobe } from 'react-icons/vsc';
+import { VscMail, VscLocation, VscGithubInverted, VscAccount, VscDeviceMobile } from 'react-icons/vsc';
 import { FaFacebook } from 'react-icons/fa';
 import type { ReactNode } from 'react';
 
