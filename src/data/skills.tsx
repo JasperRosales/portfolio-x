@@ -9,15 +9,15 @@ import {
   SiGin,
   SiPrometheus,
   SiGrafana,
-  SiTypescript,
   SiJavascript,
   SiReact,
-  SiElectron,
-  SiTauri,
   SiGoogle,
   SiServerless,
   SiJson,
   SiFlutter,
+  SiAwslambda,
+  SiDart,
+  SiMake,
 } from "react-icons/si";
 
 interface Skill {
@@ -28,15 +28,11 @@ interface Skill {
 export const allSkills: Skill[] = [
   { name: "Golang", icon: <SiGo /> },
   {name: "Javascript", icon: <SiJavascript /> },
-  { name: "Typescript", icon: <SiTypescript /> },
+  {name: "Dart", icon: <SiDart /> },
 
   { name: "Gin", icon: <SiGin /> },
   { name: "React", icon: <SiReact /> },
-  {name: "React Native", icon: <SiReact /> },
   {name: "Flutter", icon: <SiFlutter /> },
-  {name: "Electron", icon: <SiElectron /> },
-  {name: "Tauri", icon: <SiTauri /> },
-
 
   { name: "RESTful APIs", icon: <SiJson /> },
   { name: "GRPC APIs", icon: <SiGoogle /> },
@@ -49,10 +45,10 @@ export const allSkills: Skill[] = [
   { name: "Docker", icon: <SiDocker /> },
   { name: "Prometheus", icon: <SiPrometheus/> },
   { name: "Grafana", icon: <SiGrafana /> },
-
-
+  { name: "AWS", icon: <SiAwslambda /> },
   { name: "GitHub Actions", icon: <SiGithubactions /> },
   { name: "Git", icon: <SiGit /> },
+  {name: "Make", icon: <SiMake /> },
 
 ];
 
