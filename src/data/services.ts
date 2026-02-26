@@ -6,7 +6,7 @@ export interface Service {
 export const services: Service[] = [
   {
     title: "Web Development",
-    description: "Build responsive, performant web applications using modern frameworks like React and Next.js",
+    description: "Build responsive, performant web applications using modern frameworks like React",
   },
   {
     title: "Backend Development",
@@ -22,7 +22,7 @@ export const services: Service[] = [
   },
   {
     title: "Mobile Development",
-    description: "Develop cross-platform mobile applications using React Native",
+    description: "Develop cross-platform mobile applications using Flutter and Dart",
   },
   {
     title: "Technical Writing",

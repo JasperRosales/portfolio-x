@@ -29,7 +29,7 @@ export default function About() {
   const allSkillsWithPinned = allSkills.map((skill, index) => ({
     id: index,
     name: skill.name,
-    info: "Technology",
+    info: skill.info,
     icon: () => skill.icon,
     pinned: pins.some((p) => p.name === skill.name),
   }));

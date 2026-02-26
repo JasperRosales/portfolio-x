@@ -33,7 +33,7 @@ export const projects: Project[] = [
     fullDescription:
       "Taskaru is a mobile task management application designed to help users organize and prioritize their tasks effectively. Features include task categorization, due dates, priority levels, progress tracking, and reminders.",
     category: "Mobile Application",
-    techStack: ["React Native", "TypeScript", "Golang", "NeonDB", "Vercel"],
+    techStack: ["Flutter", "Golang", "Supabase"],
     githubUrl: "https://github.com/JasperRosales/taskaru",
     features: [
       "Task organization and categorization",
