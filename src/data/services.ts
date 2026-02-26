@@ -10,11 +10,11 @@ export const services: Service[] = [
   },
   {
     title: "Backend Development",
-    description: "Create robust APIs and microservices using Go, Java, and Node.js",
+    description: "Create robust APIs and microservices using Go and kafka for real-time data processing",
   },
   {
     title: "Database Design",
-    description: "Design and optimize databases with PostgreSQL, MongoDB, and other database technologies",
+    description: "Design and optimize databases with PostgreSQL as my primary database but I also have some experience with Redis",
   },
   {
     title: "DevOps",
