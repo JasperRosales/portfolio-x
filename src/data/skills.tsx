@@ -19,6 +19,7 @@ import {
   SiDart,
   SiMake,
   SiGnubash,
+  SiDebian,
 } from "react-icons/si";
 
 interface Skill {
@@ -52,6 +53,7 @@ export const allSkills: Skill[] = [
   { name: "Git", icon: <SiGit />, info: "Version Control" },
   { name: "Make", icon: <SiMake />, info: "Build Tool" },
   { name: "Bash", icon: <SiGnubash />, info: "Shell" },
+  { name: "Linux/Debian", icon: <SiDebian />, info: "OS" },
 ];
 
 export const pins: Skill[] = [

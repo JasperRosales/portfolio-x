@@ -1,4 +1,4 @@
-import { VscCode, VscOrganization, VscLightbulb, VscHeart } from 'react-icons/vsc';
+import { VscCode, VscOrganization, VscLightbulb, VscHeart, VscLightbulbAutofix } from 'react-icons/vsc';
 import type { ReactNode } from 'react';
 
 export interface KeyAchievement {
@@ -11,12 +11,17 @@ export const keyAchievements: KeyAchievement[] = [
   {
     icon: <VscCode />,
     title: 'HackerRank Achiever',
-    description: 'Earned Java, Go, Sql certifications and badges through HackerRank competitive programming platform',
+    description: 'Earned Java, Go, Sql, R, Node, CSS, React, C#, Problem Solving certifications and badges through HackerRank competitive programming platform',
   },
   {
     icon: <VscOrganization />,
     title: '31st Founding Anniversary Organizer',
-    description: 'Served as Technical Head for the 31st Founding Anniversary event, overseeing all technical aspects and event coordination',
+    description: 'Served as Technical Head for the 31st Founding Anniversary of BatStateU TNEU Balayan, overseeing all technical aspects and event coordination',
+  },
+  {
+    icon: <VscOrganization />,
+    title: '32nd Founding Anniversary Organizer',
+    description: 'Served as Technical Head for the 32nd Founding Anniversary of BatStateU TNEU Balayan, overseeing all technical aspects, material preparation, and event coordination',
   },
   {
     icon: <VscLightbulb />,
@@ -30,8 +35,13 @@ export const keyAchievements: KeyAchievement[] = [
   },
   {
     icon: <VscHeart />,
-    title: 'SSC Service Awardee',
-    description: 'Recognized for completing 1 year of dedicated service to the Supreme Student Council on Balayan campus',
+    title: '2x SSC Service Awardee',
+    description: 'Recognized for completing 2 year of dedicated service to the Supreme Student Council on Balayan campus',
+  },
+  {
+    icon: <VscLightbulbAutofix />,
+    title: 'Rank 3 Student Leadership Awardee',
+    description: 'Recognized for exemplary leadership and contributions to the student community, earning the Rank 3 in Gawad Salakot 2026: Student Leadership Award ',
   },
 ];
 

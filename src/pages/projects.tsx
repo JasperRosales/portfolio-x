@@ -2,9 +2,77 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
 import { projects } from "../data/projects";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
+  const [activeTab, setActiveTab] = useState("all");
+
+  const getFilteredProjects = () => {
+    if (activeTab === "applications") {
+      return projects.filter(project => project.type === "application");
+    }
+    if (activeTab === "education") {
+      return projects.filter(project => project.type === "education");
+    }
+    return projects;
+  };
+
+  const filteredProjects = getFilteredProjects();
+
+  const ProjectCard = ({ project, index }: { project: typeof projects[0], index: number }) => (
+    <motion.div
+      key={`${activeTab}-${project.title}`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05 }}
+      onClick={() => setSelectedProject(project)}
+      className="bg-[#ffffff] border border-[#e5e5e5] rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all duration-300 group"
+    >
+      <div className="flex items-start justify-between mb-3">
+        <div>
+          <h3 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
+            {project.title}
+          </h3>
+          <span className="text-xs text-primary">{project.category}</span>
+        </div>
+        <div className="flex gap-2">
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <FaGithub className="w-4 h-4" />
+            </a>
+          )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <FaExternalLinkAlt className="w-3.5 h-3.5" />
+            </a>
+          )}
+        </div>
+      </div>
+      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+        {project.description}
+      </p>
+      <div className="flex flex-wrap gap-1.5">
+        {project.techStack.length > 3 && (
+          <span className="px-2 py-0.5 text-muted-foreground text-xs">
+            +{project.techStack.length - 3}
+          </span>
+        )}
+      </div>
+    </motion.div>
+  );
   
   return (
     <div className="min-h-screen py-20">
@@ -21,65 +89,22 @@ export default function Projects() {
             A comprehensive collection of all my projects and side ventures.
           </p>
 
+          {/* Tabs Filter */}
+          <Tabs defaultValue="all" className="w-full" onValueChange={setActiveTab}>
+            <TabsList>
+              <TabsTrigger value="all">All Projects</TabsTrigger>
+              <TabsTrigger value="applications">Applications</TabsTrigger>
+              <TabsTrigger value="education">Education</TabsTrigger>
+            </TabsList>
 
-
-          {/* Projects Grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05 }}
-                onClick={() => setSelectedProject(project)}
-                className="bg-[#ffffff] border border-[#e5e5e5] rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all duration-300 group"
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div>
-                    <h3 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                    <span className="text-xs text-primary">{project.category}</span>
-                  </div>
-                  <div className="flex gap-2">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        <FaGithub className="w-4 h-4" />
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={(e) => e.stopPropagation()}
-                        className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
-                      >
-                        <FaExternalLinkAlt className="w-3.5 h-3.5" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                  {project.description}
-                </p>
-                <div className="flex flex-wrap gap-1.5">
-                 
-                  {project.techStack.length > 3 && (
-                    <span className="px-2 py-0.5 text-muted-foreground text-xs">
-                      +{project.techStack.length - 3}
-                    </span>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
+            <div className="mt-6">
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredProjects.map((project, index) => (
+                  <ProjectCard key={`${activeTab}-${project.title}`} project={project} index={index} />
+                ))}
+              </div>
+            </div>
+          </Tabs>
         </motion.div>
       </div>
 

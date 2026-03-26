@@ -27,7 +27,7 @@ export const certificates: Certificate[] = [
   },
   {
     id: "go-hackerrank",
-    name: "Go (Basic)",
+    name: "Go (Intermediate)",
     issuer: "HackerRank",
     description:
       "Certified in Go language fundamentals covering syntax, data structures, concurrency patterns, error handling, and standard library usage for practical applications.",
@@ -35,11 +35,19 @@ export const certificates: Certificate[] = [
   },
   {
     id: "sql-hackerrank",
-    name: "SQL (Basic)",
+    name: "SQL (Advanced)",
     issuer: "HackerRank",
     description:
       "Certified in SQL fundamentals covering query writing, data manipulation, table management, relational database concepts, and basic optimization techniques for database operations.",
     icon: <VscDatabase />,
+  },
+  {
+    id: "react-hackerrank",
+    name: "React (Basic)",
+    issuer: "HackerRank",
+    description:
+      "Certified in React programming fundamentals covering components, props, state, lifecycle methods, and basic optimization techniques for building user interfaces.",
+    icon: <VscCode />,
   },
   {
     id: "c-essentials-cisco",
@@ -66,11 +74,11 @@ export const certificates: Certificate[] = [
     icon: <VscOrganization />,
   },
   {
-    id: "aws-s3-amazon",
-    name: "AWS S3 Certifications",
+    id: "aws-amazon",
+    name: "AWS Certifications",
     issuer: "Amazon",
     description:
-      "Completed certification covering Amazon S3 cloud storage fundamentals including buckets, objects, access policies, versioning, encryption, data lifecycle management, and secure file storage practices.",
+      "Completed certifications covering Amazon cloud fundamentals including buckets, objects, access policies, versioning, encryption, data lifecycle management, and secure file storage practices.",
     icon: <VscCloud />,
   },
   {

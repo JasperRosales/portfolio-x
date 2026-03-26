@@ -14,7 +14,7 @@ export const services: Service[] = [
   },
   {
     title: "Database Design",
-    description: "Design and optimize databases with PostgreSQL as my primary database but I also have some experience with Redis",
+    description: "Design and optimize databases with PostgreSQL as my primary database but I also have some experience with other databases",
   },
   {
     title: "DevOps",
