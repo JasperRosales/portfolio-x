@@ -20,8 +20,8 @@ export interface Education {
 export const workExperience: Experience[] = [
   {
     date: 'February 2026 - Present',
-    title: 'Software Developer',
-    subtitle: 'CJJG Town Gaz - Main Branch (Balayan)',
+    title: 'Software Developer (Contract)',
+    subtitle: 'CJG Town Gaz - Main Branch (Balayan)',
     location: 'Brgy. Caloocan, Balayan, Batangas',
     achievements: [
       'Developed a comprehensive software solution for streamlining operations and improving efficiency',
@@ -29,7 +29,7 @@ export const workExperience: Experience[] = [
       'Made an impact on the business decision making through the use of data-driven insights and analytics',
       'Became the main point of contact for all technical aspects of the business, providing support and guidance to non-technical stakeholders',
     ],
-    techStack: ['Software Development', 'Data Analysis', 'Business Intelligence', 'Technical Support', 'System Integration', 'Multi-Platform Development'],
+    techStack: ['Software Development', 'Data Analysis', 'Technical Support', 'System Integration', 'Multi-Platform Development'],
   },
   {
     date: 'April 2024 - Present',
@@ -44,7 +44,7 @@ export const workExperience: Experience[] = [
       'Managed projects independently with strong time management and adaptability',
       'Consistently meeting deadlines while maintaining high-quality standards',
     ],
-    techStack: ['Golang', 'Java', 'PostgreSQL', 'Docker', 'React', 'Typescript' ],
+    techStack: ['Golang', 'C#', '. NET','PostgreSQL', 'Docker', 'React', 'Javascript' ],
   },
 ];
 
@@ -95,7 +95,7 @@ export const otherExperience: Experience[] = [
     location: 'BatStateU TNEU Balayan, Batangas',
     achievements: [
       'Audited excel spreadsheets and reports for the financial status and activities',
-      'Managed the receipt of each activity',
+      'Managed business transactions of activities/events',
       'Maintained accurate financial reporting for the organization',
     ],
     techStack: ['Microsoft Excel', 'Financial Reporting', 'Accounting'],
@@ -121,7 +121,8 @@ export const education: Education[] = [
       'Maintained academic excellence while balancing leadership roles in multiple student organizations',
       'Founded CICS Github Community to foster student collaboration and open-source contribution',
       'Competed and won in Maze Mastery coding competition against students of all year levels',
-      'Recognized for dedicated service through SSC Service Award',
+      'Ranked 3rd in the Gawad Salakot 2026: Student Leadership Awards',
+      'Recognized for dedicated two-year service through SSC Service Award',
     ],
   },
   {

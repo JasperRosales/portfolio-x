@@ -6,23 +6,15 @@ export interface Service {
 export const services: Service[] = [
   {
     title: "Web Development",
-    description: "Build responsive, performant web applications using modern frameworks like React",
-  },
-  {
-    title: "Backend Development",
-    description: "Create robust APIs and microservices using Go and kafka for real-time data processing",
+    description: "Build responsive, performant full stack web applications using modern frameworks like React and ASP DOTNET Core",
   },
   {
     title: "Database Design",
     description: "Design and optimize databases with PostgreSQL as my primary database but I also have some experience with other databases",
   },
   {
-    title: "DevOps",
-    description: "Set up CI/CD pipelines, containerize applications with Docker, and manage cloud infrastructure",
-  },
-  {
     title: "Mobile Development",
-    description: "Develop cross-platform mobile applications using Flutter and Dart",
+    description: "Develop cross-platform mobile applications using Flutter and DOTNET MAUI",
   },
   {
     title: "Technical Writing",

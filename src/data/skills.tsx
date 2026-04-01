@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import {
-  SiGo,
   SiPostgresql,
   SiDocker,
   SiApachekafka,
@@ -20,6 +19,9 @@ import {
   SiMake,
   SiGnubash,
   SiDebian,
+  SiDotnet,
+  SiServerfault,
+  SiRedis,
 } from "react-icons/si";
 
 interface Skill {
@@ -29,21 +31,23 @@ interface Skill {
 }
 
 export const allSkills: Skill[] = [
-  { name: "Golang", icon: <SiGo />, info: "Language"},
-  { name: "Javascript", icon: <SiJavascript />, info: "Language"  },
+  { name: "Javascript", icon: <SiJavascript />, info: "Language" },
   { name: "Dart", icon: <SiDart />, info: "Language" },
+  { name: "C#", icon: <SiGin />, info: "Language" },
 
-  { name: "Gin", icon: <SiGin />, info: "Framework" },
   { name: "React", icon: <SiReact />, info: "Framework" },
+  { name: "Dotnet", icon: <SiDotnet />, info: "Framework" },
   { name: "Flutter", icon: <SiFlutter />, info: "Framework" },
 
   { name: "RESTful", icon: <SiJson />, info: "API" },
   { name: "GRPC", icon: <SiGoogle />, info: "API" },
-
-  { name: "Microservices", icon: <SiServerless />, info: "Architecture" },
   { name: "Kafka", icon: <SiApachekafka />, info: "Message Broker" },
 
+  { name: "Monolithic", icon: <SiServerfault />, info: "Architecture" },
+  { name: "Microservices", icon: <SiServerless />, info: "Architecture" },
+
   { name: "PostgreSQL", icon: <SiPostgresql />, info: "Database" },
+  { name: "Redis", icon: <SiRedis />, info: "Database" },
 
   { name: "Docker", icon: <SiDocker />, info: "Containerization" },
   { name: "Prometheus", icon: <SiPrometheus />, info: "Monitoring" },
@@ -57,9 +61,10 @@ export const allSkills: Skill[] = [
 ];
 
 export const pins: Skill[] = [
-  { name: "Dart", icon: <SiDart />, info: "Language" },
+  { name: "C#", icon: <SiGin />, info: "Language" },
+  { name: "Dotnet", icon: <SiDotnet />, info: "Framework" },
   { name: "PostgreSQL", icon: <SiPostgresql />, info: "Database" },
   { name: "Docker", icon: <SiDocker />, info: "Containerization" },
-  { name: "GitHub Actions", icon: <SiGithubactions />, info: "CI/CD" },
   { name: "Bash", icon: <SiGnubash />, info: "Shell" },
+  { name: "Linux/Debian", icon: <SiDebian />, info: "OS" },
 ];
