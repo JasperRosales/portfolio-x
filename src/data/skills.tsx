@@ -22,6 +22,8 @@ import {
   SiDotnet,
   SiServerfault,
   SiRedis,
+  SiSpringboot,
+  SiRedhat,
 } from "react-icons/si";
 
 interface Skill {
@@ -33,14 +35,13 @@ interface Skill {
 export const allSkills: Skill[] = [
   { name: "Javascript", icon: <SiJavascript />, info: "Language" },
   { name: "Dart", icon: <SiDart />, info: "Language" },
-  { name: "C#", icon: <SiGin />, info: "Language" },
+  { name: "Java", icon: <SiRedhat />, info: "Language" },
 
   { name: "React", icon: <SiReact />, info: "Framework" },
-  { name: "Dotnet", icon: <SiDotnet />, info: "Framework" },
   { name: "Flutter", icon: <SiFlutter />, info: "Framework" },
+  { name: "Spring Boot", icon: <SiSpringboot />, info: "Framework" },
 
   { name: "RESTful", icon: <SiJson />, info: "API" },
-  { name: "GRPC", icon: <SiGoogle />, info: "API" },
   { name: "Kafka", icon: <SiApachekafka />, info: "Message Broker" },
 
   { name: "Monolithic", icon: <SiServerfault />, info: "Architecture" },
@@ -61,8 +62,8 @@ export const allSkills: Skill[] = [
 ];
 
 export const pins: Skill[] = [
-  { name: "C#", icon: <SiGin />, info: "Language" },
-  { name: "Dotnet", icon: <SiDotnet />, info: "Framework" },
+  { name: "Java", icon: <SiRedhat />, info: "Language" },
+  { name: "Spring Boot", icon: <SiSpringboot />, info: "Framework" },
   { name: "PostgreSQL", icon: <SiPostgresql />, info: "Database" },
   { name: "Docker", icon: <SiDocker />, info: "Containerization" },
   { name: "Bash", icon: <SiGnubash />, info: "Shell" },

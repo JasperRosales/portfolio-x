@@ -29,6 +29,24 @@ export const projects: Project[] = [
     ],
   },
   {
+    title: "SmartWardrobe",
+    description:
+      "A virtual fitting web application for exploring outfit combinations.",
+    fullDescription:
+      "Developed SmartWardrobe, a web-based virtual fitting application that allows users to visualize and experiment with different clothing combinations in a digital environment. The system focuses on simplifying outfit selection by providing an interactive interface where users can mix and match clothing items without the need for physical try-ons. Designed with a clean and responsive UI, the application enhances user experience by making outfit exploration more accessible and efficient.",
+    category: "Fashion Technology",
+    type: "application",
+    techStack: ["React", "JavaScript", "Vite"],
+    githubUrl: "not available",
+    liveUrl: "https://smart-wardrobe-asper.vercel.app/",
+    features: [
+      "Virtual try-on interface for outfit visualization",
+      "Mix-and-match clothing combinations",
+      "Interactive and user-friendly UI",
+      "Responsive design for multiple devices",
+    ],
+  },
+  {
     title: "Go Blockchain Practice",
     description: "Practice journey for learning blockchain concepts in Go.",
     fullDescription:
@@ -46,7 +64,8 @@ export const projects: Project[] = [
   },
   {
     title: "Nginx Practice",
-    description: "Hands-on practice with Nginx server configuration and deployment.",
+    description:
+      "Hands-on practice with Nginx server configuration and deployment.",
     fullDescription:
       "A practical learning project focused on understanding Nginx web server configuration, reverse proxy setup, load balancing, and server optimization techniques.",
     category: "Learning / Infrastructure",
@@ -62,12 +81,18 @@ export const projects: Project[] = [
   },
   {
     title: "Kafka Practice",
-    description: "Exploring Apache Kafka for distributed streaming and messaging.",
+    description:
+      "Exploring Apache Kafka for distributed streaming and messaging.",
     fullDescription:
       "A hands-on learning project to understand Apache Kafka's distributed streaming platform, message queuing, and event-driven architecture patterns.",
     category: "Learning / Messaging",
     type: "education",
-    techStack: ["Apache Kafka", "Docker", "Event Streaming", "Distributed Systems"],
+    techStack: [
+      "Apache Kafka",
+      "Docker",
+      "Event Streaming",
+      "Distributed Systems",
+    ],
     githubUrl: "https://github.com/JasperRosales/kafka-practice",
     features: [
       "Kafka producer and consumer setup",
@@ -78,7 +103,8 @@ export const projects: Project[] = [
   },
   {
     title: "Flutter Notes",
-    description: "Learning notes and practice projects for Flutter development.",
+    description:
+      "Learning notes and practice projects for Flutter development.",
     fullDescription:
       "A collection of notes, code samples, and practice projects documenting the learning journey with Flutter for cross-platform mobile development.",
     category: "Learning / Mobile Development",
