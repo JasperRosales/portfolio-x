@@ -190,4 +190,22 @@ export const projects: Project[] = [
       "User workflow dashboards",
     ],
   },
+  {
+    title: "Weather API with Redis",
+    description: "Spring Boot REST API with Redis caching for weather data.",
+    fullDescription: "A Spring Boot REST API that fetches weather data from Visual Crossing Weather API and implements Redis caching to improve performance and reduce external API calls. Features RESTful endpoint, reactive WebFlux, configurable TTL (30 minutes), comprehensive error handling, input validation, unit tests with Mockito, and automatic retry logic.",
+    category: "Backend API / Caching",
+    type: "application",
+    techStack: ["Java 17", "Spring Boot", "Spring WebFlux", "Redis", "Maven"],
+    githubUrl: "https://github.com/JasperRosales/weather-api-spring-redis",
+    features: [
+      "RESTful weather data retrieval",
+      "Redis caching with TTL",
+      "Reactive programming with WebFlux",
+      "Global exception handling",
+      "Unit tests & retry logic"
+    ],
+  }
 ];
+
+
