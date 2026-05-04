@@ -2,11 +2,19 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
 import { projects } from "../data/projects";
+import { projectDetails } from "../data/project-details";
+import type { ProjectImageDetail } from "../data/project-details";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
   const [activeTab, setActiveTab] = useState("all");
+  const [fullscreenImage, setFullscreenImage] = useState<ProjectImageDetail | null>(null);
+
+  const closeProjectModal = () => {
+    setSelectedProject(null);
+    setFullscreenImage(null);
+  };
 
   const getFilteredProjects = () => {
     if (activeTab === "applications") {
@@ -19,6 +27,9 @@ export default function Projects() {
   };
 
   const filteredProjects = getFilteredProjects();
+  const selectedProjectDetails = selectedProject
+    ? projectDetails[selectedProject.title]
+    : undefined;
 
   const ProjectCard = ({ project, index }: { project: typeof projects[0], index: number }) => (
     <motion.div
@@ -116,7 +127,7 @@ export default function Projects() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
-            onClick={() => setSelectedProject(null)}
+            onClick={closeProjectModal}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
@@ -131,7 +142,7 @@ export default function Projects() {
                   <span className="text-sm text-primary">{selectedProject.category}</span>
                 </div>
                 <button
-                  onClick={() => setSelectedProject(null)}
+                  onClick={closeProjectModal}
                   className="p-2 hover:bg-muted rounded-full transition-colors"
                 >
                   <FaTimes />
@@ -141,7 +152,37 @@ export default function Projects() {
                 <p className="text-muted-foreground text-justify mb-6">
                   {selectedProject.fullDescription}
                 </p>
-                
+
+                {selectedProjectDetails?.imageGallery.length ? (
+                  <div className="mb-6">
+                    <h4 className="font-semibold mb-3">Project Images</h4>
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      {selectedProjectDetails.imageGallery.map((image) => (
+                        <div
+                          key={`${selectedProject.title}-${image.imageSrc}`}
+                          className="rounded-lg border border-[#e5e5e5] overflow-hidden bg-background"
+                        >
+                          <button
+                            type="button"
+                            onClick={() => setFullscreenImage(image)}
+                            className="w-full cursor-zoom-in"
+                          >
+                            <img
+                              src={image.imageSrc}
+                              alt={image.imageAlt}
+                              className="w-full h-44 object-cover"
+                              loading="lazy"
+                            />
+                          </button>
+                          <p className="p-3 text-sm text-muted-foreground">
+                            {image.imageDescription}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+
                 <div className="mb-6">
                   <h4 className="font-semibold mb-3">Features</h4>
                   <ul className="space-y-2">
@@ -198,7 +239,43 @@ export default function Projects() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AnimatePresence>
+        {fullscreenImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4"
+            onClick={() => setFullscreenImage(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.96, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.96, opacity: 0 }}
+              className="relative max-w-[95vw] w-full flex flex-col items-center gap-3"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                type="button"
+                onClick={() => setFullscreenImage(null)}
+                className="absolute top-2 right-2 z-10 p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
+                aria-label="Close fullscreen image"
+              >
+                <FaTimes />
+              </button>
+              <img
+                src={fullscreenImage.imageSrc}
+                alt={fullscreenImage.imageAlt}
+                className="max-h-[85vh] w-auto max-w-full object-contain"
+              />
+              <p className="text-sm text-neutral-200 text-center max-w-3xl">
+                {fullscreenImage.imageDescription}
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
-

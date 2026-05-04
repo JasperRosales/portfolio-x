@@ -43,5 +43,10 @@ export const keyAchievements: KeyAchievement[] = [
     title: 'Rank 3 Student Leadership Awardee',
     description: 'Recognized for exemplary leadership and contributions to the student community, earning the Rank 3 in Gawad Salakot 2026: Student Leadership Award ',
   },
+  {
+    icon: <VscHeart />,
+    title: 'Dragon Tamer',
+    description: 'Successfully bonded and tamed a dragon from Balayan through sheer willpower and ice cream bribes, earning the title of Dragon Tamer in the local folklore',
+  },
 ];
 

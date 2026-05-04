@@ -21,6 +21,7 @@ import {
   SiRedis,
   SiSpringboot,
   SiRedhat,
+  SiGo,
 } from "react-icons/si";
 
 interface Skill {
@@ -33,6 +34,7 @@ export const allSkills: Skill[] = [
   { name: "Javascript", icon: <SiJavascript />, info: "Language" },
   { name: "Dart", icon: <SiDart />, info: "Language" },
   { name: "Java", icon: <SiRedhat />, info: "Language" },
+  { name: "Golang", icon: <SiGo />, info: "Language" },
 
   { name: "React", icon: <SiReact />, info: "Framework" },
   { name: "Flutter", icon: <SiFlutter />, info: "Framework" },
@@ -59,8 +61,7 @@ export const allSkills: Skill[] = [
 ];
 
 export const pins: Skill[] = [
-  { name: "Java", icon: <SiRedhat />, info: "Language" },
-  { name: "Spring Boot", icon: <SiSpringboot />, info: "Framework" },
+  { name: "Flutter", icon: <SiFlutter />, info: "Framework" },
   { name: "PostgreSQL", icon: <SiPostgresql />, info: "Database" },
   { name: "Docker", icon: <SiDocker />, info: "Containerization" },
   { name: "Bash", icon: <SiGnubash />, info: "Shell" },
