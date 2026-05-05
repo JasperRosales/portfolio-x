@@ -18,19 +18,19 @@ export interface Education {
 }
 
 export const workExperience: Experience[] = [
-  {
-    date: 'February 2026 - Present',
-    title: 'Software Developer (Contract)',
-    subtitle: 'CJG Town Gaz - Main Branch (Balayan)',
-    location: 'Brgy. Caloocan, Balayan, Batangas',
-    achievements: [
-      'Developed a comprehensive software solution for streamlining operations and improving efficiency',
-      'Enhanced the business operations that allowed the company to monitor their cost and sales more effectively',
-      'Made an impact on the business decision making through the use of data-driven insights and analytics',
-      'Became the main point of contact for all technical aspects of the business, providing support and guidance to non-technical stakeholders',
-    ],
-    techStack: ['Software Development', 'Data Analysis', 'Technical Support', 'System Integration', 'Multi-Platform Development'],
-  },
+  // {
+  //   date: 'February 2026 - Present',
+  //   title: 'Software Developer (Contract)',
+  //   subtitle: 'CJG Town Gaz - Main Branch (Balayan)',
+  //   location: 'Brgy. Caloocan, Balayan, Batangas',
+  //   achievements: [
+  //     'Developed a comprehensive software solution for streamlining operations and improving efficiency',
+  //     'Enhanced the business operations that allowed the company to monitor their cost and sales more effectively',
+  //     'Made an impact on the business decision making through the use of data-driven insights and analytics',
+  //     'Became the main point of contact for all technical aspects of the business, providing support and guidance to non-technical stakeholders',
+  //   ],
+  //   techStack: ['Software Development', 'Data Analysis', 'Technical Support', 'System Integration', 'Multi-Platform Development'],
+  // },
   {
     date: 'April 2024 - Present',
     title: 'Freelance Developer',
