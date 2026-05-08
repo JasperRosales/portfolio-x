@@ -36,7 +36,7 @@ export const projects: Project[] = [
       "Developed SmartWardrobe, a web-based virtual fitting application that allows users to visualize and experiment with different clothing combinations in a digital environment. The system focuses on simplifying outfit selection by providing an interactive interface where users can mix and match clothing items without the need for physical try-ons. Designed with a clean and responsive UI, the application enhances user experience by making outfit exploration more accessible and efficient.",
     category: "Fashion Technology",
     type: "application",
-    techStack: ["React", "JavaScript", "Vite"],
+    techStack: ["React", "JavaScript", "Supabase", "Shadcn UI"],
     githubUrl: "not available",
     liveUrl: "https://smart-wardrobe-asper.vercel.app/",
     features: [
