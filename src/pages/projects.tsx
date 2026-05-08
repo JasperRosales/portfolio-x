@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
+import { FaGithub, FaExternalLinkAlt, FaTimes, FaCode } from "react-icons/fa";
 import { projects } from "../data/projects";
 import { projectDetails } from "../data/project-details";
 import type { ProjectImageDetail } from "../data/project-details";
@@ -30,60 +30,73 @@ export default function Projects() {
   const selectedProjectDetails = selectedProject
     ? projectDetails[selectedProject.title]
     : undefined;
+  const SelectedProjectIcon = selectedProject?.icon ?? FaCode;
+  const iconBadgeClass = "inline-flex items-center justify-center rounded-md border border-primary/30 bg-white p-1.5 shadow-[0_2px_0_0_rgba(15,23,42,0.10),0_8px_16px_-8px_rgba(15,23,42,0.45)]";
 
-  const ProjectCard = ({ project, index }: { project: typeof projects[0], index: number }) => (
-    <motion.div
-      key={`${activeTab}-${project.title}`}
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
-      onClick={() => setSelectedProject(project)}
-      className="bg-[#ffffff] border border-[#e5e5e5] rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all duration-300 group"
-    >
-      <div className="flex items-start justify-between mb-3">
-        <div>
-          <h3 className="text-lg font-semibold mb-1 group-hover:text-primary transition-colors">
-            {project.title}
-          </h3>
-          <span className="text-xs text-primary">{project.category}</span>
+  const ProjectCard = ({ project, index }: { project: typeof projects[0], index: number }) => {
+    const ProjectTitleIcon = project.icon ?? FaCode;
+
+    return (
+      <motion.div
+        key={`${activeTab}-${project.title}`}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.05 }}
+        onClick={() => setSelectedProject(project)}
+        className="bg-[#ffffff] border border-[#e5e5e5] rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all duration-300 group"
+      >
+        <div className="flex items-start justify-between gap-3 mb-3">
+          <div className="min-w-0 flex-1">
+            <h3 className="text-lg font-semibold group-hover:text-primary transition-colors flex items-center gap-2 leading-snug">
+              <span className={iconBadgeClass} aria-hidden="true">
+                <ProjectTitleIcon className="w-3.5 h-3.5 text-primary shrink-0" />
+              </span>
+              <span className="wrap-break-word">{project.title}</span>
+            </h3>
+
+            <span className="mt-2 inline-flex w-fit max-w-full rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium leading-none text-primary">
+              "{project.category}"
+            </span>
+          </div>
+          <div className="flex gap-2">
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <FaGithub className="w-4 h-4" />
+              </a>
+            )}
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <FaExternalLinkAlt className="w-3.5 h-3.5" />
+              </a>
+            )}
+          </div>
         </div>
-        <div className="flex gap-2">
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <FaGithub className="w-4 h-4" />
-            </a>
-          )}
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="p-1.5 text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <FaExternalLinkAlt className="w-3.5 h-3.5" />
-            </a>
+        <div className="border-t border-[#e5e5e5] mb-3" />
+        <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-1.5">
+          {project.techStack.length > 3 && (
+            <span className="px-2 py-0.5 text-muted-foreground text-xs">
+              +{project.techStack.length - 3}
+            </span>
           )}
         </div>
-      </div>
-      <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-        {project.description}
-      </p>
-      <div className="flex flex-wrap gap-1.5">
-        {project.techStack.length > 3 && (
-          <span className="px-2 py-0.5 text-muted-foreground text-xs">
-            +{project.techStack.length - 3}
-          </span>
-        )}
-      </div>
-    </motion.div>
-  );
+      </motion.div>
+    );
+  };
   
   return (
     <div className="min-h-screen py-20">
@@ -136,10 +149,14 @@ export default function Projects() {
               onClick={(e) => e.stopPropagation()}
               className="bg-[#ffffff] border border-[#e5e5e5] rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
             >
-              <div className="sticky top-0 bg-[#ffffff] p-4 border-b border-[#e5e5e5] flex items-center justify-between">
-                <div>
-                  <h3 className="text-xl font-semibold">{selectedProject.title}</h3>
-                  <span className="text-sm text-primary">{selectedProject.category}</span>
+              <div className="sticky top-0 bg-[#ffffff] p-4 border-b border-[#e5e5e5] flex items-start justify-between gap-3">
+                <div className="min-w-0 flex-1">
+                  <h3 className="text-xl font-semibold flex items-center gap-2 leading-snug">
+                    <span className={iconBadgeClass} aria-hidden="true">
+                      <SelectedProjectIcon className="w-3.5 h-3.5 text-primary shrink-0" />
+                    </span>
+                    <span className="wrap-break-word">{selectedProject.title}</span>
+                  </h3>
                 </div>
                 <button
                   onClick={closeProjectModal}

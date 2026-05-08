@@ -1,8 +1,12 @@
+import type { IconType } from "react-icons";
+import { FaCode, FaGraduationCap, FaServer, FaMobileAlt } from "react-icons/fa";
+
 export interface Project {
   title: string;
   description: string;
   fullDescription: string;
   image?: string;
+  icon?: IconType;
   techStack: string[];
   githubUrl?: string;
   liveUrl?: string;
@@ -17,6 +21,7 @@ export const projects: Project[] = [
     description: "A GitHub community platform for students and future members.",
     fullDescription:
       "Founded and lead a community GitHub along with co-officers to further enhance and supply knowledge for students and future members of the CICS community. Making it a platform for teaching distributed source management and documentation for students and professors.",
+    icon: FaGraduationCap,
     category: "Community Platform",
     type: "education",
     techStack: ["Git", "GitHub", "Documentation", "Source Management"],
@@ -34,6 +39,7 @@ export const projects: Project[] = [
       "A virtual fitting web application for exploring outfit combinations.",
     fullDescription:
       "Developed SmartWardrobe, a web-based virtual fitting application that allows users to visualize and experiment with different clothing combinations in a digital environment. The system focuses on simplifying outfit selection by providing an interactive interface where users can mix and match clothing items without the need for physical try-ons. Designed with a clean and responsive UI, the application enhances user experience by making outfit exploration more accessible and efficient.",
+    icon: FaMobileAlt,
     category: "Fashion Technology",
     type: "application",
     techStack: ["React", "JavaScript", "Supabase", "Shadcn UI"],
@@ -47,10 +53,11 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "Go Blockchain Practice",
+    title: "Blockchain Practice",
     description: "Practice journey for learning blockchain concepts in Go.",
     fullDescription:
       "This project is a practice implementation that explores core blockchain concepts using Go. Includes block creation, proof-of-work consensus, transactions with ECDSA signatures, and UTXO models.",
+    icon: FaCode,
     category: "Learning / Blockchain",
     type: "education",
     techStack: ["Go", "Cryptography", "CLI"],
@@ -68,6 +75,7 @@ export const projects: Project[] = [
       "Hands-on practice with Nginx server configuration and deployment.",
     fullDescription:
       "A practical learning project focused on understanding Nginx web server configuration, reverse proxy setup, load balancing, and server optimization techniques.",
+    icon: FaServer,
     category: "Learning / Infrastructure",
     type: "education",
     techStack: ["Nginx", "Docker", "Linux", "Server Configuration"],
@@ -191,7 +199,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "Weather API with Redis",
+    title: "Redis Weather API",
     description: "Spring Boot REST API with Redis caching for weather data.",
     fullDescription: "A Spring Boot REST API that fetches weather data from Visual Crossing Weather API and implements Redis caching to improve performance and reduce external API calls. Features RESTful endpoint, reactive WebFlux, configurable TTL (30 minutes), comprehensive error handling, input validation, unit tests with Mockito, and automatic retry logic.",
     category: "Backend API / Caching",
@@ -207,5 +215,4 @@ export const projects: Project[] = [
     ],
   }
 ];
-
 
