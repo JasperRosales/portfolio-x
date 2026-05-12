@@ -1,5 +1,5 @@
 import type { IconType } from "react-icons";
-import { FaCode, FaGraduationCap, FaServer, FaMobileAlt } from "react-icons/fa";
+import { FaCode, FaPencilRuler, FaGraduationCap, FaServer, FaMobileAlt } from "react-icons/fa";
 
 export interface Project {
   title: string;
@@ -50,6 +50,42 @@ export const projects: Project[] = [
       "Mix-and-match clothing combinations",
       "Interactive and user-friendly UI",
       "Responsive design for multiple devices",
+    ],
+  },
+  {
+    title: "GasNet",
+    description:
+      "An AI-Driven Decision Support and Point-of-Sales System for CJG LPG Trading",
+    fullDescription:
+      "Developed GasNet, an AI-driven decision support and point-of-sales system for CJG LPG Trading. The system leverages AI services to provide actionable insights and streamline sales processes. It features a user-friendly interface designed to enhance decision-making and improve operational efficiency.",
+    icon: FaMobileAlt,
+    category: "Software Solution",
+    type: "application",
+    techStack: ["Flutter", "Golang", "Gin", "Postgres", "Drift","Supabase"],
+    githubUrl: "not available",
+    features: [
+      "AI-driven decision support",
+      "Point-of-sales functionality",
+      "User-friendly interface",
+      "Operational efficiency improvements",
+    ],
+  },
+  {
+    title: "Portfolio Y",
+    description:
+      "A portfolio that showcase my designer skills and projects in a minimalist design approach.",
+    fullDescription:
+      "Designed and developed Portfolio Y, a personal portfolio website that showcases my design skills and projects with a minimalist design approach. The portfolio emphasizes clean aesthetics, intuitive navigation, and a focus on visual storytelling to effectively present my work and creative process.",
+    icon: FaPencilRuler,
+    category: "Portfolio Website",
+    type: "application",
+    techStack: ["React", "JavaScript", "Vercel","Shadcn UI"],
+    githubUrl: "not available",
+    liveUrl: "https://portfolio-y-asper.vercel.app/",
+    features: [
+      "Showcases my design skills and projects in my college journey",
+      "Includes my work inside and outside of college",
+      "Uses multiple design elements to create a visually appealing and engaging experience",
     ],
   },
   {
