@@ -1,7 +1,3 @@
-# ⚠️ This portfolio is not yet complete. More content coming soon!
-
----
-
 # Jasper Rosales - Portfolio
 
 A modern, animated personal portfolio website showcasing my work as a freelance developer. Built with React, TypeScript, and modern UI components.
@@ -43,5 +39,5 @@ This project is personal and not licensed for commercial use.
 - [React Icons](https://react-icons.github.io/react-icons/) for the icon library
 
 
-*Last Updated: 2025 | Portfolio is continuously being improved*
+*Last Updated: May 2026 | Portfolio is continuously being improved*
 
