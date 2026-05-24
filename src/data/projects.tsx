@@ -1,5 +1,5 @@
 import type { IconType } from "react-icons";
-import { FaCode, FaPencilRuler, FaGraduationCap, FaServer, FaMobileAlt } from "react-icons/fa";
+import { FaCode, FaPencilRuler, FaGraduationCap, FaServer, FaMobileAlt, FaInternetExplorer } from "react-icons/fa";
 
 export interface Project {
   title: string;
@@ -61,13 +61,31 @@ export const projects: Project[] = [
     icon: FaMobileAlt,
     category: "Software Solution",
     type: "application",
-    techStack: ["Flutter", "Golang", "Gin", "Postgres", "Drift","Supabase"],
+    techStack: ["Flutter", "Postgres", "Drift","Supabase"],
     githubUrl: "not available",
     features: [
       "AI-driven decision support",
       "Point-of-sales functionality",
       "User-friendly interface",
       "Operational efficiency improvements",
+    ],
+  },
+  {
+    title: "Project C.L.E.A.R",
+    description:
+      "A solution to transparent and efficient fund tracking and management system for the CICS Student Council. This allows the students to see how the funds are managed.",
+    fullDescription:
+      "Developed Project C.L.E.A.R, a transparent and efficient fund tracking and management system for the CICS Student Council. The system allows students to visualize and monitor how funds are allocated and utilized, promoting accountability and informed decision-making.",
+    icon: FaInternetExplorer,
+    category: "Organizational Tool",
+    type: "application",
+    techStack: ["React", "Javascript", "Redis", "Upstash", "Make", "Supabase"],
+    githubUrl: "https://github.com/cicsbalayan/ProjectClear-Client",
+    features: [
+      "Transparent fund tracking",
+      "Efficient fund management",
+      "User-friendly interface for students",
+      "Real-time updates on fund allocation and utilization",
     ],
   },
   {
@@ -187,12 +205,12 @@ export const projects: Project[] = [
       "An application intended to support Barangay Tuyon residents with community announcements and local services.",
     category: "Community App",
     type: "application",
-    techStack: ["React", "Firebase"],
+    techStack: ["Dart", "Flutter", "Supabase"],
     githubUrl: "https://github.com/JasperRosales/barangay-tuyon-app",
     features: [
       "Local announcements and notifications",
-      "Resident service access",
-      "Community engagement tools",
+      "Resident Information management",
+      "Community engagement and program management",
     ],
   },
   {

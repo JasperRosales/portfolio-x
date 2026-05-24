@@ -191,7 +191,7 @@ export default function Projects() {
                               loading="lazy"
                             />
                           </button>
-                          <p className="p-3 text-sm text-muted-foreground">
+                          <p className="p-3 text-sm text-justify text-muted-foreground">
                             {image.imageDescription}
                           </p>
                         </div>

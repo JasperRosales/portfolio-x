@@ -1,9 +1,12 @@
 
 
 push:
+	@echo "Pushing changes to repository..."
 	@git add .
-	@git commit -m "$(m)"
-	@git push
+	@read -p "Enter commit message: " msg; \
+	git commit -m "$$msg"
+	@git push origin main
+	@echo "Changes pushed successfully."
 
 init:
 	@echo "Retrieving latest changes from the repository..."
