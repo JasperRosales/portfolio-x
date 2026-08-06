@@ -25,11 +25,30 @@ export const projects: Project[] = [
     category: "Community Platform",
     type: "education",
     techStack: ["Git", "GitHub", "Documentation", "Source Management"],
-    githubUrl: "https://github.com/JasperRosales",
+    githubUrl: "https://github.com/cicsbalayan",
+    liveUrl: "https://cics-main-page.vercel.app/",
     features: [
       "Community-driven knowledge sharing",
       "Source management training platform",
       "Documentation for students and professors",
+      "Collaborative learning environment",
+    ],
+  },
+  {
+    title: "CICS Digital Showcase",
+    description: "A Website showcasing student projects and achievements in CICS.",
+    fullDescription:
+      "A website that showcases student projects and achievements in CICS. The platform serves as a digital portfolio for students to present their work, fostering a sense of community and recognition within the academic environment.",
+    icon: FaGraduationCap,
+    category: "Community Platform",
+    type: "application",
+    techStack: ["Nextjs", "Vercel","Git", "GitHub", "Documentation", "Source Management"],
+    githubUrl: "https://github.com/cicsbalayan/digital-showcase-web",
+    liveUrl: "https://digital-showcase-web.vercel.app/",
+    features: [
+      "Source management training platform",
+      "Sharing and showcasing student projects",
+      "Documentation for students",
       "Collaborative learning environment",
     ],
   },
@@ -97,8 +116,8 @@ export const projects: Project[] = [
     icon: FaPencilRuler,
     category: "Portfolio Website",
     type: "application",
-    techStack: ["React", "JavaScript", "Vercel","Shadcn UI"],
-    githubUrl: "not available",
+    techStack: ["Next.js", "TypeScript", "React.js", "Tailwind CSS", "Vercel"],
+    githubUrl: "https://github.com/JasperRosales/portfolio-y",
     liveUrl: "https://portfolio-y-asper.vercel.app/",
     features: [
       "Showcases my design skills and projects in my college journey",
@@ -164,23 +183,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "Flutter Notes",
-    description:
-      "Learning notes and practice projects for Flutter development.",
-    fullDescription:
-      "A collection of notes, code samples, and practice projects documenting the learning journey with Flutter for cross-platform mobile development.",
-    category: "Learning / Mobile Development",
-    type: "education",
-    techStack: ["Flutter", "Dart", "Mobile Development", "Cross-platform"],
-    githubUrl: "https://github.com/JasperRosales/Flutter-Notes",
-    features: [
-      "Flutter fundamentals and widgets",
-      "State management examples",
-      "UI/UX implementation practice",
-      "Cross-platform development notes",
-    ],
-  },
-  {
     title: "Astrix",
     description:
       "A fun reading app for daily fortune, tarot, and astronomy themes.",
@@ -214,45 +216,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "QuickPitch.io",
-    description:
-      "A web application for improving pitching and presentation skills using AI-powered speech analysis.",
-    fullDescription:
-      "QuickPitch.io is a web application designed to help users improve their pitching and presentation skills. It generates presentation contexts from PDFs, lessons, or quick topics, allowing users to practice explaining a given subject. The platform uses speech recognition and analysis to evaluate delivery, clarity, and confidence during presentations.",
-    category: "Web Application / AI",
-    type: "application",
-    techStack: [
-      "React",
-      "TypeScript",
-      "Golang",
-      "Speech Recognition",
-      "AI / NLP",
-    ],
-    githubUrl: "https://github.com/JasperRosales/quick-pitch.io",
-    features: [
-      "Context-based pitch generation from PDFs, lessons, or topics",
-      "Real-time speech recognition during presentations",
-      "Speech and delivery analysis for feedback",
-      "Practice mode for pitching and discussions",
-      "Skill improvement through repeated presentation exercises",
-    ],
-  },
-  {
-    title: "Workflow",
-    description: "A workflow management and automation application.",
-    fullDescription:
-      "Workflow offers an interface for managing workflow processes and automating tasks within a project environment.",
-    category: "Productivity Tool",
-    type: "application",
-    techStack: ["React", "JavaScript"],
-    githubUrl: "https://github.com/JasperRosales/workflow-client",
-    features: [
-      "Process visualization",
-      "Task automation interfaces",
-      "User workflow dashboards",
-    ],
-  },
-  {
     title: "Redis Weather API",
     description: "Spring Boot REST API with Redis caching for weather data.",
     fullDescription: "A Spring Boot REST API that fetches weather data from Visual Crossing Weather API and implements Redis caching to improve performance and reduce external API calls. Features RESTful endpoint, reactive WebFlux, configurable TTL (30 minutes), comprehensive error handling, input validation, unit tests with Mockito, and automatic retry logic.",
@@ -267,6 +230,111 @@ export const projects: Project[] = [
       "Global exception handling",
       "Unit tests & retry logic"
     ],
-  }
+  },
+  {
+    title: "Protect The Baby",
+    description:
+      "A 2D arcade survival game where players defend Baby Shark from incoming threats.",
+    fullDescription:
+      "Built Protect the Baby as a fast-paced arcade game project centered on responsive controls, quick reactions, and simple but engaging gameplay loops. The project demonstrates interactive frontend engineering and polished player feedback patterns.",
+    icon: FaCode,
+    category: "Game Application",
+    type: "application",
+    techStack: ["Next.js", "TypeScript", "Shadcn", "Tailwind CSS", "Node.js", "Vercel"],
+    githubUrl: "https://github.com/JasperRosales/protect-the-baby",
+    liveUrl: "https://protect-the-baby.vercel.app",
+    features: [
+      "Arcade-style survival gameplay",
+      "Responsive control and interaction system",
+      "Deployable browser-based game experience",
+    ],
+  },
+  {
+    title: "Fit Tech Client",
+    description: "A virtual try-on web application for fitting clothes and exploring outfit combinations.",
+    fullDescription:
+      "A virtual try-on web application for fitting clothes and exploring outfit combinations. The project emphasizes user experience, interactive design, and responsive layouts for a seamless virtual fitting experience.",
+    icon: FaCode,
+    category: "Web Application",
+    type: "application",
+    techStack: ["Next.js", "TypeScript", "API Integration", "Shadcn", "Vercel"],
+    githubUrl: "https://github.com/JasperRosales/fit-tech-client",
+    liveUrl: "https://fit-tech-client.vercel.app",
+    features: [
+      "Virtual try-on interface for clothing",
+      "Interactive outfit combination exploration",
+      "Responsive design for various devices",
+    ],
+  },
+  {
+    title: "Resume Analyzer",
+    description:
+      "AI-powered resume analyzer that evaluates resumes against job descriptions.",
+    fullDescription:
+      "Resume Analyzer is an AI-assisted web project for ATS-oriented resume reviews. It provides compatibility insights, skill gap detection, and practical recommendations to improve candidate alignment with target roles.",
+    icon: FaCode,
+    category: "Web Application / AI",
+    type: "application",
+    techStack: ["Next.js", "TypeScript", "Node.js", "Shadcn", "Vercel"],
+    githubUrl: "https://github.com/JasperRosales/resume_analyzer",
+    liveUrl: "https://resume-analyzer-beta-seven.vercel.app",
+    features: [
+      "ATS compatibility feedback",
+      "Role-specific skill gap detection",
+      "Actionable resume improvement recommendations",
+    ],
+  },
+  {
+    title: "CV Builder",
+    description:
+      "A modern ATS-friendly CV builder with live editing and PDF export.",
+    fullDescription:
+      "Built CV Builder as a practical resume product with ATS-conscious structure, real-time editing, and local persistence. The application demonstrates end-user productivity tooling and polished frontend workflow management.",
+    icon: FaCode,
+    category: "Productivity Tool",
+    type: "application",
+    techStack: ["Next.js", "TypeScript", "Node.js", "Shadcn", "Tailwind CSS"],
+    githubUrl: "https://github.com/JasperRosales/cv_builder",
+    liveUrl: "https://cv-builder-six-eta.vercel.app",
+    features: [
+      "Live CV editing experience",
+      "PDF export support",
+      "ATS-friendly document structure",
+    ],
+  },
+  {
+    title: "Invoice Generator",
+    description:
+      "A modern invoice management platform for freelancers and small businesses.",
+    fullDescription:
+      "Invoice Generator is a business utility platform for creating, managing, and exporting professional invoices. It emphasizes secure access, structured client billing workflows, and a clean interface for daily operations.",
+    icon: FaCode,
+    category: "Business Tool",
+    type: "application",
+    techStack: ["Next.js", "TypeScript", "Node.js", "Shadcn", "Vercel"],
+    githubUrl: "https://github.com/JasperRosales/invoice-generator",
+    liveUrl: "https://invoice-generator-three-nu.vercel.app",
+    features: [
+      "Professional invoice generation",
+      "Client and billing record management",
+      "Export-ready document workflows",
+    ],
+  },
+  {
+    title: "Flori",
+    description:
+      "An under-development flower information app focused on meanings and discovery.",
+    fullDescription:
+      "Flori is an evolving app concept that presents flowers and their meanings through a simple browsing experience. The project explores content-driven interfaces and structured information delivery in an accessible format.",
+    icon: FaCode,
+    category: "Learning / App Prototype",
+    type: "education",
+    techStack: ["TypeScript", "Next.js", "React.js", "Node.js", "Shadcn"],
+    githubUrl: "https://github.com/JasperRosales/Flori",
+    features: [
+      "Flower meaning discovery concept",
+      "Content-first UI experimentation",
+      "Prototype-driven feature iteration",
+    ],
+  },
 ];
-

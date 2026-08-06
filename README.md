@@ -15,7 +15,8 @@ A modern, animated personal portfolio website showcasing my work as a freelance 
 
 ## Tech Stack
 
-- **Framework**: React with TypeScript
+- **Primary Stack**: Node.js + Next.js + React.js
+- **Language**: TypeScript
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS + shadcn/ui
 - **Animations**: Framer Motion
@@ -40,4 +41,3 @@ This project is personal and not licensed for commercial use.
 
 
 *Last Updated: May 2026 | Portfolio is continuously being improved*
-

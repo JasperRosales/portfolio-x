@@ -11,17 +11,18 @@ import {
   SiReact,
   SiServerless,
   SiJson,
-  SiFlutter,
+  SiExpress,
   SiAwslambda,
-  SiDart,
   SiMake,
   SiGnubash,
   SiDebian,
   SiServerfault,
   SiRedis,
-  SiSpringboot,
-  SiRedhat,
+  SiSupabase,
   SiGo,
+  SiNodedotjs,
+  SiNextdotjs,
+  SiTypescript,
 } from "react-icons/si";
 
 interface Skill {
@@ -32,13 +33,13 @@ interface Skill {
 
 export const allSkills: Skill[] = [
   { name: "Javascript", icon: <SiJavascript />, info: "Language" },
-  { name: "Dart", icon: <SiDart />, info: "Language" },
-  { name: "Java", icon: <SiRedhat />, info: "Language" },
+  { name: "TypeScript", icon: <SiTypescript />, info: "Language" },
   { name: "Golang", icon: <SiGo />, info: "Language" },
 
-  { name: "React", icon: <SiReact />, info: "Framework" },
-  { name: "Flutter", icon: <SiFlutter />, info: "Framework" },
-  { name: "Spring Boot", icon: <SiSpringboot />, info: "Framework" },
+  { name: "Node.js", icon: <SiNodedotjs />, info: "Runtime" },
+  { name: "Next.js", icon: <SiNextdotjs />, info: "Framework" },
+  { name: "React.js", icon: <SiReact />, info: "Framework" },
+  { name: "Express.js", icon: <SiExpress />, info: "Framework" },
 
   { name: "RESTful", icon: <SiJson />, info: "API" },
   { name: "Kafka", icon: <SiApachekafka />, info: "Message Broker" },
@@ -48,6 +49,7 @@ export const allSkills: Skill[] = [
 
   { name: "PostgreSQL", icon: <SiPostgresql />, info: "Database" },
   { name: "Redis", icon: <SiRedis />, info: "Database" },
+  { name: "Supabase", icon: <SiSupabase />, info: "Database" },
 
   { name: "Docker", icon: <SiDocker />, info: "Containerization" },
   { name: "Prometheus", icon: <SiPrometheus />, info: "Monitoring" },
@@ -61,9 +63,10 @@ export const allSkills: Skill[] = [
 ];
 
 export const pins: Skill[] = [
-  { name: "Flutter", icon: <SiFlutter />, info: "Framework" },
+  { name: "Node.js", icon: <SiNodedotjs />, info: "Runtime" },
+  { name: "Next.js", icon: <SiNextdotjs />, info: "Framework" },
+  { name: "React.js", icon: <SiReact />, info: "Framework" },
+  { name: "TypeScript", icon: <SiTypescript />, info: "Language" },
   { name: "PostgreSQL", icon: <SiPostgresql />, info: "Database" },
   { name: "Docker", icon: <SiDocker />, info: "Containerization" },
-  { name: "Bash", icon: <SiGnubash />, info: "Shell" },
-  { name: "Linux/Debian", icon: <SiDebian />, info: "OS" },
 ];

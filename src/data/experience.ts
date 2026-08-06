@@ -44,13 +44,13 @@ export const workExperience: Experience[] = [
       "Consistently meeting deadlines while maintaining high-quality standards",
     ],
     techStack: [
-      "Golang",
-      "Gin",
-      "Flutter",
+      "Node.js",
+      "Next.js",
+      "React.js",
+      "TypeScript",
+      "Express",
       "PostgreSQL",
       "Docker",
-      "React",
-      "Javascript",
     ],
   },
 ];

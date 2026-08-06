@@ -64,7 +64,7 @@ export default function Home() {
               transition={{ ...animationProps.description }}
               className="text-sm sm:text-base md:text-md text-muted-foreground mb-5 sm:mb-6"
             >
-             Designing, developing, and occasionally debugging my way through the digital world.
+             Node.js Developer building modern web experiences with Next.js and React.js.
             </motion.p>
 
             <motion.div 
@@ -134,7 +134,7 @@ export default function Home() {
           >
             <GridToImageHero 
               imageSrc="/Jasper.jpg" 
-              imageAlt="Jasper - Creative Developer"
+              imageAlt="Jasper - Node.js Developer"
               gridSize={3}
               animationDelay={2500}
             />
@@ -144,4 +144,3 @@ export default function Home() {
     </div>
   );
 }
-

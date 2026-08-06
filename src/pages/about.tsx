@@ -59,14 +59,12 @@ export default function About() {
               <motion.div variants={itemVariants} className="mb-8">
                 <h2 className="text-2xl font-semibold underline underline-offset-4 mb-4">Who I Am</h2>
                 <p className="text-muted-foreground text-sm text-justify leading-relaxed mb-4">
-                  I'm an aspiring Software Engineer based in the Philippines. 
-                  With a strong foundation in both frontend and backend development, I specialize in 
-                  building scalable applications using modern technologies.
+                  I'm a Node.js Developer based in the Philippines, focused on building modern web products with Next.js and React.js.
+                  I work across frontend and backend, delivering scalable applications with clean architecture and practical user experience.
                 </p>
                 <p className="text-muted-foreground text-sm text-justify leading-relaxed">
-                  My journey in software development started with a curiosity for building things that 
-                  solve real-world problems. Since then, I've worked on various projects ranging from 
-                  web applications to mobile apps, striving to become better than what I am now.
+                  My journey in software development started with a curiosity for building solutions to real-world problems.
+                  Since then, I've shipped portfolio, productivity, and API projects while continuously improving as a Node.js and React developer.
                 </p>
               </motion.div>
 
@@ -245,4 +243,3 @@ export default function About() {
     </div>
   );
 }
-
