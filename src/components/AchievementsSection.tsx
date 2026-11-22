@@ -82,7 +82,7 @@ export default function AchievementsSection() {
                 alt={`${c.issuer} ${c.name} certificate`}
                 loading="lazy"
                 decoding="async"
-                className="block w-full aspect-[1.414] object-cover rounded-xl bg-white"
+                className="block w-full aspect-[1.414] object-cover rounded-xl"
               />
             </span>
             <span className="flex items-center justify-between gap-3 px-2 pt-3 pb-1">
@@ -161,25 +161,25 @@ function Lightbox({ item, onClose }: { item: Shown | null; onClose: () => void }
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] grid place-items-center p-4 bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] grid place-items-center p-4 bg-black/90"
         >
           <motion.figure
             onClick={(e) => e.stopPropagation()}
-            initial={{ scale: 0.9, y: 30 }}
+            initial={{ scale: 0.94, y: 20 }}
             animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.92, y: 20, opacity: 0 }}
-            transition={{ type: "spring", stiffness: 260, damping: 24 }}
-            className={`nm-lg rounded-[28px] p-3 sm:p-4 w-full ${item.kind === "certificate" ? "max-w-4xl" : "max-w-sm"}`}
+            exit={{ scale: 0.96, y: 10, opacity: 0 }}
+            transition={{ type: "spring", stiffness: 260, damping: 26 }}
+            className={`w-full flex flex-col items-center gap-4 ${item.kind === "certificate" ? "max-w-4xl" : "max-w-xs"}`}
           >
             <img
               src={item.src}
               alt={item.name}
-              className={`block w-full rounded-2xl bg-white ${item.kind === "certificate" ? "max-h-[75vh] object-contain" : "aspect-square object-contain p-4"}`}
+              className={`block max-w-full object-contain rounded-xl ${item.kind === "certificate" ? "max-h-[75vh] w-auto" : "w-full aspect-square"}`}
             />
-            <figcaption className="flex items-center justify-between gap-3 px-1 pt-4">
+            <figcaption className="w-full flex items-center justify-between gap-3">
               <span className="min-w-0">
-                <span className="block font-bold text-black leading-tight">{item.name}</span>
-                <span className="block text-sm text-[var(--ink-3)]">{item.issuer}</span>
+                <span className="block font-bold text-white leading-tight">{item.name}</span>
+                <span className="block text-sm text-neutral-400">{item.issuer}</span>
               </span>
               <span className="flex gap-2 shrink-0">
                 <a
@@ -187,11 +187,11 @@ function Lightbox({ item, onClose }: { item: Shown | null; onClose: () => void }
                   target="_blank"
                   rel="noreferrer"
                   aria-label="View on GitHub"
-                  className="nm-btn w-10 h-10 rounded-full grid place-items-center"
+                  className="w-10 h-10 rounded-full grid place-items-center bg-white/10 text-white hover:bg-white/20 transition-colors"
                 >
                   <FaGithub />
                 </a>
-                <button type="button" onClick={onClose} aria-label="Close" className="nm-ink w-10 h-10 rounded-full grid place-items-center">
+                <button type="button" onClick={onClose} aria-label="Close" className="w-10 h-10 rounded-full grid place-items-center bg-white text-black">
                   <FiX />
                 </button>
               </span>

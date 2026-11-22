@@ -6,10 +6,12 @@ import ExperienceSection from "@/components/ExperienceSection";
 import AchievementsSection from "@/components/AchievementsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import GradientBubbles from "@/components/GradientBubbles";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[var(--clay)] overflow-x-hidden">
+    <div className="relative isolate min-h-screen bg-[var(--clay)] overflow-x-hidden">
+      <GradientBubbles />
       <Navigation />
       <main>
         <Hero />

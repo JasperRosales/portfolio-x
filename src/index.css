@@ -215,3 +215,30 @@ button {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* ---------- Background gradient bubbles ---------- */
+.bubbles { contain: strict; }
+.bubble {
+  position: absolute;
+  border-radius: 9999px;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+@keyframes drift-a {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(18vw, 12vh, 0) scale(1.12); }
+  100% { transform: translate3d(6vw, 30vh, 0) scale(0.94); }
+}
+@keyframes drift-b {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-22vw, 16vh, 0) scale(0.9); }
+  100% { transform: translate3d(-8vw, -14vh, 0) scale(1.1); }
+}
+@keyframes drift-c {
+  0%   { transform: translate3d(0, 0, 0) scale(1.05); }
+  50%  { transform: translate3d(20vw, -18vh, 0) scale(0.92); }
+  100% { transform: translate3d(-10vw, -6vh, 0) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bubble { animation: none !important; }
+}
