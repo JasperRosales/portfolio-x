@@ -3,12 +3,11 @@ import {
   FaPrescriptionBottleAlt,
   FaStore,
   FaPaw,
-  FaExchangeAlt,
   FaStar,
-  FaFileAlt,
-  FaFileInvoiceDollar,
   FaSeedling,
-  FaCameraRetro,
+  FaRobot,
+  FaProjectDiagram,
+  FaTerminal,
 } from "react-icons/fa";
 import { GiPlasticDuck } from "react-icons/gi";
 
@@ -21,6 +20,10 @@ export interface Project {
   /** Hex colour used for the card's accent glow and icon key */
   tint: string;
   cover?: string;
+  /** App icon shown in place of a screenshot */
+  logo?: string;
+  /** Private repository: no code link is shown */
+  isPrivate?: boolean;
   platform: "Web" | "Android";
   badge?: string;
   techStack: string[];
@@ -76,24 +79,24 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "GasNet",
-    tagline: "Decision support and POS for an LPG distributor",
+    title: "Zoih",
+    tagline: "Coding agents in your pocket",
     description:
-      "An admin dashboard and staff point-of-sale for CJG LPG Trading, with AI insights on sales and inventory.",
+      "An Android app that turns my PC into a programming assistant I can drive from my phone, with any coding agent.",
     fullDescription:
-      "GasNet runs day-to-day operations for CJG LPG Trading's cylinder distribution. Staff record sales and print receipts from the POS, while the admin dashboard tracks branches, inventory, transactions and sales targets. An analytics page uses Gemini to turn the numbers into sales recommendations.",
-    icon: FaStore,
-    tint: "#0091ff",
-    cover: "/projects/gasnet/gn_admin_analytics.png",
-    platform: "Web",
-    badge: "Client work",
-    techStack: ["React", "TypeScript", "Vite", "Supabase", "Gemini API"],
-    liveUrl: "https://gasnet-admin-demo.vercel.app",
+      "Zoih connects to a PC over SSH through a private Tailscale network and runs a coding agent CLI headless in the chosen project: Claude Code, Copilot, OpenCode, Antigravity, or a custom command. Answers and tool calls stream back as a chat. It also has a live shell, an SFTP file browser, and usage limits for every agent. It started as a TypeScript CLI agent and grew into a native app.",
+    icon: FaTerminal,
+    tint: "#ff801f",
+    logo: "/projects/zoih/logo.png",
+    platform: "Android",
+    isPrivate: true,
+    techStack: ["Kotlin", "Jetpack Compose", "SSH", "Tailscale", "TypeScript"],
     features: [
-      "Staff POS with receipts and transaction history",
-      "Branch dashboard with KPIs and sales targets",
-      "AI-generated sales insights and recommendations",
-      "Inventory, product catalog, and report export",
+      "Streams answers and tool calls from Claude Code, Copilot, OpenCode or Antigravity",
+      "Separate chat and session per project and agent",
+      "Read-only, Edits or Full autonomy chosen up front",
+      "Live shell with a pseudo-terminal and an SFTP file browser",
+      "Connection banner that explains what's wrong",
     ],
   },
   {
@@ -115,25 +118,7 @@ export const projects: Project[] = [
       "In-app updates from GitHub releases",
     ],
   },
-  {
-    title: "Revice",
-    tagline: "A magic remote for any device",
-    description:
-      "Pair your phone with a TV or tablet over Wi-Fi, present slides from your phone, and send files both ways.",
-    fullDescription:
-      "Revice pairs devices on the same network with a 4-digit code. No server and no account: devices find each other with mDNS and talk over TCP. Send a PDF deck to the big screen and drive it from your phone with a laser pointer, next-slide preview and timer, or share any file in either direction. It also runs on Android TV.",
-    icon: FaExchangeAlt,
-    tint: "#8e4ec6",
-    platform: "Android",
-    techStack: ["Kotlin", "Jetpack Compose", "mDNS", "TCP sockets"],
-    githubUrl: "https://github.com/JasperRosales/revice",
-    features: [
-      "Present PDFs with volume keys or a Bluetooth clicker",
-      "Laser pointer, blank screen, preview and timer",
-      "Two-way file transfer with Share to Revice",
-      "Works on Android TV and Google TV",
-    ],
-  },
+
   {
     title: "Astra",
     tagline: "A journal where every entry becomes a star",
@@ -156,48 +141,50 @@ export const projects: Project[] = [
       "Export, import, and save the sky as a PNG",
     ],
   },
+
   {
-    title: "Workflow",
-    tagline: "CV builder and resume analyzer in one place",
+    title: "Isha",
+    tagline: "A personal assistant that runs your day from your phone",
     description:
-      "Build an ATS-friendly CV with live editing, then score it against a job description with AI.",
+      "A native Android assistant that reads your mail, deadlines and budget, acts in your apps, and keeps working offline.",
     fullDescription:
-      "Workflow combines two tools job seekers usually juggle. The CV builder has live editing, drag-and-drop sections and PDF export. The resume analyzer compares a resume to a job description, scores ATS fit, finds skill gaps, and suggests what to change.",
-    icon: FaFileAlt,
-    tint: "#12a594",
-    cover: "/projects/resume-analyzer/overview.png",
-    platform: "Web",
-    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    githubUrl: "https://github.com/JasperRosales/workflow",
-    liveUrl: "https://resume-analyzer-beta-seven.vercel.app",
-    features: [
-      "Live CV editing with drag-and-drop sections",
-      "PDF export",
-      "ATS scoring and keyword matching",
-      "Skill-gap report with recommendations",
-    ],
-  },
-  {
-    title: "Invoice Generator",
-    tagline: "Professional invoices without an account",
-    description:
-      "A privacy-first invoice tool for freelancers. Everything stays in the browser, then exports to PDF.",
-    fullDescription:
-      "Create invoices with company and client details, unlimited line items, tax, discounts and shipping, then export to PDF or JSON. Nothing is saved to a server or cookie. Two templates with a custom accent colour and a live preview as you type.",
-    icon: FaFileInvoiceDollar,
+      "Isha is a personal assistant built for daily life rather than coding. It chats with Groq and Gemini, acts in Gmail, Calendar, Classroom, Drive and Notion through Composio, and asks for approval before anything consequential. When the phone is offline it switches to a small on-device model. Deadlines, a mail digest and the budget all sync to the phone, so they work without a connection.",
+    icon: FaRobot,
     tint: "#f76b15",
-    cover: "/projects/invoice-generator/overview.png",
-    platform: "Web",
-    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Zod", "react-pdf"],
-    githubUrl: "https://github.com/JasperRosales/invoice-generator",
-    liveUrl: "https://invoice-generator-three-nu.vercel.app",
+    logo: "/projects/isha/logo.png",
+    platform: "Android",
+    isPrivate: true,
+    techStack: ["Kotlin", "Jetpack Compose", "Gemini API", "Groq", "Composio", "MediaPipe"],
     features: [
-      "Live preview with two templates",
-      "Tax, percent or flat discounts, and shipping",
-      "PDF download plus JSON export and import",
-      "No storage: data stays in memory",
+      "Tool calls across Gmail, Calendar, Classroom, Drive and Notion, with an approval card",
+      "Offline mode with on-device models such as Gemma 3 and Qwen 2.5",
+      "Budget tracking by chat, plus a Classroom deadline view",
+      "Push replies, exact-time reminders and a daily briefing",
+      "Voice mode, home-screen widget, and Share to isha",
+      "Practice exams generated from your notes, PDFs or slides",
     ],
   },
+  {
+    title: "Cann",
+    tagline: "Automation pipelines across 1,000+ apps",
+    description:
+      "Chain app actions into flows that run on demand, once, every few minutes, or daily, straight from an Android phone.",
+    fullDescription:
+      "Cann builds automations on top of Composio. A flow is a list of tool calls that run in order, and each step can use earlier results. Describe a flow in plain words and the AI finds the right tools and builds the steps for you. Flows run manually or on a schedule with WorkManager, and results land in a Runs tab and as notifications.",
+    icon: FaProjectDiagram,
+    tint: "#0091ff",
+    platform: "Android",
+    isPrivate: true,
+    techStack: ["Kotlin", "Jetpack Compose", "WorkManager", "Composio"],
+    features: [
+      "Flows that run manually, once, every N minutes, or daily",
+      "Pass results between steps with templates like {{step1.path}}",
+      "Build or edit a flow by describing it in plain words",
+      "Connect app accounts with managed OAuth",
+    ],
+  },
+
+
   {
     title: "Flori",
     tagline: "The language of flowers",
@@ -220,21 +207,24 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "Last Seen",
-    tagline: "Moments kept as Polaroids, offline",
+    title: "GasNet",
+    tagline: "Decision support and POS for an LPG distributor",
     description:
-      "A private photo journal that turns moments into timestamped Polaroid-style memories stored only on your phone.",
+      "An admin dashboard and staff point-of-sale for CJG LPG Trading, with AI insights on sales and inventory.",
     fullDescription:
-      "Last Seen is an offline-first photo journal. Capture a moment, add a note, and it becomes a nostalgic Polaroid with an automatic timestamp. Favourite and organize memories. Everything lives in local SQLite, with no account, backend, or cloud upload.",
-    icon: FaCameraRetro,
-    tint: "#d6409f",
-    platform: "Android",
-    techStack: ["React Native", "Expo", "TypeScript", "SQLite"],
-    githubUrl: "https://github.com/JasperRosales/last-seen",
+      "GasNet runs day-to-day operations for CJG LPG Trading's cylinder distribution. Staff record sales and print receipts from the POS, while the admin dashboard tracks branches, inventory, transactions and sales targets. An analytics page uses Gemini to turn the numbers into sales recommendations.",
+    icon: FaStore,
+    tint: "#0091ff",
+    cover: "/projects/gasnet/gn_admin_analytics.png",
+    platform: "Web",
+    badge: "Client work",
+    techStack: ["React", "TypeScript", "Vite", "Supabase", "Gemini API"],
+    liveUrl: "https://gasnet-admin-demo.vercel.app",
     features: [
-      "Polaroid-style cards with automatic timestamps",
-      "Personal notes and favourites",
-      "Local SQLite storage, no cloud",
+      "Staff POS with receipts and transaction history",
+      "Branch dashboard with KPIs and sales targets",
+      "AI-generated sales insights and recommendations",
+      "Inventory, product catalog, and report export",
     ],
   },
 ];

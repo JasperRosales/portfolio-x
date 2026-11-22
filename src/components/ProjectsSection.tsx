@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform, useReducedMotion } from "framer-motion";
-import { Github, ExternalLink, X } from "lucide-react";
+import { Github, ExternalLink, X, Lock } from "lucide-react";
 import { projects, type Project } from "@/data/projects";
 import { projectDetails, type ProjectImageDetail } from "@/data/project-details";
 import SectionHeading from "@/components/SectionHeading";
@@ -80,9 +80,15 @@ function ProjectCard({ project, wide, onSelect }: { project: Project; wide: bool
         ) : (
           <span className="absolute inset-0 grid place-items-center" style={{ background: `radial-gradient(circle at 30% 20%, color-mix(in srgb, ${project.tint} 35%, var(--clay)), var(--clay) 70%)` }}>
             <span className="absolute inset-0 opacity-[0.18]" style={{ backgroundImage: "radial-gradient(#000 1.2px, transparent 1.2px)", backgroundSize: "18px 18px" }} />
-            <motion.span style={still ? undefined : { x: imgX, y: imgY }} className="relative text-white text-6xl w-28 h-28 rounded-[30px] grid place-items-center glow" >
-              <span className="absolute inset-0 rounded-[30px]" style={{ background: `linear-gradient(145deg, ${project.tint}, color-mix(in srgb, ${project.tint} 60%, #000))`, ...tint }} />
-              <Icon className="relative" />
+            <motion.span style={still ? undefined : { x: imgX, y: imgY }} className={`relative text-white text-6xl rounded-[30px] grid place-items-center ${project.logo ? "" : "glow"} ${wide ? "w-48 h-48" : "w-28 h-28"}`}>
+              {project.logo ? (
+                <img src={project.logo} alt="" className="relative w-full h-full rounded-[30px] object-cover" />
+              ) : (
+                <>
+                  <span className="absolute inset-0 rounded-[30px]" style={{ background: `linear-gradient(145deg, ${project.tint}, color-mix(in srgb, ${project.tint} 60%, #000))`, ...tint }} />
+                  <Icon className="relative" />
+                </>
+              )}
             </motion.span>
           </span>
         )}
@@ -96,7 +102,7 @@ function ProjectCard({ project, wide, onSelect }: { project: Project; wide: bool
         <div className="flex items-center gap-3">
           <span className="w-10 h-10 shrink-0 rounded-xl grid place-items-center text-white text-lg glow"
             style={{ background: `linear-gradient(145deg, ${project.tint}, color-mix(in srgb, ${project.tint} 60%, #000))`, ...tint }}>
-            <Icon />
+            {project.logo ? <img src={project.logo} alt="" className="w-full h-full rounded-xl object-cover" /> : <Icon />}
           </span>
           <h3 className="text-2xl font-bold tracking-tight leading-tight">{project.title}</h3>
         </div>
@@ -109,6 +115,11 @@ function ProjectCard({ project, wide, onSelect }: { project: Project; wide: bool
           )}
           {isRealUrl(project.githubUrl) && (
             <LinkKey href={project.githubUrl}><Github size={15} /> Code</LinkKey>
+          )}
+          {project.isPrivate && (
+            <span className="nm-in-sm inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-[var(--ink-3)]">
+              <Lock size={14} /> Private repo
+            </span>
           )}
         </div>
       </div>
@@ -163,7 +174,7 @@ export default function ProjectsSection() {
     <section id="projects" className="max-w-6xl mx-auto px-5 sm:px-8 py-20 md:py-28 scroll-mt-20">
       <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
         <div className="[&>div]:mb-0">
-          <SectionHeading title="Projects" lead="Ten picks from my GitHub: hackathon builds, client work, and apps I use myself." />
+          <SectionHeading title="Projects" lead="Hackathon builds, client work, and the apps I use every day." />
         </div>
         <div role="group" aria-label="Filter projects" className="nm-in self-start md:self-end rounded-full p-1.5 flex gap-1.5">
           {filters.map((f) => {
@@ -187,7 +198,7 @@ export default function ProjectsSection() {
       <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
         <AnimatePresence mode="popLayout">
           {visible.map((p, i) => (
-            <ProjectCard key={p.title} project={p} wide={i === 0 || i === 6} onSelect={() => setSelected(p)} />
+            <ProjectCard key={p.title} project={p} wide={filter === "All" && (i === 0 || i === 5 || i === 8)} onSelect={() => setSelected(p)} />
           ))}
         </AnimatePresence>
       </motion.div>
@@ -268,6 +279,11 @@ export default function ProjectsSection() {
                     <LinkKey href={selected.githubUrl}>
                       <Github size={16} /> View code
                     </LinkKey>
+                  )}
+                  {selected.isPrivate && (
+                    <span className="nm-in-sm inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-[var(--ink-3)]">
+                      <Lock size={15} /> Source code is private
+                    </span>
                   )}
                 </div>
               </div>
