@@ -106,8 +106,8 @@ button {
 /* ---------- Neumorphic system ---------- */
 :root {
   --clay: #e4e4e4;
-  --clay-hi: #ffffff;
-  --clay-lo: #b9b9b9;
+  --clay-hi: rgba(0, 0, 0, 0.07);
+  --clay-lo: rgba(0, 0, 0, 0.24);
   --ink: #000000;
   --ink-2: #2e2e2e;
   --ink-3: #5c5c5c;

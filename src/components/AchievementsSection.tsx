@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { FiArrowUpRight, FiX } from "react-icons/fi";
+import { FiArrowUpRight, FiChevronLeft, FiChevronRight, FiX } from "react-icons/fi";
 import { FaGithub } from "react-icons/fa";
 import { keyAchievements } from "@/data/achievements";
 import { REPO_URL, useGithubCredentials, type Credential } from "@/data/credentials";
@@ -13,6 +13,29 @@ export default function AchievementsSection() {
   const { certificates, badges } = useGithubCredentials();
   const [shown, setShown] = useState<Shown | null>(null);
   const still = useReducedMotion();
+
+  // Certificate rail: arrow buttons for desktop, where there's no swipe
+  const railRef = useRef<HTMLDivElement>(null);
+  const [edges, setEdges] = useState({ start: true, end: false });
+  const updateEdges = useCallback(() => {
+    const el = railRef.current;
+    if (!el) return;
+    setEdges({
+      start: el.scrollLeft <= 4,
+      end: el.scrollLeft + el.clientWidth >= el.scrollWidth - 4,
+    });
+  }, []);
+  useEffect(() => {
+    updateEdges();
+    window.addEventListener("resize", updateEdges);
+    return () => window.removeEventListener("resize", updateEdges);
+  }, [updateEdges, certificates.length]);
+  const scrollRail = (dir: 1 | -1) => {
+    const el = railRef.current;
+    const card = el?.firstElementChild as HTMLElement | null;
+    if (!el || !card) return;
+    el.scrollBy({ left: dir * (card.offsetWidth + 28), behavior: still ? "auto" : "smooth" });
+  };
 
   return (
     <section id="achievements" className="max-w-6xl mx-auto px-5 sm:px-8 py-20 md:py-28 scroll-mt-8">
@@ -53,17 +76,40 @@ export default function AchievementsSection() {
             Certificates <span className="text-[var(--ink-3)] font-bold">/{certificates.length}</span>
           </h3>
         </div>
-        <a
-          href={REPO_URL}
-          target="_blank"
-          rel="noreferrer"
-          className="nm-btn rounded-full px-4 py-2 text-sm font-semibold inline-flex items-center gap-2"
-        >
-          <FaGithub /> Synced from GitHub <FiArrowUpRight />
-        </a>
+        <div className="flex items-center gap-3">
+          <a
+            href={REPO_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="nm-btn rounded-full px-4 py-2 text-sm font-semibold inline-flex items-center gap-2"
+          >
+            <FaGithub /> Synced from GitHub <FiArrowUpRight />
+          </a>
+          <button
+            type="button"
+            onClick={() => scrollRail(-1)}
+            disabled={edges.start}
+            aria-label="Previous certificate"
+            className="nm-btn w-10 h-10 rounded-full grid place-items-center text-lg disabled:opacity-35 disabled:pointer-events-none"
+          >
+            <FiChevronLeft />
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollRail(1)}
+            disabled={edges.end}
+            aria-label="Next certificate"
+            className="nm-ink w-10 h-10 rounded-full grid place-items-center text-lg disabled:opacity-35 disabled:pointer-events-none"
+          >
+            <FiChevronRight />
+          </button>
+        </div>
       </div>
 
-      <div className="no-scrollbar -mx-5 sm:-mx-8 mt-8 px-5 sm:px-8 pt-4 pb-10 flex gap-7 overflow-x-auto snap-x snap-mandatory">
+      <div
+        ref={railRef}
+        onScroll={updateEdges}
+        className="no-scrollbar -mx-5 sm:-mx-8 mt-8 px-5 sm:px-8 pt-4 pb-10 flex gap-7 overflow-x-auto snap-x snap-mandatory">
         {certificates.map((c, i) => (
           <motion.button
             key={c.file}
