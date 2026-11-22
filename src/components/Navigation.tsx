@@ -6,7 +6,7 @@ const items = [
   { id: "hero", label: "Home", icon: Home },
   { id: "improvements", label: "Services", icon: Wrench },
   { id: "projects", label: "Projects", icon: FolderKanban },
-  { id: "experience", label: "Journey", icon: Briefcase },
+  { id: "experience", label: "Experience", icon: Briefcase },
   { id: "achievements", label: "Achievements", icon: Trophy },
   { id: "contact", label: "Contact", icon: Mail },
 ];
