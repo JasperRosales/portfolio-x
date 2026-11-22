@@ -1,23 +1,31 @@
-export interface Service {
+export interface Improvement {
   title: string;
   description: string;
 }
 
-export const services: Service[] = [
+/**
+ * Areas where technology and businesses are improved — the themes behind
+ * this portfolio.
+ */
+export const improvements: Improvement[] = [
   {
-    title: "Web Development",
-    description: "Build responsive full-stack web applications using Node.js, Next.js, and React.js with clean architecture and scalable patterns",
+    title: "Digital Systems",
+    description:
+      "Build reliable web applications and services that help companies deliver better outcomes with less friction.",
   },
   {
-    title: "Database Design",
-    description: "Design and optimize database layers for Node.js applications, with PostgreSQL as the primary relational database",
+    title: "Business Operations",
+    description:
+      "Streamline how organizations run their day-to-day work with clear data flow, automated reporting, and fewer manual bottlenecks.",
   },
   {
-    title: "API Development",
-    description: "Create RESTful and service-oriented backends in Node.js with authentication, validation, and performance-focused design",
+    title: "Data Infrastructure",
+    description:
+      "Design and connect data systems so companies see real numbers faster, with less guesswork.",
   },
   {
-    title: "Technical Writing",
-    description: "Create clear documentation and technical specifications for projects",
+    title: "Stakeholder Communication",
+    description:
+      "Make technical outcomes understandable for teams and clients, so decisions move forward faster.",
   },
 ];

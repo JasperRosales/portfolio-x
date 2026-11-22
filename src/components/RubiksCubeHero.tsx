@@ -8,12 +8,14 @@ interface RubiksCubeHeroProps {
   imageSrc?: string;
   imageAlt?: string;
   transformDelay?: number; // milliseconds before cube transforms to image
+  size?: number; // side length of the cube in pixels
 }
 
 export default function RubiksCubeHero({
   imageSrc = "/Jasper.jpg",
   imageAlt = "Profile",
   transformDelay = 4000,
+  size = 400,
 }: RubiksCubeHeroProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isTransformed, setIsTransformed] = useState(false);
@@ -183,7 +185,7 @@ export default function RubiksCubeHero({
       {/* 3D Canvas */}
       <div 
         className={`transition-all duration-1000 ease-in-out ${isTransformed ? 'opacity-0 scale-50' : 'opacity-100 scale-100'}`}
-        style={{ width: "400px", height: "400px" }}
+        style={{ width: size, height: size }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >

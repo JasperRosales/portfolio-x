@@ -9,10 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@base-ui/react": "^1.0.0",
     "@fontsource-variable/figtree": "^5.2.10",
     "@heroicons/react": "^2.2.0",
-    "@radix-ui/react-slot": "^1.2.4",
     "@tabler/icons-react": "^3.36.0",
     "@tailwindcss/vite": "^4.1.17",
     "class-variance-authority": "^0.7.1",
@@ -26,8 +24,6 @@
     "react": "^19.2.3",
     "react-dom": "^19.2.0",
     "react-icons": "^5.5.0",
-    "react-router": "^6.30.4",
-    "react-router-dom": "^6.30.4",
     "shadcn": "^3.6.2",
     "shiki": "^3.22.0",
     "tailwind-merge": "^3.4.0",
