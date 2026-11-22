@@ -50,7 +50,7 @@ export default function AchievementsSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px 0px" }}
             transition={{ duration: 0.6, delay: (i % 2) * 0.08, ease: [0.22, 1, 0.36, 1] }}
-            className="group flex gap-5 py-6 border-t border-black/10"
+            className="group flex gap-5 py-6 "
           >
               <span className="deboss font-display text-5xl md:text-6xl font-extrabold leading-none tabular-nums w-[2.4ch] shrink-0">
                 {String(i + 1).padStart(2, "0")}
@@ -120,9 +120,9 @@ export default function AchievementsSection() {
             whileHover={still ? undefined : { rotate: 0, y: -8, scale: 1.02 }}
             viewport={{ once: true, margin: "-60px 0px" }}
             transition={{ type: "spring", stiffness: 160, damping: 20, delay: still ? 0 : i * 0.06 }}
-            className="nm-lg snap-start shrink-0 w-[78vw] max-w-[360px] sm:w-[360px] rounded-[26px] p-3 text-left cursor-zoom-in"
+            className="snap-start shrink-0 w-[78vw] max-w-[360px] sm:w-[360px] rounded-[26px] p-3 text-left cursor-zoom-in bg-[var(--clay)] shadow-[0_12px_28px_-14px_rgba(0,0,0,0.45)]"
           >
-            <span className="nm-in-sm block rounded-[18px] p-2">
+            <span className="block">
               <img
                 src={c.src}
                 alt={`${c.issuer} ${c.name} certificate`}
