@@ -194,12 +194,9 @@ button {
   }
 }
 
-@keyframes marquee { to { transform: translateX(-50%); } }
-.marquee { animation: marquee 38s linear infinite; }
-.marquee:hover { animation-play-state: paused; }
 
 @keyframes spin-slow { to { transform: rotate(360deg); } }
-.spin-slow, .spin-rev, .bob, .bob-late, .marquee { will-change: transform; }
+.spin-slow, .spin-rev, .bob, .bob-late { will-change: transform; }
 .spin-slow { animation: spin-slow 40s linear infinite; }
 .spin-rev { animation: spin-slow 26s linear infinite reverse; }
 

@@ -2,11 +2,6 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { projects } from "@/data/projects";
 import { timeline } from "@/data/timeline";
 
-const stack = [
-  "Kotlin", "Jetpack Compose", "React", "Next.js", "TypeScript", "Node.js", "Go",
-  "Spring Boot", "PostgreSQL", "Supabase", "Redis", "Docker", "Kafka", "Gemini API", "Tailwind CSS",
-];
-
 function Letters({ word, className, delay }: { word: string; className: string; delay: number }) {
   const still = useReducedMotion();
   return (
@@ -110,15 +105,6 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      <motion.div {...fade(1.2)} className="nm-in mt-16 md:mt-20 mx-5 sm:mx-8 lg:mx-auto lg:max-w-6xl lg:w-[calc(100%-4rem)] rounded-full overflow-hidden py-3.5">
-        <div className="marquee flex w-max gap-3 pr-3">
-          {[...stack, ...stack].map((t, i) => (
-            <span key={i} className="nm-sm rounded-full px-4 py-1.5 text-sm font-semibold text-black whitespace-nowrap" aria-hidden={i >= stack.length}>
-              {t}
-            </span>
-          ))}
-        </div>
-      </motion.div>
     </section>
   );
 }
