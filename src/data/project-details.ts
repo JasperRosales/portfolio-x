@@ -172,6 +172,61 @@ export const projectDetails: Partial<Record<ProjectTitle, ProjectDetail>> = {
       },
     ],
   },
-
-
+  PetPal: {
+    imageGallery: [
+      {
+        imageSrc: "/projects/petpal/home.webp",
+        imageAlt: "PetPal home screen",
+        imageDescription: "Home: your pet in its pixel world, its level and XP, passive ability, and the evolution path from egg to adult.",
+      },
+      {
+        imageSrc: "/projects/petpal/partner.webp",
+        imageAlt: "PetPal partner result",
+        imageDescription: "After a 30-question personality quiz, PetPal picks your partner pet and shows how well it matches you.",
+      },
+      {
+        imageSrc: "/projects/petpal/pets.webp",
+        imageAlt: "PetPal pets collection",
+        imageDescription: "Your pet collection, with new pets unlocked by walking.",
+      },
+      {
+        imageSrc: "/projects/petpal/battle.webp",
+        imageAlt: "PetPal battle modes",
+        imageDescription: "Battle modes: boss events, online ranked, 1v1, teams, free-for-all and raids, plus local play over hotspot or Wi-Fi.",
+      },
+    ],
+  },
+  Isha: {
+    imageGallery: [
+      {
+        imageSrc: "/projects/isha/home.webp",
+        imageAlt: "Isha chat home",
+        imageDescription: "The chat home, with quick prompts for your budget, daily briefing, email, calendar, reminders and Classroom.",
+      },
+      {
+        imageSrc: "/projects/isha/menu.webp",
+        imageAlt: "Isha navigation menu",
+        imageDescription: "Inbox, Classroom deadlines, practice exams, mail digest and budget, with an approval switch for actions.",
+      },
+      {
+        imageSrc: "/projects/isha/offline-brain.webp",
+        imageAlt: "Isha offline brain settings",
+        imageDescription: "Offline brain: pick automatic, always online or always offline, and download on-device models like Qwen 2.5 and Gemma 3.",
+      },
+    ],
+  },
+  Cann: {
+    imageGallery: [
+      {
+        imageSrc: "/projects/cann/flow-editor.webp",
+        imageAlt: "Cann flow editor",
+        imageDescription: "The flow editor: a schedule trigger followed by app actions, here a daily agenda sent from Google Calendar through Gmail.",
+      },
+      {
+        imageSrc: "/projects/cann/templates.webp",
+        imageAlt: "Cann flow templates",
+        imageDescription: "Ready-made templates to start from, each showing the apps it connects and when it runs.",
+      },
+    ],
+  },
 };
