@@ -2,7 +2,7 @@ import { socialLinks } from "@/data/contact";
 
 export default function Footer() {
   return (
-    <footer className="max-w-6xl mx-auto px-5 sm:px-8 pb-10">
+    <footer className="max-w-6xl mx-auto px-5 sm:px-8 pb-28">
       <div className="nm-in rounded-full px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-sm text-[var(--ink-3)]">© {new Date().getFullYear()} Jasper Rosales</p>
         <div className="flex gap-3">

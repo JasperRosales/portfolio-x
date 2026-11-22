@@ -1,5 +1,6 @@
 import { workExperience, otherExperience, education } from "@/data/experience";
 import SectionHeading from "@/components/SectionHeading";
+import Reveal from "@/components/Reveal";
 
 interface Entry {
   key: string;
@@ -22,7 +23,7 @@ function Timeline({ heading, entries }: { heading: string; entries: Entry[] }) {
             <span aria-hidden className="nm-sm absolute -left-10 sm:-left-14 top-6 w-7 h-7 sm:w-10 sm:h-10 rounded-full grid place-items-center">
               <span className="w-2.5 h-2.5 rounded-full bg-black" />
             </span>
-            <article className="nm rounded-[28px] p-6 sm:p-8">
+            <Reveal className="nm rounded-[28px] p-6 sm:p-8">
               <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                 <div>
                   <h4 className="text-xl font-bold leading-tight">{e.title}</h4>
@@ -45,7 +46,7 @@ function Timeline({ heading, entries }: { heading: string; entries: Entry[] }) {
                   ))}
                 </ul>
               )}
-            </article>
+            </Reveal>
           </li>
         ))}
       </ol>

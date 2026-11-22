@@ -1,340 +1,240 @@
 import type { IconType } from "react-icons";
-import { FaCode, FaPencilRuler, FaGraduationCap, FaServer, FaMobileAlt, FaInternetExplorer } from "react-icons/fa";
+import {
+  FaPrescriptionBottleAlt,
+  FaStore,
+  FaPaw,
+  FaExchangeAlt,
+  FaStar,
+  FaFileAlt,
+  FaFileInvoiceDollar,
+  FaSeedling,
+  FaCameraRetro,
+} from "react-icons/fa";
+import { GiPlasticDuck } from "react-icons/gi";
 
 export interface Project {
   title: string;
+  tagline: string;
   description: string;
   fullDescription: string;
-  image?: string;
-  icon?: IconType;
+  icon: IconType;
+  /** Hex colour used for the card's accent glow and icon key */
+  tint: string;
+  cover?: string;
+  platform: "Web" | "Android";
+  badge?: string;
   techStack: string[];
   githubUrl?: string;
   liveUrl?: string;
   features: string[];
-  category: string;
-  type: "application" | "education";
 }
 
 export const projects: Project[] = [
   {
-    title: "CICS Community",
-    description: "A GitHub community platform for students and future members.",
-    fullDescription:
-      "Founded and lead a community GitHub along with co-officers to further enhance and supply knowledge for students and future members of the CICS community. Making it a platform for teaching distributed source management and documentation for students and professors.",
-    icon: FaGraduationCap,
-    category: "Community Platform",
-    type: "education",
-    techStack: ["Git", "GitHub", "Documentation", "Source Management"],
-    githubUrl: "https://github.com/cicsbalayan",
-    liveUrl: "https://cics-main-page.vercel.app/",
-    features: [
-      "Community-driven knowledge sharing",
-      "Source management training platform",
-      "Documentation for students and professors",
-      "Collaborative learning environment",
-    ],
-  },
-  {
-    title: "CICS Digital Showcase",
-    description: "A Website showcasing student projects and achievements in CICS.",
-    fullDescription:
-      "A website that showcases student projects and achievements in CICS. The platform serves as a digital portfolio for students to present their work, fostering a sense of community and recognition within the academic environment.",
-    icon: FaGraduationCap,
-    category: "Community Platform",
-    type: "application",
-    techStack: ["Nextjs", "Vercel","Git", "GitHub", "Documentation", "Source Management"],
-    githubUrl: "https://github.com/cicsbalayan/digital-showcase-web",
-    liveUrl: "https://digital-showcase-web.vercel.app/",
-    features: [
-      "Source management training platform",
-      "Sharing and showcasing student projects",
-      "Documentation for students",
-      "Collaborative learning environment",
-    ],
-  },
-  {
-    title: "SmartWardrobe",
+    title: "Script Doctor",
+    tagline: "Reads a doctor's handwriting before it causes harm",
     description:
-      "A virtual fitting web application for exploring outfit combinations.",
+      "Photograph a handwritten prescription and get a transcription, plain-language directions, and on-device safety checks.",
     fullDescription:
-      "Developed SmartWardrobe, a web-based virtual fitting application that allows users to visualize and experiment with different clothing combinations in a digital environment. The system focuses on simplifying outfit selection by providing an interactive interface where users can mix and match clothing items without the need for physical try-ons. Designed with a clean and responsive UI, the application enhances user experience by making outfit exploration more accessible and efficient.",
-    icon: FaMobileAlt,
-    category: "Fashion Technology",
-    type: "application",
-    techStack: ["React", "JavaScript", "Supabase", "Shadcn UI"],
-    githubUrl: "not available",
-    liveUrl: "https://smart-wardrobe-asper.vercel.app/",
+      "An Android app built for DSH Hacks V2 (AI x Healthcare). It transcribes each medication line with Gemini vision, explains the directions in plain language, admits uncertainty with confidence ratings and alternate readings, then runs safety rules on the device: error-prone abbreviations, dose-format traps, look-alike drug pairs, and high-alert drugs. Everything rolls up into a single risk level.",
+    icon: FaPrescriptionBottleAlt,
+    tint: "#e5484d",
+    cover: "/projects/script-doctor/08_result_top.png",
+    platform: "Android",
+    badge: "DSH Hacks V2",
+    techStack: ["Kotlin Multiplatform", "Compose", "Gemini API", "Ktor"],
+    githubUrl: "https://github.com/JasperRosales/script-doctor",
     features: [
-      "Virtual try-on interface for outfit visualization",
-      "Mix-and-match clothing combinations",
-      "Interactive and user-friendly UI",
-      "Responsive design for multiple devices",
+      "Structured transcription of drug, strength, route, frequency and duration",
+      "Confidence rating and alternate readings for every medication",
+      "On-device checks for ISMP abbreviations, trailing zeros, and look-alike drugs",
+      "Risk banner: low risk, verify before use, or confirm with prescriber",
+      "Local scan history",
+    ],
+  },
+  {
+    title: "Quack Overflow",
+    tagline: "The AI rubber duck that refuses to give you the answer",
+    description:
+      "A Socratic debugging partner: paste your code, explain the bug, and an animated duck asks questions until you find it yourself.",
+    fullDescription:
+      "Built for Next Byte Hacks V5. Beginners paste errors into AI tools, copy the fix, and learn nothing. Quack only asks questions. Every reply goes through a two-stage leak guard, a deterministic near-copy detector and an AI judge, so the duck never hands over the fix. Code runs in the browser and every solved bug lands in a journal.",
+    icon: GiPlasticDuck,
+    tint: "#f5b300",
+    cover: "/projects/quack-overflow/2-debug-conversation.png",
+    platform: "Web",
+    badge: "Next Byte Hacks V5",
+    techStack: ["Next.js", "TypeScript", "Gemini API", "Pyodide", "Monaco"],
+    githubUrl: "https://github.com/JasperRosales/quack-overflow",
+    liveUrl: "https://quack-overflow-bice.vercel.app",
+    features: [
+      "Question-only duck chat with a four-step hint ladder",
+      "Leak guard using Smith-Waterman alignment plus an LLM judge",
+      "Runs Python and JavaScript in sandboxed Web Workers",
+      "Bug journal that spots your repeat mistakes",
+      "Voice mode and Lighthouse accessibility score of 100",
     ],
   },
   {
     title: "GasNet",
+    tagline: "Decision support and POS for an LPG distributor",
     description:
-      "An AI-Driven Decision Support and Point-of-Sales System for CJG LPG Trading",
+      "An admin dashboard and staff point-of-sale for CJG LPG Trading, with AI insights on sales and inventory.",
     fullDescription:
-      "Developed GasNet, an AI-driven decision support and point-of-sales system for CJG LPG Trading. The system leverages AI services to provide actionable insights and streamline sales processes. It features a user-friendly interface designed to enhance decision-making and improve operational efficiency.",
-    icon: FaMobileAlt,
-    category: "Software Solution",
-    type: "application",
-    techStack: ["Flutter", "Postgres", "Drift","Supabase"],
-    githubUrl: "not available",
+      "GasNet runs day-to-day operations for CJG LPG Trading's cylinder distribution. Staff record sales and print receipts from the POS, while the admin dashboard tracks branches, inventory, transactions and sales targets. An analytics page uses Gemini to turn the numbers into sales recommendations.",
+    icon: FaStore,
+    tint: "#0091ff",
+    cover: "/projects/gasnet/gn_admin_analytics.png",
+    platform: "Web",
+    badge: "Client work",
+    techStack: ["React", "TypeScript", "Vite", "Supabase", "Gemini API"],
+    liveUrl: "https://gasnet-admin-demo.vercel.app",
     features: [
-      "AI-driven decision support",
-      "Point-of-sales functionality",
-      "User-friendly interface",
-      "Operational efficiency improvements",
+      "Staff POS with receipts and transaction history",
+      "Branch dashboard with KPIs and sales targets",
+      "AI-generated sales insights and recommendations",
+      "Inventory, product catalog, and report export",
     ],
   },
   {
-    title: "Project C.L.E.A.R",
+    title: "PetPal",
+    tagline: "A pixel pet that grows from your real steps",
     description:
-      "A solution to transparent and efficient fund tracking and management system for the CICS Student Council. This allows the students to see how the funds are managed.",
+      "An offline-first habit game. Raise a pet with your steps and battle friends nearby over Bluetooth or a hotspot.",
     fullDescription:
-      "Developed Project C.L.E.A.R, a transparent and efficient fund tracking and management system for the CICS Student Council. The system allows students to visualize and monitor how funds are allocated and utilized, promoting accountability and informed decision-making.",
-    icon: FaInternetExplorer,
-    category: "Organizational Tool",
-    type: "application",
-    techStack: ["React", "Javascript", "Redis", "Upstash", "Make", "Supabase"],
-    githubUrl: "https://github.com/cicsbalayan/ProjectClear-Client",
+      "PetPal turns habits into a game with no account and no internet needed. Your pet levels up from real step counts, learns moves, and fights friends in local 1v1 or 2v2 battles over Bluetooth or LAN. There's also a co-op ten-floor raid dungeon. Pet and move docs are generated straight from the game data.",
+    icon: FaPaw,
+    tint: "#30a46c",
+    platform: "Android",
+    techStack: ["Kotlin Multiplatform", "Compose", "Room", "Koin", "Bluetooth"],
+    githubUrl: "https://github.com/JasperRosales/petpal",
     features: [
-      "Transparent fund tracking",
-      "Efficient fund management",
-      "User-friendly interface for students",
-      "Real-time updates on fund allocation and utilization",
+      "Pet growth driven by the step sensor",
+      "Local battles over Bluetooth or LAN, 1v1 and Duo 2v2",
+      "Co-op raid dungeon with a boss floor",
+      "In-app updates from GitHub releases",
     ],
   },
   {
-    title: "Portfolio Y",
+    title: "Revice",
+    tagline: "A magic remote for any device",
     description:
-      "A portfolio that showcase my designer skills and projects in a minimalist design approach.",
+      "Pair your phone with a TV or tablet over Wi-Fi, present slides from your phone, and send files both ways.",
     fullDescription:
-      "Designed and developed Portfolio Y, a personal portfolio website that showcases my design skills and projects with a minimalist design approach. The portfolio emphasizes clean aesthetics, intuitive navigation, and a focus on visual storytelling to effectively present my work and creative process.",
-    icon: FaPencilRuler,
-    category: "Portfolio Website",
-    type: "application",
-    techStack: ["Next.js", "TypeScript", "React.js", "Tailwind CSS", "Vercel"],
-    githubUrl: "https://github.com/JasperRosales/portfolio-y",
-    liveUrl: "https://portfolio-y-asper.vercel.app/",
+      "Revice pairs devices on the same network with a 4-digit code. No server and no account: devices find each other with mDNS and talk over TCP. Send a PDF deck to the big screen and drive it from your phone with a laser pointer, next-slide preview and timer, or share any file in either direction. It also runs on Android TV.",
+    icon: FaExchangeAlt,
+    tint: "#8e4ec6",
+    platform: "Android",
+    techStack: ["Kotlin", "Jetpack Compose", "mDNS", "TCP sockets"],
+    githubUrl: "https://github.com/JasperRosales/revice",
     features: [
-      "Showcases my design skills and projects in my college journey",
-      "Includes my work inside and outside of college",
-      "Uses multiple design elements to create a visually appealing and engaging experience",
+      "Present PDFs with volume keys or a Bluetooth clicker",
+      "Laser pointer, blank screen, preview and timer",
+      "Two-way file transfer with Share to Revice",
+      "Works on Android TV and Google TV",
     ],
   },
   {
-    title: "Blockchain Practice",
-    description: "Practice journey for learning blockchain concepts in Go.",
-    fullDescription:
-      "This project is a practice implementation that explores core blockchain concepts using Go. Includes block creation, proof-of-work consensus, transactions with ECDSA signatures, and UTXO models.",
-    icon: FaCode,
-    category: "Learning / Blockchain",
-    type: "education",
-    techStack: ["Go", "Cryptography", "CLI"],
-    githubUrl: "https://github.com/JasperRosales/go-blockchain-practice",
-    features: [
-      "Blockchain core features (blocks, PoW)",
-      "Wallet creation and transaction signing",
-      "Command-line usage and exploration",
-      "Educational implementation for Go developers",
-    ],
-  },
-  {
-    title: "Nginx Practice",
+    title: "Astra",
+    tagline: "A journal where every entry becomes a star",
     description:
-      "Hands-on practice with Nginx server configuration and deployment.",
+      "Journal entries become stars in your own night sky, forming constellations you can explore, search and replay.",
     fullDescription:
-      "A practical learning project focused on understanding Nginx web server configuration, reverse proxy setup, load balancing, and server optimization techniques.",
-    icon: FaServer,
-    category: "Learning / Infrastructure",
-    type: "education",
-    techStack: ["Nginx", "Docker", "Linux", "Server Configuration"],
-    githubUrl: "https://github.com/JasperRosales/nginx-practice",
+      "Mood sets each star's colour and importance sets its brightness. Entries that share a name link into labelled constellations. Pan and zoom the sky, scrub the timeline to see it on any past day, or press play to watch it form star by star. Built for a website hackathon with plain HTML, CSS and Canvas, with no frameworks and no backend.",
+    icon: FaStar,
+    tint: "#6e56cf",
+    cover: "/projects/astra/desktop-sky.png",
+    platform: "Web",
+    badge: "Hackathon",
+    techStack: ["JavaScript", "Canvas 2D", "HTML", "CSS"],
+    githubUrl: "https://github.com/JasperRosales/astra",
+    liveUrl: "https://jasperrosales.github.io/astra/",
     features: [
-      "Nginx configuration fundamentals",
-      "Reverse proxy implementation",
-      "Load balancing techniques",
-      "Server optimization practice",
+      "Entries become stars coloured by mood",
+      "Constellations, search, and a sky report",
+      "Timeline scrubbing and star-by-star replay",
+      "Export, import, and save the sky as a PNG",
     ],
   },
   {
-    title: "Kafka Practice",
+    title: "Workflow",
+    tagline: "CV builder and resume analyzer in one place",
     description:
-      "Exploring Apache Kafka for distributed streaming and messaging.",
+      "Build an ATS-friendly CV with live editing, then score it against a job description with AI.",
     fullDescription:
-      "A hands-on learning project to understand Apache Kafka's distributed streaming platform, message queuing, and event-driven architecture patterns.",
-    category: "Learning / Messaging",
-    type: "education",
-    techStack: [
-      "Apache Kafka",
-      "Docker",
-      "Event Streaming",
-      "Distributed Systems",
-    ],
-    githubUrl: "https://github.com/JasperRosales/kafka-practice",
-    features: [
-      "Kafka producer and consumer setup",
-      "Topic and partition management",
-      "Event streaming patterns",
-      "Distributed messaging practice",
-    ],
-  },
-  {
-    title: "Astrix",
-    description:
-      "A fun reading app for daily fortune, tarot, and astronomy themes.",
-    fullDescription:
-      "Astrix is a simple project that lets users have fun with daily fortune, tarot, and astronomy reading based on different criteria. Currently in an initial state with plans for expansion.",
-    category: "Fun App",
-    type: "application",
-    techStack: ["JavaScript", "React", "Vite"],
-    githubUrl: "https://github.com/JasperRosales/Astrix",
-    liveUrl: "https://astrix-asper.vercel.app/",
-    features: [
-      "Tarot reading generator",
-      "Astrology and astronomy-based fun facts",
-      "Daily fortune prompts",
-      "Interactive UI experiences",
-    ],
-  },
-  {
-    title: "Barangay Tuyon App",
-    description: "A community service app for Barangay Tuyon.",
-    fullDescription:
-      "An application intended to support Barangay Tuyon residents with community announcements and local services.",
-    category: "Community App",
-    type: "application",
-    techStack: ["Dart", "Flutter", "Supabase"],
-    githubUrl: "https://github.com/JasperRosales/barangay-tuyon-app",
-    features: [
-      "Local announcements and notifications",
-      "Resident Information management",
-      "Community engagement and program management",
-    ],
-  },
-  {
-    title: "Redis Weather API",
-    description: "Spring Boot REST API with Redis caching for weather data.",
-    fullDescription: "A Spring Boot REST API that fetches weather data from Visual Crossing Weather API and implements Redis caching to improve performance and reduce external API calls. Features RESTful endpoint, reactive WebFlux, configurable TTL (30 minutes), comprehensive error handling, input validation, unit tests with Mockito, and automatic retry logic.",
-    category: "Backend API / Caching",
-    type: "application",
-    techStack: ["Java 17", "Spring Boot", "Spring WebFlux", "Redis", "Maven"],
-    githubUrl: "https://github.com/JasperRosales/weather-api-spring-redis",
-    features: [
-      "RESTful weather data retrieval",
-      "Redis caching with TTL",
-      "Reactive programming with WebFlux",
-      "Global exception handling",
-      "Unit tests & retry logic"
-    ],
-  },
-  {
-    title: "Protect The Baby",
-    description:
-      "A 2D arcade survival game where players defend Baby Shark from incoming threats.",
-    fullDescription:
-      "Built Protect the Baby as a fast-paced arcade game project centered on responsive controls, quick reactions, and simple but engaging gameplay loops. The project demonstrates interactive frontend engineering and polished player feedback patterns.",
-    icon: FaCode,
-    category: "Game Application",
-    type: "application",
-    techStack: ["Next.js", "TypeScript", "Shadcn", "Tailwind CSS", "Node.js", "Vercel"],
-    githubUrl: "https://github.com/JasperRosales/protect-the-baby",
-    liveUrl: "https://protect-the-baby.vercel.app",
-    features: [
-      "Arcade-style survival gameplay",
-      "Responsive control and interaction system",
-      "Deployable browser-based game experience",
-    ],
-  },
-  {
-    title: "Fit Tech Client",
-    description: "A virtual try-on web application for fitting clothes and exploring outfit combinations.",
-    fullDescription:
-      "A virtual try-on web application for fitting clothes and exploring outfit combinations. The project emphasizes user experience, interactive design, and responsive layouts for a seamless virtual fitting experience.",
-    icon: FaCode,
-    category: "Web Application",
-    type: "application",
-    techStack: ["Next.js", "TypeScript", "API Integration", "Shadcn", "Vercel"],
-    githubUrl: "https://github.com/JasperRosales/fit-tech-client",
-    liveUrl: "https://fit-tech-client.vercel.app",
-    features: [
-      "Virtual try-on interface for clothing",
-      "Interactive outfit combination exploration",
-      "Responsive design for various devices",
-    ],
-  },
-  {
-    title: "Resume Analyzer",
-    description:
-      "AI-powered resume analyzer that evaluates resumes against job descriptions.",
-    fullDescription:
-      "Resume Analyzer is an AI-assisted web project for ATS-oriented resume reviews. It provides compatibility insights, skill gap detection, and practical recommendations to improve candidate alignment with target roles.",
-    icon: FaCode,
-    category: "Web Application / AI",
-    type: "application",
-    techStack: ["Next.js", "TypeScript", "Node.js", "Shadcn", "Vercel"],
-    githubUrl: "https://github.com/JasperRosales/resume_analyzer",
+      "Workflow combines two tools job seekers usually juggle. The CV builder has live editing, drag-and-drop sections and PDF export. The resume analyzer compares a resume to a job description, scores ATS fit, finds skill gaps, and suggests what to change.",
+    icon: FaFileAlt,
+    tint: "#12a594",
+    cover: "/projects/resume-analyzer/overview.png",
+    platform: "Web",
+    techStack: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    githubUrl: "https://github.com/JasperRosales/workflow",
     liveUrl: "https://resume-analyzer-beta-seven.vercel.app",
     features: [
-      "ATS compatibility feedback",
-      "Role-specific skill gap detection",
-      "Actionable resume improvement recommendations",
-    ],
-  },
-  {
-    title: "CV Builder",
-    description:
-      "A modern ATS-friendly CV builder with live editing and PDF export.",
-    fullDescription:
-      "Built CV Builder as a practical resume product with ATS-conscious structure, real-time editing, and local persistence. The application demonstrates end-user productivity tooling and polished frontend workflow management.",
-    icon: FaCode,
-    category: "Productivity Tool",
-    type: "application",
-    techStack: ["Next.js", "TypeScript", "Node.js", "Shadcn", "Tailwind CSS"],
-    githubUrl: "https://github.com/JasperRosales/cv_builder",
-    liveUrl: "https://cv-builder-six-eta.vercel.app",
-    features: [
-      "Live CV editing experience",
-      "PDF export support",
-      "ATS-friendly document structure",
+      "Live CV editing with drag-and-drop sections",
+      "PDF export",
+      "ATS scoring and keyword matching",
+      "Skill-gap report with recommendations",
     ],
   },
   {
     title: "Invoice Generator",
+    tagline: "Professional invoices without an account",
     description:
-      "A modern invoice management platform for freelancers and small businesses.",
+      "A privacy-first invoice tool for freelancers. Everything stays in the browser, then exports to PDF.",
     fullDescription:
-      "Invoice Generator is a business utility platform for creating, managing, and exporting professional invoices. It emphasizes secure access, structured client billing workflows, and a clean interface for daily operations.",
-    icon: FaCode,
-    category: "Business Tool",
-    type: "application",
-    techStack: ["Next.js", "TypeScript", "Node.js", "Shadcn", "Vercel"],
+      "Create invoices with company and client details, unlimited line items, tax, discounts and shipping, then export to PDF or JSON. Nothing is saved to a server or cookie. Two templates with a custom accent colour and a live preview as you type.",
+    icon: FaFileInvoiceDollar,
+    tint: "#f76b15",
+    cover: "/projects/invoice-generator/overview.png",
+    platform: "Web",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "Zod", "react-pdf"],
     githubUrl: "https://github.com/JasperRosales/invoice-generator",
     liveUrl: "https://invoice-generator-three-nu.vercel.app",
     features: [
-      "Professional invoice generation",
-      "Client and billing record management",
-      "Export-ready document workflows",
+      "Live preview with two templates",
+      "Tax, percent or flat discounts, and shipping",
+      "PDF download plus JSON export and import",
+      "No storage: data stays in memory",
     ],
   },
   {
     title: "Flori",
+    tagline: "The language of flowers",
     description:
-      "An under-development flower information app focused on meanings and discovery.",
+      "A flower encyclopedia with meanings, colour codes, and care guides for 120 blooms.",
     fullDescription:
-      "Flori is an evolving app concept that presents flowers and their meanings through a simple browsing experience. The project explores content-driven interfaces and structured information delivery in an accessible format.",
-    icon: FaCode,
-    category: "Learning / App Prototype",
-    type: "education",
-    techStack: ["TypeScript", "Next.js", "React.js", "Node.js", "Shadcn"],
+      "Flori helps people explore flowers and what they mean. Search by name, colour or feeling, open any flower for its full story, including what each colour and stem count says, and learn how to water and care for it.",
+    icon: FaSeedling,
+    tint: "#46a758",
+    cover: "/projects/flori/home.png",
+    platform: "Web",
+    techStack: ["Next.js", "TypeScript", "Tailwind CSS", "shadcn/ui"],
     githubUrl: "https://github.com/JasperRosales/Flori",
+    liveUrl: "https://flori-lovat.vercel.app",
     features: [
-      "Flower meaning discovery concept",
-      "Content-first UI experimentation",
-      "Prototype-driven feature iteration",
+      "Search by name, colour, or meaning",
+      "Colour and stem-count meanings",
+      "Watering, sunlight and care guides",
+      "Favourites for quick access",
+    ],
+  },
+  {
+    title: "Last Seen",
+    tagline: "Moments kept as Polaroids, offline",
+    description:
+      "A private photo journal that turns moments into timestamped Polaroid-style memories stored only on your phone.",
+    fullDescription:
+      "Last Seen is an offline-first photo journal. Capture a moment, add a note, and it becomes a nostalgic Polaroid with an automatic timestamp. Favourite and organize memories. Everything lives in local SQLite, with no account, backend, or cloud upload.",
+    icon: FaCameraRetro,
+    tint: "#d6409f",
+    platform: "Android",
+    techStack: ["React Native", "Expo", "TypeScript", "SQLite"],
+    githubUrl: "https://github.com/JasperRosales/last-seen",
+    features: [
+      "Polaroid-style cards with automatic timestamps",
+      "Personal notes and favourites",
+      "Local SQLite storage, no cloud",
     ],
   },
 ];

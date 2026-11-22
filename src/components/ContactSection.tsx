@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Send, Check } from "lucide-react";
 import SectionHeading from "@/components/SectionHeading";
+import Reveal from "@/components/Reveal";
 import { contactInfo, type FormData, type FormErrors } from "@/data/contact";
 
 export default function ContactSection() {
@@ -82,7 +83,7 @@ export default function ContactSection() {
           ))}
         </div>
 
-        <form onSubmit={handleSubmit} noValidate className="nm-lg rounded-[36px] p-6 sm:p-9 grid gap-6">
+        <Reveal><form onSubmit={handleSubmit} noValidate className="nm-lg rounded-[36px] p-6 sm:p-9 grid gap-6">
           <div className="grid sm:grid-cols-2 gap-6">
             {field("name", "Name", "Your name")}
             {field("email", "Email", "you@company.com", "email")}
@@ -93,7 +94,7 @@ export default function ContactSection() {
             className="nm-ink rounded-full py-4 font-semibold flex items-center justify-center gap-2.5 disabled:opacity-60">
             {isSubmitting ? "Sending..." : isSubmitted ? (<><Check size={18} /> Message sent</>) : (<><Send size={17} /> Send message</>)}
           </button>
-        </form>
+        </form></Reveal>
       </div>
     </section>
   );

@@ -13,81 +13,74 @@ export interface ProjectDetail {
 }
 
 export const projectDetails: Partial<Record<ProjectTitle, ProjectDetail>> = {
-  SmartWardrobe: {
+  "Script Doctor": {
     imageGallery: [
       {
-        imageSrc: "/projects/smartwardrobe/sw_preview.png",
-        imageAlt: "SmartWardrobe preview",
-        imageDescription:
-          "Landing Page of SmartWardrobe, showcasing its sleek design and user-friendly interface. The image highlights the app's core features, including outfit recommendations and wardrobe organization tools.",
+        imageSrc: "/projects/script-doctor/05_home_ready.png",
+        imageAlt: "Script Doctor home screen",
+        imageDescription: "Home screen, ready to scan a handwritten prescription from the camera or photos.",
       },
       {
-        imageSrc: "/projects/smartwardrobe/sw_login.png",
-        imageAlt: "SmartWardrobe login",
-        imageDescription:
-          "Login Page of SmartWardrobe, demonstrating the secure and intuitive authentication process with Google Authentication and Jwt Tokenization. The design emphasizes ease of access while maintaining user privacy and data security.",
+        imageSrc: "/projects/script-doctor/08_result_top.png",
+        imageAlt: "Script Doctor scan result",
+        imageDescription: "A scan result with the overall risk banner, each medication's confidence, and the safety flags it raised.",
       },
       {
-        imageSrc: "/projects/smartwardrobe/sw_int.png",
-        imageAlt: "SmartWardrobe interface",
-        imageDescription:
-          "The Main Interface of SmartWardrobe, showcasing the app's core features such as outfit recommendations, wardrobe organization tools, and user-friendly navigation. The interface is designed to provide a seamless and enjoyable user experience, making it easy for users to manage their wardrobe and discover new outfit ideas.",
-      },
-      {
-        imageSrc: "/projects/smartwardrobe/sw_add.png",
-        imageAlt: "SmartWardrobe add",
-        imageDescription:
-          "The Add Item Page of SmartWardrobe, allowing users to easily add new clothing items or to use the camera of their mobile device to upload catalogs or models to their virtual wardrobe. The page features a simple option to upload a photo of the item or the model",
-      },
-      {
-        imageSrc: "/projects/smartwardrobe/sw_reco.png",
-        imageAlt: "SmartWardrobe recommendation",
-        imageDescription:
-          "The Outfit Recommendation Page of SmartWardrobe, showcasing the app's core feature of providing personalized outfit suggestions based on the user's wardrobe and preferences. The page displays a curated selection of outfits, complete with options to save in the catalog or to try it on",
-      },
-      {
-        imageSrc: "/projects/smartwardrobe/sw_acc.png",
-        imageAlt: "SmartWardrobe account",
-        imageDescription:
-          "The Account Page of SmartWardrobe, allowing users to manage their profile information, settings, and preferences. The page features a simple option to update their personal details or delete their account, change password, and logout.",
+        imageSrc: "/projects/script-doctor/10_history.png",
+        imageAlt: "Script Doctor history",
+        imageDescription: "Past scans are kept on the device so they can be checked again later.",
       },
     ],
   },
-  Astrix: {
+  "Quack Overflow": {
     imageGallery: [
       {
-        imageSrc: "/projects/astrix/ghost.svg",
-        imageAlt: "Astrix preview",
-        imageDescription:
-          "Add your Astrix screenshot and update this text to describe what the user is seeing.",
+        imageSrc: "/projects/quack-overflow/1-landing.png",
+        imageAlt: "Quack Overflow landing page",
+        imageDescription: "The landing page introducing Quack, the duck that only asks questions.",
+      },
+      {
+        imageSrc: "/projects/quack-overflow/2-debug-conversation.png",
+        imageAlt: "Debugging conversation",
+        imageDescription: "A debugging session: the code editor on one side and Quack's questions on the other.",
+      },
+      {
+        imageSrc: "/projects/quack-overflow/3-hint-level-3.png",
+        imageAlt: "Hint ladder level 3",
+        imageDescription: "At hint level 3 Quack highlights the exact line in the editor, but still never writes the fix.",
+      },
+      {
+        imageSrc: "/projects/quack-overflow/4-journal.png",
+        imageAlt: "Bug journal",
+        imageDescription: "The bug journal groups solved bugs by category and points out repeat mistakes.",
       },
     ],
   },
-  "Portfolio Y": {
+  "Astra": {
     imageGallery: [
       {
-        imageSrc: "/projects/portfolio-y/py_hero.png",
-        imageAlt: "Portfolio Y Hero",
-        imageDescription:
-          "The hero section of Portfolio Y, showcasing the designer's work and skills in a minimalist and visually appealing layout.",
+        imageSrc: "/projects/astra/desktop-sky.png",
+        imageAlt: "Astra night sky",
+        imageDescription: "A sample sky where journal entries form labelled constellations.",
       },
       {
-        imageSrc: "/projects/portfolio-y/py_project.png",
-        imageAlt: "Portfolio Y Projects",
-        imageDescription:
-          "The projects section of Portfolio Y, highlighting the designer's portfolio with clean aesthetics and intuitive navigation to effectively present their work and creative process.",
+        imageSrc: "/projects/astra/desktop-entry.png",
+        imageAlt: "Astra entry view",
+        imageDescription: "Opening a star shows the journal entry behind it.",
       },
       {
-        imageSrc: "/projects/portfolio-y/py-sample.png",
-        imageAlt: "Portfolio Y Sample",
-        imageDescription:
-          "A sample view of Portfolio Y, demonstrating the designer's approach to presenting their work and creative process.",
+        imageSrc: "/projects/astra/desktop-form.png",
+        imageAlt: "Astra new entry form",
+        imageDescription: "Writing a new entry: mood sets the colour, importance sets the brightness.",
       },
+    ],
+  },
+  "Flori": {
+    imageGallery: [
       {
-        imageSrc: "/projects/portfolio-y/py_exp.png",
-        imageAlt: "Portfolio Y Experience",
-        imageDescription:
-          "The experience section of Portfolio Y, showcasing the designer's professional background and key achievements in a clear and engaging manner.",
+        imageSrc: "/projects/flori/home.png",
+        imageAlt: "Flori home page",
+        imageDescription: "The garden: search 120 flowers by name, colour, or meaning.",
       },
     ],
   },
@@ -179,138 +172,6 @@ export const projectDetails: Partial<Record<ProjectTitle, ProjectDetail>> = {
       },
     ],
   },
-  "CICS Community": {
-    imageGallery: [
-      {
-        imageSrc: "/projects/cics-community/hero.png",
-        imageAlt: "CICS Community hero",
-        imageDescription:
-          "The hero section of the CICS Community platform, introducing the community GitHub for students and future members with a welcoming layout and clear call to action.",
-      },
-      {
-        imageSrc: "/projects/cics-community/about.png",
-        imageAlt: "CICS Community about",
-        imageDescription:
-          "The about section of the CICS Community platform, explaining the initiative to enhance and supply knowledge for students and professors through distributed source management and documentation.",
-      },
-      {
-        imageSrc: "/projects/cics-community/acad-program.png",
-        imageAlt: "CICS Community academic program",
-        imageDescription:
-          "The academic program section of the CICS Community platform, outlining the educational offerings and training programs available to members.",
-      },
-      {
-        imageSrc: "/projects/cics-community/announcement.png",
-        imageAlt: "CICS Community announcement",
-        imageDescription:
-          "The announcement section of the CICS Community platform, keeping members informed of the latest updates, events, and community news.",
-      },
-      {
-        imageSrc: "/projects/cics-community/call-card-to-fb-mail.png",
-        imageAlt: "CICS Community contact card",
-        imageDescription:
-          "A contact card in the CICS Community platform, providing ways for visitors to connect through Facebook and email.",
-      },
-      {
-        imageSrc: "/projects/cics-community/contributors.png",
-        imageAlt: "CICS Community contributors",
-        imageDescription:
-          "The contributors section of the CICS Community platform, recognizing the members and co-officers who help maintain and grow the community.",
-      },
-      {
-        imageSrc: "/projects/cics-community/github-repo.png",
-        imageAlt: "CICS Community GitHub repository",
-        imageDescription:
-          "The GitHub repository view of the CICS Community platform, showcasing the hosted documentation and source management resources for members.",
-      },
-      {
-        imageSrc: "/projects/cics-community/officers.png",
-        imageAlt: "CICS Community officers",
-        imageDescription:
-          "The officers section of the CICS Community platform, introducing the team of co-officers leading the community's knowledge-sharing initiatives.",
-      },
-      {
-        imageSrc: "/projects/cics-community/projects.png",
-        imageAlt: "CICS Community projects",
-        imageDescription:
-          "The projects section of the CICS Community platform, highlighting the collaborative projects and repositories maintained by the community.",
-      },
-      {
-        imageSrc: "/projects/cics-community/repos.png",
-        imageAlt: "CICS Community repositories",
-        imageDescription:
-          "The repositories listing of the CICS Community platform, giving members an overview of the available repositories and documentation.",
-      },
-      {
-        imageSrc: "/projects/cics-community/services.png",
-        imageAlt: "CICS Community services",
-        imageDescription:
-          "The services section of the CICS Community platform, describing the resources and support offered to students, professors, and future members.",
-      },
-    ],
-  },
-  "CICS Digital Showcase": {
-    imageGallery: [
-      {
-        imageSrc: "/projects/digital-showcase/home.png",
-        imageAlt: "CICS Digital Showcase home",
-        imageDescription:
-          "The home page of the CICS Digital Showcase, presenting student projects and achievements in a clean and organized layout.",
-      },
-      {
-        imageSrc: "/projects/digital-showcase/about.png",
-        imageAlt: "CICS Digital Showcase about",
-        imageDescription:
-          "The about section of the CICS Digital Showcase, explaining the purpose of the platform as a digital portfolio for students to present their work and foster recognition.",
-      },
-      {
-        imageSrc: "/projects/digital-showcase/code-example.png",
-        imageAlt: "CICS Digital Showcase code example",
-        imageDescription:
-          "A code example shown in the CICS Digital Showcase, demonstrating best practices in source management and documentation for students.",
-      },
-      {
-        imageSrc: "/projects/digital-showcase/git-commands.png",
-        imageAlt: "CICS Digital Showcase git commands",
-        imageDescription:
-          "A git commands reference in the CICS Digital Showcase, providing students with practical guidance for distributed source management.",
-      },
-      {
-        imageSrc: "/projects/digital-showcase/how-to-contribute.png",
-        imageAlt: "CICS Digital Showcase how to contribute",
-        imageDescription:
-          "The how-to-contribute section of the CICS Digital Showcase, guiding students and future members on how to share and contribute their projects.",
-      },
-    ],
-  },
-  "Fit Tech Client": {
-    imageGallery: [
-      {
-        imageSrc: "/projects/fit-tech-client/overview.png",
-        imageAlt: "Fit Tech Client overview",
-        imageDescription:
-          "The overview of Fit Tech Client, showcasing the virtual try-on interface for fitting clothes and exploring outfit combinations.",
-      },
-      {
-        imageSrc: "/projects/fit-tech-client/demo.png",
-        imageAlt: "Fit Tech Client demo",
-        imageDescription:
-          "A demo view of Fit Tech Client, demonstrating how users can try on clothing virtually and explore different outfit combinations.",
-      },
-      {
-        imageSrc: "/projects/fit-tech-client/uploading-photo.png",
-        imageAlt: "Fit Tech Client uploading photo",
-        imageDescription:
-          "The photo upload flow of Fit Tech Client, allowing users to submit clothing images or model photos to the virtual fitting experience.",
-      },
-      {
-        imageSrc: "/projects/fit-tech-client/export.png",
-        imageAlt: "Fit Tech Client export",
-        imageDescription:
-          "The export view of Fit Tech Client, letting users save or share their fitted outfit results.",
-      },
-    ],
-  },
   "Invoice Generator": {
     imageGallery: [
       {
@@ -351,75 +212,7 @@ export const projectDetails: Partial<Record<ProjectTitle, ProjectDetail>> = {
       },
     ],
   },
-  "Protect The Baby": {
-    imageGallery: [
-      {
-        imageSrc: "/projects/protect-the-baby/start-game.png",
-        imageAlt: "Protect The Baby start game",
-        imageDescription:
-          "The start screen of Protect The Baby, introducing the 2D arcade survival game where players defend Baby Shark from incoming threats.",
-      },
-      {
-        imageSrc: "/projects/protect-the-baby/demo-play.png",
-        imageAlt: "Protect The Baby gameplay",
-        imageDescription:
-          "A gameplay demo of Protect The Baby, showing the arcade-style survival action and responsive controls in motion.",
-      },
-      {
-        imageSrc: "/projects/protect-the-baby/level-selection.png",
-        imageAlt: "Protect The Baby level selection",
-        imageDescription:
-          "The level selection screen of Protect The Baby, allowing players to choose their desired challenge.",
-      },
-      {
-        imageSrc: "/projects/protect-the-baby/other-levels.png",
-        imageAlt: "Protect The Baby other levels",
-        imageDescription:
-          "The other levels view of Protect The Baby, showcasing additional stages and increasing difficulty options.",
-      },
-      {
-        imageSrc: "/projects/protect-the-baby/spawn-point-and-sharks.png",
-        imageAlt: "Protect The Baby spawn point and sharks",
-        imageDescription:
-          "A gameplay view of Protect The Baby highlighting the spawn point and incoming shark threats that players must fend off.",
-      },
-      {
-        imageSrc: "/projects/protect-the-baby/completed-level-card.png",
-        imageAlt: "Protect The Baby completed level card",
-        imageDescription:
-          "The completed level card of Protect The Baby, summarizing the player's performance after finishing a stage.",
-      },
-    ],
-  },
-  "Resume Analyzer": {
-    imageGallery: [
-      {
-        imageSrc: "/projects/resume-analyzer/overview.png",
-        imageAlt: "Resume Analyzer overview",
-        imageDescription:
-          "The overview of Resume Analyzer, showcasing the AI-powered tool for evaluating resumes against job descriptions.",
-      },
-      {
-        imageSrc: "/projects/resume-analyzer/input-card.png",
-        imageAlt: "Resume Analyzer input card",
-        imageDescription:
-          "The input card of Resume Analyzer, where users submit their resume and target job description for analysis.",
-      },
-      {
-        imageSrc: "/projects/resume-analyzer/analysis-output.png",
-        imageAlt: "Resume Analyzer analysis output",
-        imageDescription:
-          "The analysis output of Resume Analyzer, presenting ATS compatibility insights and role-specific skill gap detection.",
-      },
-      {
-        imageSrc: "/projects/resume-analyzer/sample-analysis.png",
-        imageAlt: "Resume Analyzer sample analysis",
-        imageDescription:
-          "A sample analysis result in Resume Analyzer, demonstrating actionable recommendations to improve candidate alignment with target roles.",
-      },
-    ],
-  },
-  "CV Builder": {
+  Workflow: {
     imageGallery: [
       {
         imageSrc: "/projects/cv-builder/overview.png",
@@ -456,6 +249,32 @@ export const projectDetails: Partial<Record<ProjectTitle, ProjectDetail>> = {
         imageAlt: "CV Builder exporting cv",
         imageDescription:
           "The exporting flow of CV Builder, demonstrating how users export their CV to PDF.",
+      },
+    
+
+      {
+        imageSrc: "/projects/resume-analyzer/overview.png",
+        imageAlt: "Resume Analyzer overview",
+        imageDescription:
+          "The overview of Resume Analyzer, showcasing the AI-powered tool for evaluating resumes against job descriptions.",
+      },
+      {
+        imageSrc: "/projects/resume-analyzer/input-card.png",
+        imageAlt: "Resume Analyzer input card",
+        imageDescription:
+          "The input card of Resume Analyzer, where users submit their resume and target job description for analysis.",
+      },
+      {
+        imageSrc: "/projects/resume-analyzer/analysis-output.png",
+        imageAlt: "Resume Analyzer analysis output",
+        imageDescription:
+          "The analysis output of Resume Analyzer, presenting ATS compatibility insights and role-specific skill gap detection.",
+      },
+      {
+        imageSrc: "/projects/resume-analyzer/sample-analysis.png",
+        imageAlt: "Resume Analyzer sample analysis",
+        imageDescription:
+          "A sample analysis result in Resume Analyzer, demonstrating actionable recommendations to improve candidate alignment with target roles.",
       },
     ],
   },

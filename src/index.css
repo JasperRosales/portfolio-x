@@ -103,7 +103,7 @@ button {
 }
 
 
-/* ---------- Neumorphic system (black & white) ---------- */
+/* ---------- Neumorphic system ---------- */
 :root {
   --clay: #e4e4e4;
   --clay-hi: #ffffff;
@@ -111,6 +111,9 @@ button {
   --ink: #000000;
   --ink-2: #2e2e2e;
   --ink-3: #5c5c5c;
+  /* Light direction: shadows fall toward (+sx, +sy). Updated from the pointer. */
+  --sx: 1;
+  --sy: 1;
   --font-display: "Bricolage Grotesque Variable", "Figtree Variable", sans-serif;
 }
 
@@ -131,63 +134,92 @@ button {
 }
 
 @layer components {
+  .nm, .nm-sm, .nm-lg, .nm-btn { background: var(--clay); }
   .nm {
-    background: var(--clay);
-    box-shadow: 9px 9px 20px var(--clay-lo), -9px -9px 20px var(--clay-hi);
+    box-shadow: calc(9px * var(--sx)) calc(9px * var(--sy)) 20px var(--clay-lo),
+      calc(-9px * var(--sx)) calc(-9px * var(--sy)) 20px var(--clay-hi);
   }
   .nm-sm {
-    background: var(--clay);
-    box-shadow: 4px 4px 9px var(--clay-lo), -4px -4px 9px var(--clay-hi);
+    box-shadow: calc(4px * var(--sx)) calc(4px * var(--sy)) 9px var(--clay-lo),
+      calc(-4px * var(--sx)) calc(-4px * var(--sy)) 9px var(--clay-hi);
   }
   .nm-lg {
-    background: var(--clay);
-    box-shadow: 18px 18px 40px var(--clay-lo), -18px -18px 40px var(--clay-hi);
+    box-shadow: calc(18px * var(--sx)) calc(18px * var(--sy)) 40px var(--clay-lo),
+      calc(-18px * var(--sx)) calc(-18px * var(--sy)) 40px var(--clay-hi);
   }
   .nm-in {
     background: var(--clay);
-    box-shadow: inset 6px 6px 12px var(--clay-lo), inset -6px -6px 12px var(--clay-hi);
+    box-shadow: inset calc(6px * var(--sx)) calc(6px * var(--sy)) 12px var(--clay-lo),
+      inset calc(-6px * var(--sx)) calc(-6px * var(--sy)) 12px var(--clay-hi);
   }
   .nm-in-sm {
     background: var(--clay);
-    box-shadow: inset 3px 3px 6px var(--clay-lo), inset -3px -3px 6px var(--clay-hi);
+    box-shadow: inset calc(3px * var(--sx)) calc(3px * var(--sy)) 6px var(--clay-lo),
+      inset calc(-3px * var(--sx)) calc(-3px * var(--sy)) 6px var(--clay-hi);
   }
-  /* Raised control that presses into the surface */
   .nm-btn {
-    background: var(--clay);
     color: var(--ink);
-    box-shadow: 5px 5px 11px var(--clay-lo), -5px -5px 11px var(--clay-hi);
+    box-shadow: calc(5px * var(--sx)) calc(5px * var(--sy)) 11px var(--clay-lo),
+      calc(-5px * var(--sx)) calc(-5px * var(--sy)) 11px var(--clay-hi);
     transition: box-shadow 180ms ease, transform 180ms ease;
   }
-  .nm-btn:hover { box-shadow: 7px 7px 14px var(--clay-lo), -7px -7px 14px var(--clay-hi); }
+  .nm-btn:hover { transform: translateY(-1px); }
   .nm-btn:active,
   .nm-btn[aria-pressed="true"] {
+    transform: none;
     box-shadow: inset 4px 4px 8px var(--clay-lo), inset -4px -4px 8px var(--clay-hi);
   }
-  /* Solid black key, lit from the top-left */
   .nm-ink {
     background: linear-gradient(145deg, #2a2a2a, #000);
     color: #fff;
-    box-shadow: 6px 6px 14px var(--clay-lo), -6px -6px 14px var(--clay-hi),
+    box-shadow: calc(6px * var(--sx)) calc(6px * var(--sy)) 14px var(--clay-lo),
+      calc(-6px * var(--sx)) calc(-6px * var(--sy)) 14px var(--clay-hi),
       inset 1px 1px 0 rgba(255, 255, 255, 0.18);
-    transition: box-shadow 180ms ease;
+    transition: box-shadow 180ms ease, transform 180ms ease;
   }
-  .nm-ink:active {
-    box-shadow: inset 4px 4px 10px #000, inset -2px -2px 6px #3a3a3a;
-  }
-  /* Letters pressed into the clay */
+  .nm-ink:hover { transform: translateY(-1px); }
+  .nm-ink:active { transform: none; box-shadow: inset 4px 4px 10px #000, inset -2px -2px 6px #3a3a3a; }
   .deboss {
     color: var(--clay);
-    text-shadow: -2px -2px 1px #a9a9a9, 3px 3px 2px var(--clay-hi),
-      -1px -1px 0 rgba(0, 0, 0, 0.35);
+    text-shadow: calc(-2px * var(--sx)) calc(-2px * var(--sy)) 1px #a9a9a9,
+      calc(3px * var(--sx)) calc(3px * var(--sy)) 2px var(--clay-hi),
+      calc(-1px * var(--sx)) calc(-1px * var(--sy)) 0 rgba(0, 0, 0, 0.35);
   }
-  /* Letters raised out of the clay */
   .emboss {
     color: var(--ink);
-    text-shadow: 3px 3px 6px var(--clay-lo), -2px -2px 4px var(--clay-hi);
+    text-shadow: calc(3px * var(--sx)) calc(3px * var(--sy)) 6px var(--clay-lo),
+      calc(-2px * var(--sx)) calc(-2px * var(--sy)) 4px var(--clay-hi);
+  }
+  /* Colour glow that bleeds out of a key, tinted per item via --tint */
+  .glow {
+    box-shadow: 0 10px 30px -8px color-mix(in srgb, var(--tint) 70%, transparent),
+      inset 1px 1px 0 rgba(255, 255, 255, 0.35);
   }
 }
 
+@keyframes marquee { to { transform: translateX(-50%); } }
+.marquee { animation: marquee 38s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 40s linear infinite; }
+.spin-rev { animation: spin-slow 26s linear infinite reverse; }
+
+@keyframes bob { 50% { transform: translateY(-10px); } }
+.bob { animation: bob 5s ease-in-out infinite; }
+.bob-late { animation: bob 6s ease-in-out -2.5s infinite; }
+
+@keyframes ping-soft { 0% { transform: scale(1); opacity: .7 } 100% { transform: scale(2.6); opacity: 0 } }
+.ping-soft { animation: ping-soft 1.8s cubic-bezier(0, 0, .2, 1) infinite; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+  *, *::before, *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
