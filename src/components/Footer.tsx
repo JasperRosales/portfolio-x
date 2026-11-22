@@ -2,12 +2,10 @@ import { socialLinks } from "@/data/contact";
 
 export default function Footer() {
   return (
-    <footer className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 border-t border-[#e5e5e5]/50 mt-16 md:mt-24">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <p className="text-sm text-muted-foreground">
-          Improving technology and businesses with reliable digital systems
-        </p>
-        <div className="flex gap-4">
+    <footer className="max-w-6xl mx-auto px-5 sm:px-8 pb-10">
+      <div className="nm-in rounded-full px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p className="text-sm text-[var(--ink-3)]">© {new Date().getFullYear()} Jasper Rosales</p>
+        <div className="flex gap-3">
           {socialLinks.map((link) => (
             <a
               key={link.label}
@@ -15,7 +13,7 @@ export default function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="text-muted-foreground hover:text-foreground transition-colors"
+              className="nm-btn grid place-items-center w-10 h-10 rounded-full"
             >
               {link.icon}
             </a>

@@ -17,7 +17,7 @@ export default defineConfig({
           "react-vendor": ["react", "react-dom"],
           "motion-vendor": ["framer-motion", "motion"],
           "icons-vendor": ["@heroicons/react", "lucide-react", "react-icons", "@tabler/icons-react"],
-          "three-vendor": ["three", "ogl"],
+          "three-vendor": ["ogl"],
           "shiki-vendor": ["shiki"],
         },
       },

@@ -1,57 +1,48 @@
-import { motion } from "framer-motion";
 import { certificates } from "@/data/certificates";
 import { keyAchievements } from "@/data/achievements";
+import SectionHeading from "@/components/SectionHeading";
 
 export default function CertsAndAchievements() {
   return (
-    <section
-      id="achievements"
-      className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 scroll-mt-16"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold">
-          Certifications & <span className="text-primary">Recognitions</span>
-        </h2>
+    <section id="achievements" className="max-w-6xl mx-auto px-5 sm:px-8 py-20 md:py-28 scroll-mt-20">
+      <SectionHeading title="Recognitions" lead="Certifications earned and moments I'm proud of." />
 
-        <h3 className="text-2xl font-semibold mt-10 mb-4">Certificates</h3>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-          {certificates.map((cert, i) => (
-            <motion.div
-              key={cert.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-              className="bg-card border border-[#e5e5e5] rounded-xl p-5 hover:border-primary/50 transition-colors"
-            >
-              <div className="text-primary text-xl shrink-0 mb-3">{cert.icon}</div>
-              <h3 className="text-lg font-semibold">{cert.name}</h3>
-              <p className="text-primary text-sm font-medium">{cert.issuer}</p>
-              <p className="text-muted-foreground text-sm mt-1">{cert.description}</p>
-            </motion.div>
-          ))}
+      <div className="grid lg:grid-cols-[1fr_1.1fr] gap-8 lg:gap-10 items-start">
+        <div>
+          <h3 className="text-2xl font-bold mb-6">Certificates</h3>
+          <div className="grid sm:grid-cols-2 gap-5">
+            {certificates.map((cert) => (
+              <div key={cert.id} className="nm rounded-[28px] p-5">
+                <div className="flex items-center gap-3">
+                  <div className="nm-in-sm w-11 h-11 rounded-full grid place-items-center text-black text-lg shrink-0">
+                    {cert.icon}
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-display font-bold text-black leading-tight">{cert.name}</p>
+                    <p className="text-sm text-[var(--ink-3)]">{cert.issuer}</p>
+                  </div>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-[var(--ink-3)]">{cert.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <h3 className="text-2xl font-semibold mt-12 mb-4">Key Achievements</h3>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
-          {keyAchievements.map((achievement, i) => (
-            <motion.div
-              key={achievement.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.05 }}
-              className="bg-card border border-[#e5e5e5] rounded-xl p-5 hover:border-primary/50 transition-colors"
-            >
-              <div className="text-primary text-xl shrink-0 mb-3">{achievement.icon}</div>
-              <h3 className="text-lg font-semibold">{achievement.title}</h3>
-              <p className="text-muted-foreground text-sm mt-2">{achievement.description}</p>
-            </motion.div>
-          ))}
+        <div className="nm-in rounded-[36px] p-4 sm:p-6">
+          <h3 className="text-2xl font-bold px-2 pt-1 mb-5">Key achievements</h3>
+          <ul className="grid gap-4">
+            {keyAchievements.map((a) => (
+              <li key={a.title} className="nm-sm rounded-3xl p-5 flex gap-4">
+                <div className="nm-ink w-11 h-11 rounded-full grid place-items-center text-lg shrink-0">{a.icon}</div>
+                <div>
+                  <p className="font-display font-bold text-lg text-black leading-snug">{a.title}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-[var(--ink-3)]">{a.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }

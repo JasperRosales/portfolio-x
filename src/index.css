@@ -2,6 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/figtree";
+@import "@fontsource-variable/bricolage-grotesque";
 
 html {
   scroll-behavior: smooth;
@@ -102,50 +103,91 @@ button {
 }
 
 
+/* ---------- Neumorphic system (black & white) ---------- */
+:root {
+  --clay: #e4e4e4;
+  --clay-hi: #ffffff;
+  --clay-lo: #b9b9b9;
+  --ink: #000000;
+  --ink-2: #2e2e2e;
+  --ink-3: #5c5c5c;
+  --font-display: "Bricolage Grotesque Variable", "Figtree Variable", sans-serif;
+}
+
+@theme inline {
+  --font-display: var(--font-display);
+  --font-sans: "Figtree Variable", system-ui, sans-serif;
+}
+
 @layer base {
   html {
-    @apply font-mono text-[#635959];
+    background: var(--clay);
+    color: var(--ink-2);
+    font-family: "Figtree Variable", system-ui, sans-serif;
+  }
+  ::selection { background: var(--ink); color: var(--clay); }
+  :focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+  h1, h2, h3, h4 { color: var(--ink); font-family: var(--font-display); }
+}
+
+@layer components {
+  .nm {
+    background: var(--clay);
+    box-shadow: 9px 9px 20px var(--clay-lo), -9px -9px 20px var(--clay-hi);
+  }
+  .nm-sm {
+    background: var(--clay);
+    box-shadow: 4px 4px 9px var(--clay-lo), -4px -4px 9px var(--clay-hi);
+  }
+  .nm-lg {
+    background: var(--clay);
+    box-shadow: 18px 18px 40px var(--clay-lo), -18px -18px 40px var(--clay-hi);
+  }
+  .nm-in {
+    background: var(--clay);
+    box-shadow: inset 6px 6px 12px var(--clay-lo), inset -6px -6px 12px var(--clay-hi);
+  }
+  .nm-in-sm {
+    background: var(--clay);
+    box-shadow: inset 3px 3px 6px var(--clay-lo), inset -3px -3px 6px var(--clay-hi);
+  }
+  /* Raised control that presses into the surface */
+  .nm-btn {
+    background: var(--clay);
+    color: var(--ink);
+    box-shadow: 5px 5px 11px var(--clay-lo), -5px -5px 11px var(--clay-hi);
+    transition: box-shadow 180ms ease, transform 180ms ease;
+  }
+  .nm-btn:hover { box-shadow: 7px 7px 14px var(--clay-lo), -7px -7px 14px var(--clay-hi); }
+  .nm-btn:active,
+  .nm-btn[aria-pressed="true"] {
+    box-shadow: inset 4px 4px 8px var(--clay-lo), inset -4px -4px 8px var(--clay-hi);
+  }
+  /* Solid black key, lit from the top-left */
+  .nm-ink {
+    background: linear-gradient(145deg, #2a2a2a, #000);
+    color: #fff;
+    box-shadow: 6px 6px 14px var(--clay-lo), -6px -6px 14px var(--clay-hi),
+      inset 1px 1px 0 rgba(255, 255, 255, 0.18);
+    transition: box-shadow 180ms ease;
+  }
+  .nm-ink:active {
+    box-shadow: inset 4px 4px 10px #000, inset -2px -2px 6px #3a3a3a;
+  }
+  /* Letters pressed into the clay */
+  .deboss {
+    color: var(--clay);
+    text-shadow: -2px -2px 1px #a9a9a9, 3px 3px 2px var(--clay-hi),
+      -1px -1px 0 rgba(0, 0, 0, 0.35);
+  }
+  /* Letters raised out of the clay */
+  .emboss {
+    color: var(--ink);
+    text-shadow: 3px 3px 6px var(--clay-lo), -2px -2px 4px var(--clay-hi);
   }
 }
 
-/* Glassmorphism utility */
-@layer utilities {
-  .glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20 shadow-lg;
-  }
-  
-  .glass-dark {
-    @apply bg-black/20 backdrop-blur-md border border-white/10 shadow-lg;
-  }
-
-  /* GPU acceleration for animations */
-  .will-change-transform {
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-
-  .shine-effect {
-    background: linear-gradient(
-      120deg,
-      transparent 0%,
-      transparent 40%,
-      rgba(255, 255, 255, 0.15) 45%,
-      rgba(255, 255, 255, 0.25) 50%,
-      rgba(255, 255, 255, 0.15) 55%,
-      transparent 60%,
-      transparent 100%
-    );
-    animation: shine 8s ease-in-out infinite;
-  }
-
-  @keyframes shine {
-    0%, 100% {
-      transform: translateX(-100%);
-    }
-    20%, 80% {
-      transform: translateX(100%);
-    }
-  }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
 }
-

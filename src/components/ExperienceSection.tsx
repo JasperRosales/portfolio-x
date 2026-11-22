@@ -1,108 +1,78 @@
-import { motion } from "framer-motion";
-import {
-  workExperience,
-  otherExperience,
-  education,
-  type Experience,
-} from "@/data/experience";
+import { workExperience, otherExperience, education } from "@/data/experience";
+import SectionHeading from "@/components/SectionHeading";
 
-interface TimelineItemProps {
+interface Entry {
+  key: string;
   date?: string;
   title: string;
   subtitle?: string;
   location?: string;
-  achievements: string[];
+  points: string[];
 }
 
-function TimelineItem({ date, title, subtitle, location, achievements }: TimelineItemProps) {
+function Timeline({ heading, entries }: { heading: string; entries: Entry[] }) {
+  if (!entries.length) return null;
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      className="relative pl-12"
-    >
-      <div className="absolute left-5 top-8 bottom-0 w-0.5 bg-black/30" />
-      <div className="absolute left-4 w-3 top-5 h-3 rounded-full ring-2 opacity-65 z-10" />
-
-      <div className="bg-card border border-[#e5e5e5] rounded-lg p-6">
-        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-3">
-          <div>
-            <h3 className="text-lg font-semibold">{title}</h3>
-            {subtitle && <p className="text-primary text-xs">{subtitle}</p>}
-          </div>
-          {date && (
-            <span className="text-xs text-muted-foreground mt-2 sm:mt-0">{date}</span>
-          )}
-        </div>
-        {location && (
-          <div className="text-sm text-muted-foreground mb-4">{location}</div>
-        )}
-        <ul className="space-y-2 mb-4">
-          {achievements.map((achievement, i) => (
-            <li
-              key={i}
-              className="flex items-start text-sm text-justify gap-2 text-muted-foreground"
-            >
-              <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0" />
-              {achievement}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </motion.div>
+    <div className="mt-14 first:mt-0">
+      <h3 className="text-2xl font-bold mb-8">{heading}</h3>
+      <ol className="relative pl-10 sm:pl-14">
+        <span aria-hidden className="nm-in-sm absolute left-[9px] sm:left-[15px] top-2 bottom-2 w-2.5 rounded-full" />
+        {entries.map((e) => (
+          <li key={e.key} className="relative pb-8 last:pb-0">
+            <span aria-hidden className="nm-sm absolute -left-10 sm:-left-14 top-6 w-7 h-7 sm:w-10 sm:h-10 rounded-full grid place-items-center">
+              <span className="w-2.5 h-2.5 rounded-full bg-black" />
+            </span>
+            <article className="nm rounded-[28px] p-6 sm:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                <div>
+                  <h4 className="text-xl font-bold leading-tight">{e.title}</h4>
+                  {e.subtitle && <p className="mt-1 text-[var(--ink-2)] font-medium">{e.subtitle}</p>}
+                  {e.location && <p className="text-sm text-[var(--ink-3)]">{e.location}</p>}
+                </div>
+                {e.date && (
+                  <span className="nm-in-sm self-start shrink-0 rounded-full px-3.5 py-1.5 text-xs font-semibold text-black">
+                    {e.date}
+                  </span>
+                )}
+              </div>
+              {e.points.length > 0 && (
+                <ul className="mt-5 grid gap-2.5">
+                  {e.points.map((p, i) => (
+                    <li key={i} className="flex gap-3 text-[15px] leading-relaxed text-[var(--ink-3)]">
+                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-black shrink-0" />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </article>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }
 
-function renderExperience(items: Experience[], keyPrefix: string) {
-  return items.map((job) => (
-    <TimelineItem
-      key={`${keyPrefix}-${job.title}-${job.date}`}
-      date={job.date}
-      title={job.title}
-      subtitle={job.subtitle}
-      location={job.location}
-      achievements={job.achievements}
-    />
-  ));
-}
-
 export default function ExperienceSection() {
+  const toEntries = (list: typeof workExperience, prefix: string): Entry[] =>
+    list.map((j) => ({ key: `${prefix}-${j.title}-${j.date}`, date: j.date, title: j.title, subtitle: j.subtitle, location: j.location, points: j.achievements }));
+
   return (
-    <section
-      id="experience"
-      className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 scroll-mt-16"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold">
-          My <span className="text-primary">Experience & Education</span>
-        </h2>
-
-        <h3 className="text-2xl font-semibold mt-10 mb-4">Professional Experience</h3>
-        <div className="space-y-8">{renderExperience(workExperience, "work")}</div>
-
-        <h3 className="text-2xl font-semibold mt-12 mb-4">
-          Other Experience
-        </h3>
-        <div className="space-y-8">{renderExperience(otherExperience, "other")}</div>
-
-        <h3 className="text-2xl font-semibold mt-12 mb-4">Education</h3>
-        <div className="space-y-8">
-          {education.map((edu) => (
-            <TimelineItem
-              key={edu.institution + edu.period}
-              title={edu.institution}
-              subtitle={edu.degree}
-              date={edu.period}
-              location={edu.location}
-              achievements={edu.achievements ?? []}
-            />
-          ))}
-        </div>
-      </motion.div>
+    <section id="experience" className="max-w-4xl mx-auto px-5 sm:px-8 py-20 md:py-28 scroll-mt-20">
+      <SectionHeading title="Experience" lead="Client work, leadership roles, and where I studied." />
+      <Timeline heading="Professional" entries={toEntries(workExperience, "work")} />
+      <Timeline heading="Leadership and organizations" entries={toEntries(otherExperience, "other")} />
+      <Timeline
+        heading="Education"
+        entries={education.map((ed) => ({
+          key: ed.institution + ed.period,
+          date: ed.period,
+          title: ed.institution,
+          subtitle: ed.degree,
+          location: ed.location,
+          points: ed.achievements ?? [],
+        }))}
+      />
     </section>
   );
 }

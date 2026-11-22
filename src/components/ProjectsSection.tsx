@@ -1,277 +1,237 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaGithub, FaExternalLinkAlt, FaTimes } from "react-icons/fa";
+import { Github, ExternalLink, X, FolderCode } from "lucide-react";
 import { projects, type Project } from "@/data/projects";
 import { projectDetails, type ProjectImageDetail } from "@/data/project-details";
+import SectionHeading from "@/components/SectionHeading";
 
-// Reframed as the business/technology area each project improves.
 const areaByCategory: Record<string, string> = {
-  "Community Platform": "Community Building",
-  "Software Solution": "Business Operations",
-  "Organizational Tool": "Business Operations",
-  "Business Tool": "Business Improvement",
-  "Productivity Tool": "Business Productivity",
-  "Web Application": "Business Services",
-  "Web Application / AI": "Business Services",
-  "Game Application": "User Engagement",
-  "Learning / Blockchain": "Education & Innovation",
-  "Learning / Infrastructure": "Operational Learning",
-  "Learning / Messaging": "Operational Learning",
-  "Learning / App Prototype": "Product Exploration",
-  "Fashion Technology": "Business Growth",
-  "Fun App": "Business Growth",
+  "Community Platform": "Community building",
+  "Software Solution": "Business operations",
+  "Organizational Tool": "Business operations",
+  "Business Tool": "Business improvement",
+  "Productivity Tool": "Productivity",
+  "Web Application": "Business services",
+  "Web Application / AI": "AI services",
+  "Game Application": "User engagement",
+  "Learning / Blockchain": "Blockchain",
+  "Learning / Infrastructure": "Infrastructure",
+  "Learning / Messaging": "Messaging",
+  "Learning / App Prototype": "Prototype",
+  "Fashion Technology": "Fashion tech",
+  "Fun App": "Experiment",
 };
 
-function isRealUrl(value: string | undefined): value is string {
-  return !!value && value.startsWith("http");
-}
+const filters = [
+  { id: "all", label: "All" },
+  { id: "application", label: "Products" },
+  { id: "education", label: "Practice" },
+] as const;
+type FilterId = (typeof filters)[number]["id"];
 
-interface ProjectCardProps {
-  project: Project;
-  area: string;
-  index: number;
-  onSelect: () => void;
-}
+const isRealUrl = (v?: string): v is string => !!v && v.startsWith("http");
 
-function ProjectCard({ project, area, index, onSelect }: ProjectCardProps) {
+function LinkKey({ href, children, ink }: { href: string; children: React.ReactNode; ink?: boolean }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: index * 0.05 }}
-      onClick={onSelect}
-      className="bg-[#ffffff] border border-[#e5e5e5] rounded-xl p-6 cursor-pointer hover:border-primary/50 transition-all duration-300 group"
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={(e) => e.stopPropagation()}
+      className={`${ink ? "nm-ink" : "nm-btn"} inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold`}
     >
-      <h3 className="text-lg font-semibold group-hover:text-primary transition-colors leading-snug">
-        {project.title}
+      {children}
+    </a>
+  );
+}
+
+function ProjectCard({ project, onSelect }: { project: Project; onSelect: () => void }) {
+  const Icon = project.icon ?? FolderCode;
+  return (
+    <article className="nm rounded-[30px] p-6 flex flex-col">
+      <div className="flex items-start justify-between gap-4">
+        <div className="nm-in w-14 h-14 rounded-2xl grid place-items-center text-black text-xl shrink-0">
+          <Icon />
+        </div>
+        <span className="nm-in-sm rounded-full px-3 py-1.5 text-xs font-semibold text-[var(--ink-2)]">
+          {areaByCategory[project.category] ?? project.category}
+        </span>
+      </div>
+      <h3 className="mt-6 text-2xl font-bold tracking-tight leading-tight">
+        <button type="button" onClick={onSelect} className="text-left hover:underline underline-offset-4 decoration-2">
+          {project.title}
+        </button>
       </h3>
-      <span className="inline-flex w-fit max-w-full rounded-full bg-primary/10 px-2.5 py-1 mt-3 text-xs font-medium leading-none text-primary">
-        {area}
-      </span>
-      <p className="text-muted-foreground text-sm mt-4 line-clamp-3">
-        {project.description}
-      </p>
-      <div className="mt-5 flex gap-3 flex-wrap">
-        {isRealUrl(project.githubUrl) && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-2 px-3 py-2 border border-[#e5e5e5] rounded-lg text-sm hover:bg-muted transition-colors"
-          >
-            <FaGithub className="w-4 h-4" />
-            View Code
-          </a>
-        )}
+      <p className="mt-3 text-[15px] leading-relaxed text-[var(--ink-3)] line-clamp-3">{project.description}</p>
+      <div className="mt-auto pt-6 flex flex-wrap gap-3">
+        <button type="button" onClick={onSelect} className="nm-btn rounded-full px-4 py-2 text-sm font-semibold">
+          Details
+        </button>
         {isRealUrl(project.liveUrl) && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="inline-flex items-center gap-2 px-3 py-2 border border-[#e5e5e5] rounded-lg text-sm hover:bg-muted transition-colors"
-          >
-            <FaExternalLinkAlt className="w-4 h-4" />
-            Live Demo
-          </a>
+          <LinkKey href={project.liveUrl} ink>
+            <ExternalLink size={15} /> Live
+          </LinkKey>
+        )}
+        {isRealUrl(project.githubUrl) && (
+          <LinkKey href={project.githubUrl}>
+            <Github size={15} /> Code
+          </LinkKey>
         )}
       </div>
+    </article>
+  );
+}
+
+function ImageViewer({ image, onClose }: { image: ProjectImageDetail; onClose: () => void }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-[70] grid place-items-center bg-black/90 p-4"
+      onClick={onClose}
+    >
+      <button type="button" onClick={onClose} aria-label="Close image" className="absolute top-4 right-4 w-11 h-11 grid place-items-center rounded-full bg-white text-black">
+        <X size={18} />
+      </button>
+      <figure className="max-w-[95vw] flex flex-col items-center gap-3" onClick={(e) => e.stopPropagation()}>
+        <img src={image.imageSrc} alt={image.imageAlt} className="max-h-[82vh] w-auto max-w-full object-contain rounded-xl" />
+        <figcaption className="text-sm text-neutral-300 text-center max-w-3xl">{image.imageDescription}</figcaption>
+      </figure>
     </motion.div>
   );
 }
 
-function FullscreenImageModal({
-  image,
-  onClose,
-}: {
-  image: ProjectImageDetail | null;
-  onClose: () => void;
-}) {
-  if (!image) return null;
-  return (
-    <AnimatePresence>
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        className="fixed inset-0 z-[60] flex items-center justify-center bg-black/90 p-4"
-        onClick={onClose}
-      >
-        <motion.div
-          initial={{ scale: 0.96, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          exit={{ scale: 0.96, opacity: 0 }}
-          className="relative max-w-[95vw] w-full flex flex-col items-center gap-3"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <button
-            type="button"
-            onClick={onClose}
-            className="absolute top-2 right-2 z-10 p-2 rounded-full bg-black/60 text-white hover:bg-black/80 transition-colors"
-            aria-label="Close fullscreen image"
-          >
-            <FaTimes />
-          </button>
-          <img
-            src={image.imageSrc}
-            alt={image.imageAlt}
-            className="max-h-[85vh] w-auto max-w-full object-contain"
-          />
-          <p className="text-sm text-neutral-200 text-center max-w-3xl">
-            {image.imageDescription}
-          </p>
-        </motion.div>
-      </motion.div>
-    </AnimatePresence>
-  );
-}
-
 export default function ProjectsSection() {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [fullscreenImage, setFullscreenImage] = useState<ProjectImageDetail | null>(null);
+  const [filter, setFilter] = useState<FilterId>("all");
+  const [selected, setSelected] = useState<Project | null>(null);
+  const [image, setImage] = useState<ProjectImageDetail | null>(null);
 
-  const closeModal = () => {
-    setSelectedProject(null);
-    setFullscreenImage(null);
-  };
+  const visible = projects.filter((p) => filter === "all" || p.type === filter);
+  const details = selected ? projectDetails[selected.title] : undefined;
 
-  const selectedDetails = selectedProject
-    ? projectDetails[selectedProject.title]
-    : undefined;
+  useEffect(() => {
+    if (!selected) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      if (image) setImage(null);
+      else setSelected(null);
+    };
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [selected, image]);
 
   return (
-    <section
-      id="projects"
-      className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 scroll-mt-16"
-    >
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold">
-          Improvements & <span className="text-primary">Projects</span>
-        </h2>
-        <p className="text-muted-foreground mt-4 mb-8 max-w-2xl">
-          Products and projects built to solve real problems for companies
-          and people.
-        </p>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={project.title}
-              project={project}
-              area={areaByCategory[project.category] ?? project.category}
-              index={index}
-              onSelect={() => setSelectedProject(project)}
-            />
-          ))}
+    <section id="projects" className="max-w-6xl mx-auto px-5 sm:px-8 py-20 md:py-28 scroll-mt-20">
+      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10 md:mb-14">
+        <div className="[&>div]:mb-0">
+          <SectionHeading title="Projects" lead="Products built for real companies and communities, plus the practice work behind them." />
         </div>
-      </motion.div>
+        <div role="group" aria-label="Filter projects" className="nm-in self-start md:self-end rounded-full p-1.5 flex gap-1.5">
+          {filters.map((f) => {
+            const active = filter === f.id;
+            return (
+              <button
+                key={f.id}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setFilter(f.id)}
+                className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200 ${
+                  active ? "nm-ink" : "text-[var(--ink-3)] hover:text-black"
+                }`}
+              >
+                {f.label}
+              </button>
+            );
+          })}
+        </div>
+      </div>
 
-      {/* Project detail modal */}
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-7">
+        {visible.map((p) => (
+          <ProjectCard key={p.title} project={p} onSelect={() => setSelected(p)} />
+        ))}
+      </div>
+
       <AnimatePresence>
-        {selectedProject && (
+        {selected && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm"
-            onClick={closeModal}
+            className="fixed inset-0 z-[60] grid place-items-center p-3 sm:p-6 bg-[var(--clay)]/85 backdrop-blur-sm"
+            onClick={() => setSelected(null)}
           >
             <motion.div
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
+              role="dialog"
+              aria-modal="true"
+              aria-label={selected.title}
+              initial={{ y: 24, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 24, opacity: 0 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-[#ffffff] border border-[#e5e5e5] rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              className="nm-lg rounded-[36px] max-w-3xl w-full max-h-[90vh] overflow-y-auto"
             >
-              <div className="sticky top-0 bg-[#ffffff] p-4 border-b border-[#e5e5e5] flex items-start justify-between gap-3">
-                <h3 className="text-xl font-semibold leading-snug">
-                  {selectedProject.title}
-                </h3>
-                <button
-                  onClick={closeModal}
-                  className="p-2 hover:bg-muted rounded-full transition-colors"
-                  aria-label="Close project details"
-                >
-                  <FaTimes />
+              <div className="sticky top-0 z-10 bg-[var(--clay)] px-6 sm:px-8 pt-6 pb-4 flex items-start justify-between gap-4">
+                <div>
+                  <span className="nm-in-sm inline-block rounded-full px-3 py-1.5 text-xs font-semibold">
+                    {areaByCategory[selected.category] ?? selected.category}
+                  </span>
+                  <h3 className="mt-3 text-3xl sm:text-4xl font-extrabold tracking-tight leading-none">{selected.title}</h3>
+                </div>
+                <button type="button" onClick={() => setSelected(null)} aria-label="Close project details" className="nm-btn w-11 h-11 shrink-0 rounded-full grid place-items-center">
+                  <X size={18} />
                 </button>
               </div>
-              <div className="p-6">
-                <p className="text-muted-foreground text-justify mb-6">
-                  {selectedProject.fullDescription}
-                </p>
 
-                {selectedDetails?.imageGallery.length ? (
-                  <div className="mb-6">
-                    <h4 className="font-semibold mb-3">Project Images</h4>
-                    <div className="grid gap-4 sm:grid-cols-2">
-                      {selectedDetails.imageGallery.map((image) => (
-                        <div
-                          key={`${selectedProject.title}-${image.imageSrc}`}
-                          className="rounded-lg border border-[#e5e5e5] overflow-hidden bg-background"
-                        >
-                          <button
-                            type="button"
-                            onClick={() => setFullscreenImage(image)}
-                            className="w-full cursor-zoom-in"
-                          >
-                            <img
-                              src={image.imageSrc}
-                              alt={image.imageAlt}
-                              className="w-full h-44 object-cover"
-                              loading="lazy"
-                            />
-                          </button>
-                          <p className="p-3 text-sm text-justify text-muted-foreground">
-                            {image.imageDescription}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
+              <div className="px-6 sm:px-8 pb-8">
+                <p className="text-[var(--ink-2)] leading-relaxed">{selected.fullDescription}</p>
+
+                {details?.imageGallery.length ? (
+                  <div className="mt-8 grid sm:grid-cols-2 gap-5">
+                    {details.imageGallery.map((img) => (
+                      <figure key={img.imageSrc} className="nm-in rounded-3xl p-2.5">
+                        <button type="button" onClick={() => setImage(img)} className="block w-full cursor-zoom-in" aria-label={`Enlarge: ${img.imageAlt}`}>
+                          <img src={img.imageSrc} alt={img.imageAlt} loading="lazy" className="w-full h-44 object-cover rounded-[18px]" />
+                        </button>
+                        <figcaption className="p-3 text-sm leading-relaxed text-[var(--ink-3)]">{img.imageDescription}</figcaption>
+                      </figure>
+                    ))}
                   </div>
                 ) : null}
 
-                <div className="mb-6">
-                  <h4 className="font-semibold mb-3">What It Delivers</h4>
-                  <ul className="space-y-2">
-                    {selectedProject.features.map((feature, i) => (
-                      <li
-                        key={i}
-                        className="flex items-start gap-2 text-muted-foreground"
-                      >
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <h4 className="mt-8 text-xl font-bold">What it does</h4>
+                <ul className="mt-4 grid gap-2.5">
+                  {selected.features.map((f, i) => (
+                    <li key={i} className="flex gap-3 text-[var(--ink-3)] leading-relaxed">
+                      <span className="mt-2.5 w-1.5 h-1.5 rounded-full bg-black shrink-0" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
 
-                <div className="flex gap-4 flex-wrap">
-                  {isRealUrl(selectedProject.githubUrl) && (
-                    <a
-                      href={selectedProject.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors"
-                    >
-                      <FaGithub />
-                      View Code
-                    </a>
+                {selected.techStack.length > 0 && (
+                  <div className="mt-8 flex flex-wrap gap-2.5">
+                    {selected.techStack.map((t) => (
+                      <span key={t} className="nm-sm rounded-full px-3.5 py-1.5 text-sm font-medium text-black">{t}</span>
+                    ))}
+                  </div>
+                )}
+
+                <div className="mt-8 flex flex-wrap gap-4">
+                  {isRealUrl(selected.liveUrl) && (
+                    <LinkKey href={selected.liveUrl} ink>
+                      <ExternalLink size={16} /> Open live site
+                    </LinkKey>
                   )}
-                  {isRealUrl(selectedProject.liveUrl) && (
-                    <a
-                      href={selectedProject.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 border border-[#e5e5e5] rounded-lg hover:bg-muted transition-colors"
-                    >
-                      <FaExternalLinkAlt />
-                      Live Demo
-                    </a>
+                  {isRealUrl(selected.githubUrl) && (
+                    <LinkKey href={selected.githubUrl}>
+                      <Github size={16} /> View code
+                    </LinkKey>
                   )}
                 </div>
               </div>
@@ -280,10 +240,7 @@ export default function ProjectsSection() {
         )}
       </AnimatePresence>
 
-      <FullscreenImageModal
-        image={fullscreenImage}
-        onClose={() => setFullscreenImage(null)}
-      />
+      <AnimatePresence>{image && <ImageViewer image={image} onClose={() => setImage(null)} />}</AnimatePresence>
     </section>
   );
 }
