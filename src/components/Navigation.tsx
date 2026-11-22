@@ -46,7 +46,7 @@ export default function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setOpen(false)}
-            className="fixed inset-0 z-40 bg-[var(--clay)]/70 backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-[var(--clay)]/90"
           />
         )}
       </AnimatePresence>

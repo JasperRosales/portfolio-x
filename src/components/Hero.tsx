@@ -97,7 +97,7 @@ export default function Hero() {
             <span className="absolute left-1/2 -top-[7px] -ml-[7px] w-3.5 h-3.5 rounded-full bg-black ring-4 ring-[var(--clay)]" />
           </div>
           <div className="nm absolute inset-[15%] rounded-full p-2">
-            <img src="/Jasper.jpg" alt="Portrait of Jasper Rosales" className="w-full h-full rounded-full object-cover" />
+            <img src="/Jasper.webp" alt="Portrait of Jasper Rosales" className="w-full h-full rounded-full object-cover" />
           </div>
           <div className="bob nm absolute -left-3 bottom-[6%] rounded-2xl px-4 py-3">
             <p className="font-display text-3xl font-extrabold text-black leading-none">{projects.length}</p>

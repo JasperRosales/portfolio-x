@@ -54,8 +54,8 @@ export default function AchievementsSection() {
                 type="button"
                 aria-label={`Open ${m.title}`}
                 onClick={() => setOpen(i)}
-                initial={still ? false : { scale: 0 }}
-                whileInView={{ scale: 1 }}
+                initial={still ? false : { scale: 0.3, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 + i * (1.4 / timeline.length), type: "spring", stiffness: 500, damping: 18 }}
                 whileHover={{ scale: 1.5 }}

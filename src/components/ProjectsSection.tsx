@@ -49,7 +49,7 @@ function ProjectCard({ project, wide, onSelect }: { project: Project; wide: bool
       initial={still ? false : { opacity: 0, y: 40, scale: 0.94 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       exit={{ opacity: 0, scale: 0.9 }}
-      viewport={{ once: true, margin: "-60px" }}
+      viewport={{ once: true, margin: "-60px 0px" }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       onPointerMove={onMove}
       onPointerLeave={reset}
@@ -93,8 +93,8 @@ function ProjectCard({ project, wide, onSelect }: { project: Project; wide: bool
           </span>
         )}
         <span className="absolute left-3 top-3 flex gap-2">
-          <span className="rounded-full bg-black/80 text-white backdrop-blur px-3 py-1 text-xs font-semibold">{project.platform}</span>
-          {project.badge && <span className="rounded-full bg-white/85 text-black backdrop-blur px-3 py-1 text-xs font-semibold">{project.badge}</span>}
+          <span className="rounded-full bg-black/80 text-white px-3 py-1 text-xs font-semibold">{project.platform}</span>
+          {project.badge && <span className="rounded-full bg-white/85 text-black px-3 py-1 text-xs font-semibold">{project.badge}</span>}
         </span>
       </button>
 
@@ -209,7 +209,7 @@ export default function ProjectsSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] grid place-items-center p-3 sm:p-6 bg-[var(--clay)]/85 backdrop-blur-sm"
+            className="fixed inset-0 z-[60] grid place-items-center p-3 sm:p-6 bg-[var(--clay)]/95"
             onClick={() => setSelected(null)}
           >
             <motion.div
