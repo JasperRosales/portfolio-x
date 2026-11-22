@@ -196,13 +196,10 @@ button {
 
 
 @keyframes spin-slow { to { transform: rotate(360deg); } }
-.spin-slow, .spin-rev, .bob, .bob-late { will-change: transform; }
+.spin-slow, .spin-rev { will-change: transform; }
 .spin-slow { animation: spin-slow 40s linear infinite; }
 .spin-rev { animation: spin-slow 26s linear infinite reverse; }
 
-@keyframes bob { 50% { transform: translateY(-10px); } }
-.bob { animation: bob 5s ease-in-out infinite; }
-.bob-late { animation: bob 6s ease-in-out -2.5s infinite; }
 
 @keyframes ping-soft { 0% { transform: scale(1); opacity: .7 } 100% { transform: scale(2.6); opacity: 0 } }
 .ping-soft { animation: ping-soft 1.8s cubic-bezier(0, 0, .2, 1) infinite; }

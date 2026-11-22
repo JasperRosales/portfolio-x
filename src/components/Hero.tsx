@@ -1,6 +1,4 @@
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { projects } from "@/data/projects";
-import { timeline } from "@/data/timeline";
 
 function Letters({ word, className, delay }: { word: string; className: string; delay: number }) {
   const still = useReducedMotion();
@@ -93,14 +91,6 @@ export default function Hero() {
           </div>
           <div className="nm absolute inset-[15%] rounded-full p-2">
             <img src="/Jasper.webp" alt="Portrait of Jasper Rosales" className="w-full h-full rounded-full object-cover" />
-          </div>
-          <div className="bob nm absolute -left-3 bottom-[6%] rounded-2xl px-4 py-3">
-            <p className="font-display text-3xl font-extrabold text-black leading-none">{projects.length}</p>
-            <p className="text-xs text-[var(--ink-3)] mt-1">featured projects</p>
-          </div>
-          <div className="bob-late nm absolute -right-3 top-[8%] rounded-2xl px-4 py-3">
-            <p className="font-display text-3xl font-extrabold text-black leading-none">{timeline.length}</p>
-            <p className="text-xs text-[var(--ink-3)] mt-1">milestones</p>
           </div>
         </motion.div>
       </div>
