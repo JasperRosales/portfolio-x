@@ -100,12 +100,10 @@ button {
       radial-gradient(ellipse 90% 60% at 50% 0%, rgba(255, 236, 170, 0.12), transparent 70%),
       radial-gradient(ellipse 120% 90% at 50% 30%, var(--felt) 0%, var(--felt-deep) 70%, var(--room) 100%);
   }
+  /* Fibre dots as a 15px image tile: same pattern as two dot gradients, far cheaper to raster */
   .felt-grain {
-    background-image:
-      radial-gradient(rgba(255, 255, 255, 0.035) 0.6px, transparent 0.7px),
-      radial-gradient(rgba(0, 0, 0, 0.18) 0.6px, transparent 0.7px);
-    background-size: 3px 3px, 5px 5px;
-    background-position: 0 0, 1px 2px;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='15' height='15'><circle cx='0' cy='0' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='0' cy='3' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='0' cy='6' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='0' cy='9' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='0' cy='12' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='0' cy='15' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='3' cy='0' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='3' cy='3' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='3' cy='6' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='3' cy='9' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='3' cy='12' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='3' cy='15' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='6' cy='0' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='6' cy='3' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='6' cy='6' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='6' cy='9' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='6' cy='12' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='6' cy='15' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='9' cy='0' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='9' cy='3' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='9' cy='6' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='9' cy='9' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='9' cy='12' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='9' cy='15' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='12' cy='0' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='12' cy='3' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='12' cy='6' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='12' cy='9' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='12' cy='12' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='12' cy='15' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='15' cy='0' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='15' cy='3' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='15' cy='6' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='15' cy='9' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='15' cy='12' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='15' cy='15' r='.6' fill='%23fff' fill-opacity='.035'/><circle cx='1' cy='2' r='.6' fill='%23000' fill-opacity='.18'/><circle cx='1' cy='7' r='.6' fill='%23000' fill-opacity='.18'/><circle cx='1' cy='12' r='.6' fill='%23000' fill-opacity='.18'/><circle cx='6' cy='2' r='.6' fill='%23000' fill-opacity='.18'/><circle cx='6' cy='7' r='.6' fill='%23000' fill-opacity='.18'/><circle cx='6' cy='12' r='.6' fill='%23000' fill-opacity='.18'/><circle cx='11' cy='2' r='.6' fill='%23000' fill-opacity='.18'/><circle cx='11' cy='7' r='.6' fill='%23000' fill-opacity='.18'/><circle cx='11' cy='12' r='.6' fill='%23000' fill-opacity='.18'/></svg>");
+    background-size: 15px 15px;
   }
 
   .gold-text {
@@ -136,6 +134,8 @@ button {
     transform: rotateY(180deg);
     backface-visibility: hidden;
   }
+  .card-back--flat { transform: none; }
+  .rig-moving .wc { will-change: transform; }
   .card-lattice {
     background-image:
       repeating-linear-gradient(45deg, rgba(216, 180, 90, 0.32) 0 1px, transparent 1px 0.7em),
@@ -247,6 +247,7 @@ button {
     --pip: var(--card-ink);
     --pip-red: var(--card-red);
     --label: #8a6a2a;
+    isolation: isolate;
   }
   .luxe[data-tone="noir"] {
     --stock-tl: #2a241b;
@@ -261,25 +262,36 @@ button {
     border-radius: 22px;
     padding: 1.5px;
     background: var(--edge);
-    box-shadow: 0 26px 50px -24px rgba(0, 0, 0, 0.9), 0 3px 8px rgba(0, 0, 0, 0.35);
-    transform-style: preserve-3d;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+  }
+  /* The long soft drop shadow, as a gradient: a 50px blur is costly to raster on every card */
+  .luxe-edge::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 7%;
+    right: 7%;
+    bottom: -30px;
+    height: 64px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.25) 60%, transparent);
+    pointer-events: none;
   }
   .luxe-stock {
     position: relative;
     border-radius: 20.5px;
     overflow: hidden;
     color: #3d352b;
+    /* linen weave as a 3px image tile */
     background:
-      repeating-linear-gradient(0deg, rgba(60, 40, 10, 0.022) 0 1px, transparent 1px 3px),
-      repeating-linear-gradient(90deg, rgba(60, 40, 10, 0.022) 0 1px, transparent 1px 3px),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'><rect width='3' height='1' fill='rgba(60,40,10,.022)'/><rect width='1' height='3' fill='rgba(60,40,10,.022)'/></svg>") 0 0 / 3px 3px,
       radial-gradient(ellipse 80% 60% at 15% 0%, #fffcf3, transparent 60%),
       linear-gradient(160deg, var(--stock-tl), var(--stock-br));
   }
   .luxe[data-tone="noir"] .luxe-stock {
     color: var(--text-2);
     background:
-      repeating-linear-gradient(0deg, rgba(255, 230, 170, 0.018) 0 1px, transparent 1px 3px),
-      repeating-linear-gradient(90deg, rgba(255, 230, 170, 0.018) 0 1px, transparent 1px 3px),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='3' height='3'><rect width='3' height='1' fill='rgba(255,230,170,.018)'/><rect width='1' height='3' fill='rgba(255,230,170,.018)'/></svg>") 0 0 / 3px 3px,
       radial-gradient(ellipse 80% 60% at 15% 0%, rgba(216, 180, 90, 0.13), transparent 60%),
       linear-gradient(160deg, var(--stock-tl), var(--stock-br));
   }
@@ -364,22 +376,27 @@ button {
   .luxe-ornament i { font-style: normal; font-size: 0.8rem; color: var(--pip); opacity: 0.75; }
   .luxe-ornament i.is-red { color: var(--pip-red); }
 
-  /* Foil sheen that follows the pointer */
-  .luxe-sheen {
-    position: absolute;
-    inset: 0;
-    z-index: 3;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.35s ease;
-    background:
-      radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.5), transparent 42%),
-      linear-gradient(115deg, transparent calc(var(--mx, 50%) - 30%), rgba(244, 221, 152, 0.35) var(--mx, 50%), transparent calc(var(--mx, 50%) + 30%));
-    mix-blend-mode: soft-light;
+  /* Foil sheen that follows the pointer. Blend modes are costly, so it only
+     exists on devices that can hover. */
+  .luxe-sheen { display: none; }
+  @media (hover: hover) and (pointer: fine) {
+    .luxe-sheen {
+      display: block;
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.35s ease;
+      background:
+        radial-gradient(circle at var(--mx, 50%) var(--my, 0%), rgba(255, 255, 255, 0.5), transparent 42%),
+        linear-gradient(115deg, transparent calc(var(--mx, 50%) - 30%), rgba(244, 221, 152, 0.35) var(--mx, 50%), transparent calc(var(--mx, 50%) + 30%));
+      mix-blend-mode: soft-light;
+    }
+    .luxe[data-tone="noir"] .luxe-sheen { mix-blend-mode: screen; }
+    .luxe:hover .luxe-sheen { opacity: 1; }
+    .luxe[data-tone="noir"]:hover .luxe-sheen { opacity: 0.35; }
   }
-  .luxe[data-tone="noir"] .luxe-sheen { mix-blend-mode: screen; opacity: 0; }
-  .luxe:hover .luxe-sheen { opacity: 1; }
-  .luxe[data-tone="noir"]:hover .luxe-sheen { opacity: 0.35; }
 
   /* The card back peeking out behind */
   .luxe-back {
@@ -390,7 +407,7 @@ button {
       repeating-linear-gradient(45deg, rgba(216, 180, 90, 0.3) 0 1px, transparent 1px 12px),
       repeating-linear-gradient(-45deg, rgba(216, 180, 90, 0.3) 0 1px, transparent 1px 12px),
       radial-gradient(circle at 50% 40%, var(--back), var(--back-deep));
-    box-shadow: inset 0 0 0 5px var(--ivory), inset 0 0 0 6px rgba(0, 0, 0, 0.2), 0 18px 36px -20px rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0 0 0 5px var(--ivory), inset 0 0 0 6px rgba(0, 0, 0, 0.2), 0 4px 10px rgba(0, 0, 0, 0.35);
     transform: rotate(-2.2deg) translate(-5px, 5px);
     transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
   }
@@ -458,4 +475,19 @@ button {
     animation-duration: 0ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+/* ---------- Record player ---------- */
+@keyframes vinyl-spin { to { transform: rotate(360deg); } }
+.vinyl {
+  background:
+    conic-gradient(from 20deg, transparent 0 20%, rgba(255, 255, 255, 0.14) 25%, transparent 32% 70%, rgba(255, 255, 255, 0.1) 75%, transparent 82%),
+    repeating-radial-gradient(circle, #141414 0 1.5px, #1f1f1f 1.5px 3px);
+  box-shadow: 0 0 0 2px rgba(216, 180, 90, 0.4), 0 10px 24px -8px rgba(0, 0, 0, 0.8);
+  animation: vinyl-spin 3.2s linear infinite;
+}
+@keyframes eq { 0% { transform: scaleY(0.2); } 100% { transform: scaleY(1); } }
+.eq-bar {
+  transform-origin: bottom;
+  animation: eq 0.85s ease-in-out infinite alternate;
 }

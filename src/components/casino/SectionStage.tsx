@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { sectionCards, type SectionCard, type SectionId } from "@/data/sections";
 import { CardFace, Spade } from "./PlayingCard";
@@ -25,6 +25,7 @@ export default function SectionStage({
 }) {
   const still = useReducedMotion();
   const card = sectionCards.find((c) => c.id === active)!;
+  const [swinging, setSwinging] = useState(true);
   return (
     <div className="fixed inset-0 felt-bg overflow-hidden">
       <div aria-hidden className="felt-grain pointer-events-none absolute inset-0 opacity-60" />
@@ -36,6 +37,11 @@ export default function SectionStage({
           <motion.main
             key={active}
             ref={(el) => el?.focus({ preventScroll: true })}
+            // will-change only while the camera swings the page in; dropping it
+            // afterwards lets the page re-rasterise crisp at rest
+            style={{ willChange: swinging ? "transform, opacity" : "auto" }}
+            onAnimationStart={() => setSwinging(true)}
+            onAnimationComplete={() => setSwinging(false)}
             tabIndex={-1}
             aria-label={card.label}
             className="page-scroll absolute inset-0 overflow-y-auto overflow-x-hidden outline-none [transform-origin:50%_30%]"
@@ -67,7 +73,7 @@ function CardDown({ card }: { card: SectionCard }) {
       />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_55%_at_50%_42%,transparent_40%,rgba(2,8,6,0.6)_100%)]" />
       <motion.div
-        className="absolute"
+        className="absolute will-change-transform"
         style={{ left: f.cx - f.w / 2, top: f.cy - f.h / 2, width: f.w, height: f.h, fontSize: f.w / 10 }}
         initial={{ opacity: 0, scale: 1.7, rotate: -9, y: -f.h * 0.25 }}
         animate={{ opacity: 1, scale: 1, rotate: 0, y: 0 }}
@@ -82,7 +88,7 @@ function CardDown({ card }: { card: SectionCard }) {
 
 function TopBar({ active, onSelect, onTable }: { active: SectionId; onSelect: (id: SectionId) => void; onTable: () => void }) {
   return (
-    <header className="absolute inset-x-0 top-0 z-30 h-[76px] sm:h-[88px] px-3 sm:px-8 flex items-center justify-between gap-3 border-b border-[var(--gold)]/20 bg-[linear-gradient(180deg,rgba(4,17,12,0.92),rgba(4,17,12,0.6))] backdrop-blur-md">
+    <header className="absolute inset-x-0 top-0 z-30 h-[76px] sm:h-[88px] px-3 sm:px-8 flex items-center justify-between gap-3 border-b border-[var(--gold)]/20 bg-[linear-gradient(180deg,rgba(4,17,12,0.97),rgba(4,17,12,0.88))] sm:bg-[linear-gradient(180deg,rgba(4,17,12,0.92),rgba(4,17,12,0.6))] sm:backdrop-blur-md">
       <button
         type="button"
         onClick={onTable}

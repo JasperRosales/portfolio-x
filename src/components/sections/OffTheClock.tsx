@@ -36,7 +36,8 @@ export default function OffTheClock() {
   const wheelRot = useMotionValue(0);
   const ballRot = useMotionValue(0);
   const ballDrop = useMotionValue(0);
-  const ballTop = useTransform(ballDrop, (d) => `${5.6 + 6.4 * d}%`);
+  // The ball drops toward the pockets with a transform (not `top`), so it never triggers layout
+  const ballY = useTransform(ballDrop, (d) => `${128 * d}%`);
 
   const [landed, setLanded] = useState<number | null>(null);
   const [spinning, setSpinning] = useState(false);
@@ -92,16 +93,20 @@ export default function OffTheClock() {
       <div ref={ref} className="mt-10 grid lg:grid-cols-[1fr_1.05fr] gap-10 lg:gap-14 items-center">
         {/* Wheel */}
         <div className="flex flex-col items-center">
-          <div className="relative w-[min(84vw,430px)] aspect-square drop-shadow-[0_30px_40px_rgba(0,0,0,0.6)]">
+          {/* Clipped, composited box: the spin can't spill into the rest of the page's layers */}
+          <div className="relative overflow-hidden p-[5%] -m-[5%] will-change-transform">
+          <div className="relative w-[min(84vw,430px)] aspect-square">
+            {/* a static shadow: a drop-shadow filter would be recomputed every frame of the spin */}
+            <span aria-hidden className="absolute left-[6%] right-[6%] top-[14%] -bottom-[8%] rounded-full bg-[radial-gradient(closest-side,rgba(0,0,0,0.55),transparent)]" />
             <WheelRim />
-            <motion.div className="absolute inset-0" style={{ rotate: wheelRot }}>
+            <motion.div className="absolute inset-0 will-change-transform" style={{ rotate: wheelRot }}>
               <WheelHead landed={spinning ? null : landed} />
             </motion.div>
             {/* the ball */}
-            <motion.div className="absolute inset-0 pointer-events-none" style={{ rotate: ballRot }}>
+            <motion.div className="absolute inset-0 pointer-events-none will-change-transform" style={{ rotate: ballRot }}>
               <motion.span
-                className="absolute left-1/2 w-[3.6%] aspect-square -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_35%_30%,#fff,#e9e2d0_45%,#a8a092)] shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
-                style={{ top: ballTop }}
+                className="absolute left-[48.2%] top-[5.6%] w-[3.6%] aspect-square rounded-full will-change-transform bg-[radial-gradient(circle_at_35%_30%,#fff,#e9e2d0_45%,#a8a092)] shadow-[0_2px_4px_rgba(0,0,0,0.6)]"
+                style={{ y: ballY }}
               />
             </motion.div>
             {/* marker */}
@@ -115,9 +120,12 @@ export default function OffTheClock() {
               </defs>
             </svg>
           </div>
+          </div>
 
           <button type="button" onClick={() => spin()} disabled={spinning} className="btn-gold mt-8 px-7 py-3.5 disabled:opacity-60">
-            <RotateCw size={17} className={spinning ? "animate-spin" : ""} />
+            <span className="grid place-items-center overflow-hidden will-change-transform">
+              <RotateCw size={17} className={spinning ? "animate-spin" : ""} />
+            </span>
             {spinning ? "No more bets…" : "Spin the wheel"}
           </button>
         </div>
@@ -127,14 +135,7 @@ export default function OffTheClock() {
           <div className="relative min-h-[360px] sm:min-h-[340px] [perspective:1200px]" aria-live="polite">
             <AnimatePresence mode="wait" initial={false}>
               {hobby ? (
-                <motion.div
-                  key={hobby.title}
-                  initial={still ? { opacity: 0 } : { rotateY: -90, opacity: 0.4 }}
-                  animate={{ rotateY: 0, opacity: 1 }}
-                  exit={still ? { opacity: 0 } : { rotateY: 90, opacity: 0.4 }}
-                  transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
-                  className="h-full"
-                >
+                <Flip key={hobby.title} still={still} className="h-full">
                   <LuxeCard tone="noir" rank={String(hobby.pocket)} suit={hobby.red ? "♥" : "♠"} label={`Pocket ${hobby.pocket} · ${hobby.red ? "Red" : "Black"}`} className="h-full min-h-[360px] sm:min-h-[340px]">
                     <div className="flex items-center gap-4">
                       <span className="grid place-items-center w-14 h-14 rounded-full shrink-0 text-[var(--card-ink)] bg-[linear-gradient(180deg,var(--gold-hi),var(--gold)_60%,#a8802f)] shadow-[0_0_0_3px_#1b1712,0_0_0_4px_rgba(216,180,90,.5)]">
@@ -153,16 +154,9 @@ export default function OffTheClock() {
                       </div>
                     )}
                   </LuxeCard>
-                </motion.div>
+                </Flip>
               ) : (
-                <motion.div
-                  key="back"
-                  initial={still ? { opacity: 0 } : { rotateY: -90, opacity: 0.4 }}
-                  animate={{ rotateY: 0, opacity: 1 }}
-                  exit={still ? { opacity: 0 } : { rotateY: 90, opacity: 0.4 }}
-                  transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
-                  className="relative h-full min-h-[360px] sm:min-h-[340px]"
-                >
+                <Flip key="back" still={still} className="relative h-full min-h-[360px] sm:min-h-[340px]">
                   <span className="luxe-back !transform-none" />
                   <span className="absolute inset-0 grid place-items-center text-center px-8">
                     <span>
@@ -177,7 +171,7 @@ export default function OffTheClock() {
                       </span>
                     </span>
                   </span>
-                </motion.div>
+                </Flip>
               )}
             </AnimatePresence>
           </div>
@@ -217,6 +211,29 @@ export default function OffTheClock() {
 
       <NowPlaying />
     </section>
+  );
+}
+
+/**
+ * Turns a card over. will-change is held only while it turns: a rotating 3D
+ * card would otherwise be re-rasterised every frame, and holding the hint at
+ * rest would leave it blurry.
+ */
+function Flip({ still, className, children }: { still: boolean; className: string; children: React.ReactNode }) {
+  const [turning, setTurning] = useState(!still);
+  return (
+    <motion.div
+      initial={still ? { opacity: 0 } : { rotateY: -90, opacity: 0.4 }}
+      animate={{ rotateY: 0, opacity: 1 }}
+      exit={still ? { opacity: 0 } : { rotateY: 90, opacity: 0.4 }}
+      transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
+      onAnimationStart={() => setTurning(true)}
+      onAnimationComplete={() => setTurning(false)}
+      style={{ willChange: turning ? "transform, opacity" : "auto" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
   );
 }
 
@@ -274,7 +291,7 @@ function WheelHead({ landed }: { landed: number | null }) {
               <h.icon x={-13} y={-13} width={26} height={26} color="#f3ecd9" strokeWidth={1.8} />
             </g>
             <text
-              transform={`rotate(${c}) translate(0 -136)`}
+              transform={`rotate(${c}) translate(0 -133)`}
               textAnchor="middle"
               dominantBaseline="middle"
               fill="#f3ecd9"
@@ -307,8 +324,8 @@ function NowPlaying() {
   return (
     <Rise className="mt-10">
       <LuxeCard tone="noir" tilt={false} bodyClassName="px-6 sm:px-9 py-6">
-        <div className="flex items-center gap-5 sm:gap-8">
-          <div className="relative shrink-0 w-20 h-20 sm:w-24 sm:h-24">
+        <div className="flex items-center gap-4 sm:gap-8">
+          <div className="relative shrink-0 w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden will-change-transform">
             <div className="vinyl absolute inset-0 rounded-full">
               <span className="absolute inset-[32%] rounded-full bg-[radial-gradient(circle,#c22a36,#7d1622)] grid place-items-center border border-[var(--gold)]/60">
                 <span className="font-card italic font-bold text-[10px] sm:text-xs text-[var(--gold-hi)]">JR</span>
@@ -318,12 +335,12 @@ function NowPlaying() {
           </div>
 
           <div className="min-w-0 flex-1">
-            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--gold)]">Now playing · favourite track</p>
-            <p className="mt-1 font-card text-2xl sm:text-3xl font-bold leading-tight text-[var(--text)] truncate">{favouriteTrack.title}</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--gold)]">Now playing<span className="hidden sm:inline"> · favourite track</span></p>
+            <p className="mt-1 font-card text-xl sm:text-3xl font-bold leading-tight text-[var(--text)]">{favouriteTrack.title}</p>
             <p className="font-card italic text-lg text-[var(--gold-hi)]/85">{favouriteTrack.artist}</p>
           </div>
 
-          <div aria-hidden className="hidden sm:flex items-end gap-1 h-10 shrink-0">
+          <div aria-hidden className="hidden sm:flex items-end gap-1 h-10 shrink-0 overflow-hidden will-change-transform">
             {[0, 0.3, 0.15, 0.45, 0.6, 0.2, 0.38].map((d, i) => (
               <span key={i} className="eq-bar w-1.5 h-full rounded-full bg-[linear-gradient(180deg,var(--gold-hi),var(--gold-lo))]" style={{ animationDelay: `-${d}s` }} />
             ))}

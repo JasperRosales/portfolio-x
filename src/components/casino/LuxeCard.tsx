@@ -2,6 +2,9 @@ import { useRef, type ReactNode } from "react";
 import { motion, useMotionValue, useReducedMotion, useSpring, type HTMLMotionProps } from "framer-motion";
 
 export type Suit = "♠" | "♥" | "♦" | "♣";
+
+/** Tilt and sheen follow a mouse; on touch screens they'd only cost layers. */
+const finePointer = typeof window !== "undefined" && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 export const isRedSuit = (s?: Suit) => s === "♥" || s === "♦";
 
 /**
@@ -41,7 +44,7 @@ export default function LuxeCard({
   const sry = useSpring(ry, { stiffness: 180, damping: 18 });
 
   const onMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.pointerType !== "mouse" || !face.current) return;
+    if (!finePointer || e.pointerType !== "mouse" || !face.current) return;
     const r = face.current.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width;
     const py = (e.clientY - r.top) / r.height;
@@ -71,7 +74,7 @@ export default function LuxeCard({
       <motion.div
         ref={face}
         className="luxe-edge relative h-full"
-        style={tilt && !still ? { rotateX: srx, rotateY: sry, transformPerspective: 1100 } : undefined}
+        style={tilt && !still && finePointer ? { rotateX: srx, rotateY: sry, transformPerspective: 1100 } : undefined}
       >
         <div className="luxe-stock h-full flex flex-col">
           <span aria-hidden className="luxe-frame">

@@ -8,6 +8,7 @@ import { useGithubCredentials } from "@/data/credentials";
 import type { SectionId } from "@/data/sections";
 import { Spade } from "@/components/casino/PlayingCard";
 import { Page, Rise } from "@/components/casino/ui";
+import OffTheClock from "@/components/sections/OffTheClock";
 import LuxeCard, { Ornament, type Suit } from "@/components/casino/LuxeCard";
 
 const SUITS: { s: Suit; name: string; red: boolean }[] = [
@@ -68,7 +69,7 @@ function StatChip({ value, label, color, delay }: { value: number | string; labe
       whileInView={{ opacity: 1, y: 0, rotate: 0 }}
       viewport={{ once: true }}
       transition={{ type: "spring", stiffness: 180, damping: 14, delay }}
-      className="flex flex-col items-center text-center"
+      className="flex flex-col items-center text-center will-change-transform"
     >
       <span className="chip relative w-24 h-24 sm:w-28 sm:h-28 grid place-items-center" style={{ ["--chip" as string]: color }}>
         <span className="relative z-10 font-card font-bold text-3xl sm:text-4xl text-[var(--ivory)] [text-shadow:0_2px_4px_rgba(0,0,0,0.5)]">
@@ -91,8 +92,9 @@ export default function HomeSection({ go }: { go: (id: SectionId) => void }) {
       <section className="grid lg:grid-cols-[1.25fr_1fr] gap-12 lg:gap-10 items-center min-h-[calc(100svh-190px)]">
         <div>
           <motion.div {...fade(0.3)} className="inline-flex items-center gap-2.5 rounded-full border border-[var(--gold)]/30 bg-black/20 px-4 py-2 text-sm text-[var(--text-2)]">
-            <span className="relative grid place-items-center w-2.5 h-2.5">
-              <span className="ping-soft absolute inset-0 rounded-full bg-[#3ddc84]" />
+            {/* the pulse is fenced in a clipped layer so it doesn't promote the rest of the page */}
+            <span className="relative grid place-items-center w-6 h-6 -m-1.5 rounded-full overflow-hidden will-change-transform">
+              <span className="ping-soft absolute inset-[7px] rounded-full bg-[#3ddc84]" />
               <span className="relative w-2.5 h-2.5 rounded-full bg-[#3ddc84]" />
             </span>
             Open for freelance work
@@ -123,6 +125,8 @@ export default function HomeSection({ go }: { go: (id: SectionId) => void }) {
 
         <PortraitCard />
       </section>
+
+      <OffTheClock />
 
       <section className="mt-24">
         <Rise>

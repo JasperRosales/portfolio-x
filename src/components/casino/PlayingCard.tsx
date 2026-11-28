@@ -50,9 +50,10 @@ export function CardFace({ card, compact }: { card: SectionCard; compact?: boole
   );
 }
 
-export function CardBack() {
+/** `flat` draws the back straight on, for cards that never turn over. */
+export function CardBack({ flat }: { flat?: boolean }) {
   return (
-    <span className="card-back absolute inset-0 rounded-[0.7em] overflow-hidden">
+    <span className={`card-back ${flat ? "card-back--flat" : ""} absolute inset-0 rounded-[0.7em] overflow-hidden`}>
       <span className="absolute inset-[0.5em] rounded-[0.4em] border-[0.06em] border-[var(--gold)]/70 card-lattice" />
       <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 grid place-items-center w-[3.4em] h-[3.4em] rounded-full bg-[var(--back-deep)] border-[0.08em] border-[var(--gold)] shadow-[0_0_0_0.25em_var(--back),0_0_0_0.32em_var(--gold-lo)]">
         <span className="font-card italic font-bold text-[1.35em] text-[var(--gold-hi)] tracking-[-0.03em]">JR</span>

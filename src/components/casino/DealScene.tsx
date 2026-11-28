@@ -107,6 +107,12 @@ export default function DealScene({
   const [hovered, setHovered] = useState<number | null>(null);
   const [picked, setPicked] = useState<number | null>(null);
   const [flourish, setFlourish] = useState(false);
+  /**
+   * While the camera is moving, scene layers carry will-change so the browser
+   * stops re-rasterising them at every zoom step. Once the camera settles on
+   * the hand the hint comes off and everything is redrawn crisp, once.
+   */
+  const [settled, setSettled] = useState(still);
   const interactive = mode !== "swap";
 
   // Intro timeline
@@ -236,28 +242,31 @@ export default function DealScene({
   return (
     <div
       onPointerMove={onPointerMove}
-      className="fixed inset-0 overflow-hidden bg-[var(--room)] select-none"
+      className={`fixed inset-0 overflow-hidden bg-[var(--room)] select-none ${settled && picked === null ? "" : "rig-moving"}`}
       style={{ perspective: persp, perspectiveOrigin: "50% 42%" }}
     >
       {/* sway */}
-      <motion.div className="absolute left-1/2 top-1/2 [transform-style:preserve-3d]" style={{ rotateX: sx, rotateY: sy }}>
+      <motion.div className="wc absolute left-1/2 top-1/2 [transform-style:preserve-3d]" style={{ rotateX: sx, rotateY: sy }}>
         {/* dolly */}
         <motion.div
-          className="[transform-style:preserve-3d]"
+          className="wc [transform-style:preserve-3d]"
           initial={{ z: initialPose.z, y: initialPose.lift }}
           animate={{ z: pose.z, y: pose.lift }}
           transition={dollyT ?? camT}
         >
           {/* orbit */}
           <motion.div
-            className="[transform-style:preserve-3d]"
+            className="wc [transform-style:preserve-3d]"
             initial={{ rotateX: initialPose.tilt, rotateZ: initialPose.spin }}
             animate={{ rotateX: pose.tilt, rotateZ: pose.spin }}
             transition={camT}
+            onAnimationComplete={() => {
+              if (step === 4 && picked === null && !swapping) setSettled(true);
+            }}
           >
             {/* pan */}
             <motion.div
-              className="[transform-style:preserve-3d]"
+              className="wc [transform-style:preserve-3d]"
               initial={{ x: initialPose.px, y: initialPose.py }}
               animate={{ x: pose.px, y: pose.py }}
               transition={camT}
@@ -270,7 +279,7 @@ export default function DealScene({
                 return (
                   <motion.div
                     key={`d${i}`}
-                    className="absolute [transform-style:preserve-3d]"
+                    className="wc absolute rounded-[0.7em] shadow-[0_0.1em_0.3em_rgba(0,0,0,0.35)]"
                     style={{ left: -cw / 2, top: -ch / 2, width: cw, height: ch, fontSize: cw / 10 }}
                     initial={{ x: deck.x, y: deck.y, z: i * 0.9, rotateZ: (i % 3) - 1 }}
                     animate={
@@ -284,10 +293,7 @@ export default function DealScene({
                     }
                     transition={{ duration: 1.05, delay: (i % 7) * 0.035, ease: "easeInOut" }}
                   >
-                    <span className="absolute inset-0 [transform-style:preserve-3d] [transform:rotateY(180deg)]">
-                      <CardBack />
-                    </span>
-                    <span className="absolute inset-0 rounded-[0.7em] shadow-[0_0.1em_0.3em_rgba(0,0,0,0.35)]" />
+                    <CardBack flat />
                   </motion.div>
                 );
               })}
@@ -346,7 +352,7 @@ export default function DealScene({
                     onFocus={() => setHovered(i)}
                     onBlur={() => setHovered((v) => (v === i ? null : v))}
                     aria-label={`${card.label}: ${card.blurb}`}
-                    className="absolute [transform-style:preserve-3d] rounded-[0.7em] disabled:cursor-default focus-visible:outline-none"
+                    className="wc absolute [transform-style:preserve-3d] rounded-[0.7em] disabled:cursor-default focus-visible:outline-none"
                     style={{ left: -cw / 2, top: -ch / 2, width: cw, height: ch, fontSize: cw / 10 }}
                     initial={mode !== "intro" ? { x: h.x, y: h.y, z: 1, rotateZ: h.rot } : { x: deck.x, y: deck.y, z: topZ, rotateZ: 0 }}
                     animate={target}
@@ -355,12 +361,12 @@ export default function DealScene({
                     {/* shadow on the felt */}
                     <motion.span
                       aria-hidden
-                      className="absolute inset-0 rounded-[0.7em] bg-black/55 blur-[0.6em]"
+                      className="absolute inset-0 rounded-[0.7em] bg-black/30 shadow-[0_0_0.9em_0.35em_rgba(0,0,0,0.5)]"
                       animate={{ opacity: isHover ? 0.7 : 0.45, x: isHover ? cw * 0.1 : cw * 0.03, y: isHover ? ch * 0.12 : ch * 0.03 }}
                       style={{ z: -1 }}
                     />
                     <motion.span
-                      className="absolute inset-0 [transform-style:preserve-3d]"
+                      className="wc absolute inset-0 [transform-style:preserve-3d]"
                       initial={{ rotateY: mode !== "intro" ? 0 : 180 }}
                       animate={{
                         // the dealer's flip: a full turn that flashes the back
@@ -492,31 +498,50 @@ function Table({
   const arcR = Math.abs(deck.y) + ch * 2.05;
   return (
     <>
+      {/*
+        Shadows here are gradients, not blurred box-shadows: when the camera
+        zooms into a card these layers raster at up to ~8x, and a blur kernel
+        scales with that.
+      */}
+      {/* shadow the table casts */}
+      <div
+        aria-hidden
+        className="wc absolute rounded-[50%]"
+        style={{
+          left: -w / 2 - rail * 2.2,
+          top: -h / 2 - rail * 2.2 + ch * 0.2 + 60,
+          width: w + rail * 4.4,
+          height: h + rail * 4.4,
+          background: "radial-gradient(closest-side, rgba(0,0,0,.8) 78%, rgba(0,0,0,.35) 90%, transparent)",
+          transform: "translateZ(-3px)",
+        }}
+      />
       {/* leather rail */}
       <div
         aria-hidden
-        className="absolute rounded-[50%]"
+        className="wc absolute rounded-[50%]"
         style={{
           left: -w / 2 - rail,
           top: -h / 2 - rail + ch * 0.2,
           width: w + rail * 2,
           height: h + rail * 2,
           background: "radial-gradient(ellipse at 50% 30%, var(--rail-hi), var(--rail) 70%)",
-          boxShadow: "0 0 0 2px #120805, 0 60px 120px rgba(0,0,0,.8)",
+          boxShadow: "0 0 0 2px #120805",
           transform: "translateZ(-2px)",
         }}
       />
       {/* felt */}
       <div
         aria-hidden
-        className="absolute rounded-[50%] overflow-hidden"
+        className="wc absolute rounded-[50%] overflow-hidden"
         style={{
           left: -w / 2,
           top: -h / 2 + ch * 0.2,
           width: w,
           height: h,
-          background: "radial-gradient(ellipse 55% 45% at 50% 45%, var(--felt-hi), var(--felt) 45%, var(--felt-deep) 100%)",
-          boxShadow: "inset 0 0 0 3px var(--gold-lo), inset 0 0 80px rgba(0,0,0,.6)",
+          background:
+            "radial-gradient(ellipse closest-side, transparent 84%, rgba(0,0,0,.5) 100%), radial-gradient(ellipse 55% 45% at 50% 45%, var(--felt-hi), var(--felt) 45%, var(--felt-deep) 100%)",
+          boxShadow: "inset 0 0 0 3px var(--gold-lo)",
           transform: "translateZ(-1px)",
         }}
       >
@@ -606,7 +631,7 @@ function ChipStack({ x, y, d, n, color }: { x: number; y: number; d: number; n: 
       {Array.from({ length: n }, (_, i) => (
         <div
           key={i}
-          className="chip absolute inset-0"
+          className="wc chip absolute inset-0"
           style={{
             ["--chip" as string]: color,
             transform: `translateZ(${i * d * 0.085}px) rotate(${i * 23}deg)`,
