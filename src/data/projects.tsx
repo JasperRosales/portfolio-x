@@ -11,8 +11,11 @@ import {
 } from "react-icons/fa";
 import { GiPlasticDuck } from "react-icons/gi";
 
+export type ProjectCategory = "Hackathon" | "Personal" | "Client";
+
 export interface Project {
   title: string;
+  category: ProjectCategory;
   tagline: string;
   description: string;
   fullDescription: string;
@@ -35,6 +38,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     title: "Script Doctor",
+    category: "Hackathon",
     tagline: "Reads a doctor's handwriting before it causes harm",
     description:
       "Photograph a handwritten prescription and get a transcription, plain-language directions, and on-device safety checks.",
@@ -57,6 +61,7 @@ export const projects: Project[] = [
   },
   {
     title: "Quack Overflow",
+    category: "Hackathon",
     tagline: "The AI rubber duck that refuses to give you the answer",
     description:
       "A Socratic debugging partner: paste your code, explain the bug, and an animated duck asks questions until you find it yourself.",
@@ -80,6 +85,7 @@ export const projects: Project[] = [
   },
   {
     title: "Zoih",
+    category: "Personal",
     tagline: "Coding agents in your pocket",
     description:
       "An Android app that turns my PC into a programming assistant I can drive from my phone, with any coding agent.",
@@ -101,6 +107,7 @@ export const projects: Project[] = [
   },
   {
     title: "PetPal",
+    category: "Personal",
     tagline: "A pixel pet that grows from your real steps",
     description:
       "An offline-first habit game. Raise a pet with your steps and battle friends nearby over Bluetooth or a hotspot.",
@@ -123,6 +130,7 @@ export const projects: Project[] = [
 
   {
     title: "Astra",
+    category: "Hackathon",
     tagline: "A journal where every entry becomes a star",
     description:
       "Journal entries become stars in your own night sky, forming constellations you can explore, search and replay.",
@@ -146,6 +154,7 @@ export const projects: Project[] = [
 
   {
     title: "Isha",
+    category: "Personal",
     tagline: "A personal assistant that runs your day from your phone",
     description:
       "A native Android assistant that reads your mail, deadlines and budget, acts in your apps, and keeps working offline.",
@@ -169,6 +178,7 @@ export const projects: Project[] = [
   },
   {
     title: "Cann",
+    category: "Personal",
     tagline: "Automation pipelines across 1,000+ apps",
     description:
       "Chain app actions into flows that run on demand, once, every few minutes, or daily, straight from an Android phone.",
@@ -192,6 +202,7 @@ export const projects: Project[] = [
 
   {
     title: "Flori",
+    category: "Personal",
     tagline: "The language of flowers",
     description:
       "A flower encyclopedia with meanings, colour codes, and care guides for 120 blooms.",
@@ -213,6 +224,7 @@ export const projects: Project[] = [
   },
   {
     title: "GasNet",
+    category: "Client",
     tagline: "Decision support and POS for an LPG distributor",
     description:
       "An admin dashboard and staff point-of-sale for CJG LPG Trading, with AI insights on sales and inventory.",
