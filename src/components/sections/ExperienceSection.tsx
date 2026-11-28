@@ -24,7 +24,7 @@ function Entry({ e, i, work }: { e: Experience; i: number; work?: boolean }) {
         style={{ ["--chip" as string]: work ? "#b3202a" : "#1f4fa8" }}
       />
       <LuxeCard
-        tone={work ? "ivory" : "noir"}
+        tone="noir"
         rank={work ? "A" : LEAD_RANKS[i % LEAD_RANKS.length]}
         suit={suit}
         label={e.date}
@@ -33,9 +33,9 @@ function Entry({ e, i, work }: { e: Experience; i: number; work?: boolean }) {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-x-6 gap-y-2">
           <div>
             <h4 className="font-card text-2xl sm:text-[1.7rem] font-bold leading-tight">{e.title}</h4>
-            <p className={`mt-1 font-card italic text-[1.05rem] ${work ? "text-[#5a4a33]" : "text-[var(--gold-hi)]/85"}`}>{e.subtitle}</p>
+            <p className="mt-1 font-card italic text-[1.05rem] text-[var(--gold-hi)]/85">{e.subtitle}</p>
           </div>
-          <span className={`flex items-center gap-1.5 text-sm shrink-0 ${work ? "text-[#7a6a52]" : "text-[var(--text-3)]"}`}>
+          <span className="flex items-center gap-1.5 text-sm shrink-0 text-[var(--text-3)]">
             <MapPin size={13} /> {e.location}
           </span>
         </div>
@@ -44,8 +44,8 @@ function Entry({ e, i, work }: { e: Experience; i: number; work?: boolean }) {
 
         <ul className="mt-5 grid md:grid-cols-2 gap-x-8 gap-y-2.5">
           {e.achievements.map((a, j) => (
-            <li key={j} className={`flex gap-3 text-[15px] leading-relaxed ${work ? "" : "text-[var(--text-2)]"}`}>
-              <span className={`mt-[1px] shrink-0 ${work ? "text-[var(--card-red)]" : "text-[var(--gold)]"}`}>{suit}</span>
+            <li key={j} className="flex gap-3 text-[15px] leading-relaxed text-[var(--text-2)]">
+              <span className={`mt-[1px] shrink-0 ${work ? "text-[#ec6a70]" : "text-[var(--gold)]"}`}>{suit}</span>
               {a}
             </li>
           ))}
